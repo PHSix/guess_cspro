@@ -60,6 +60,7 @@ export default function GamePage() {
   const [showDropdown, setShowDropdown] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
   const dropdownRef = useRef<HTMLDivElement>(null);
+  const tableRef = useRef<HTMLDivElement>(null);
 
   // 初始化数据
   useEffect(() => {
@@ -148,7 +149,12 @@ export default function GamePage() {
           highlightedElement.scrollIntoView({ block: "nearest" });
         }
       }, 0);
-    } else if (e.key === "Enter") {
+    } else if (
+      e.key === "Enter" ||
+      e.key === "Go" ||
+      e.key === "Search" ||
+      e.key === "Done"
+    ) {
       e.preventDefault();
       if (searchResults.length > 0) {
         handleGuess(searchResults[highlightedIndex]);
@@ -191,6 +197,17 @@ export default function GamePage() {
       setSearchResults([]);
       setHighlightedIndex(0);
       setShowDropdown(false);
+
+      // 移动端自动滚动到最新一列
+      if (tableRef.current) {
+        setTimeout(() => {
+          tableRef.current?.scrollTo({
+            left: tableRef.current.scrollWidth,
+            behavior: "smooth",
+          });
+        }, 100);
+      }
+
       setTimeout(() => inputRef.current?.focus(), 100);
     }
   };
@@ -212,10 +229,6 @@ export default function GamePage() {
               弗一把
             </span>
           </h1>
-          <div className="text-sm font-mono text-muted-foreground">
-            <span className="bracket">[</span>GAME
-            <span className="bracket">]</span>
-          </div>
         </div>
 
         <div className="mb-4 text-center">
@@ -243,6 +256,7 @@ export default function GamePage() {
               onFocus={handleFocus}
               className="bg-input text-foreground placeholder:text-muted-foreground border-border"
               autoFocus
+              enterKeyHint="search"
             />
 
             {showDropdown && searchResults.length > 0 && (
@@ -283,7 +297,9 @@ export default function GamePage() {
               <span className="bracket">[</span>HISTORY
               <span className="bracket">]</span>
             </div>
-            <div className="overflow-x-auto">
+
+            {/* 桌面端正常表格 - 横向记录，纵向属性 */}
+            <div className="hidden md:block overflow-x-auto">
               <table className="w-full text-xs">
                 <thead>
                   <tr className="border-b border-border">
@@ -308,81 +324,212 @@ export default function GamePage() {
                   </tr>
                 </thead>
                 <tbody>
-                  {guesses.length === 0 ? (
-                    <tr>
+                  {guesses.map((guess, idx) => (
+                    <tr
+                      key={idx}
+                      className="border-b border-border/50 hover:bg-card/30"
+                    >
+                      <td className="py-2 px-2">
+                        <div className="font-semibold text-foreground">
+                          {guess.playerName}
+                        </div>
+                      </td>
                       <td
-                        colSpan={6}
-                        className="py-8 px-2 text-center text-muted-foreground"
+                        className={`py-2 px-2 ${getMatchClass(guess.result.teamMatch)}`}
                       >
-                        暂无猜测记录
+                        <div className="flex gap-4">
+                          <div>{guess.team}</div>
+                          <div className="text-xs">
+                            {getMatchSymbol(guess.result.teamMatch)}
+                          </div>
+                        </div>
+                      </td>
+                      <td
+                        className={`py-2 px-2 ${getMatchClass(guess.result.countryMatch)}`}
+                      >
+                        <div className="flex gap-4">
+                          <div>
+                            {getCountryFlag(guess.country)} {guess.country}
+                          </div>
+                          <div className="text-xs">
+                            {getMatchSymbol(guess.result.countryMatch)}
+                          </div>
+                        </div>
+                      </td>
+                      <td
+                        className={`py-2 px-2 ${getMatchClass(guess.result.ageMatch)}`}
+                      >
+                        <div className="flex gap-4">
+                          <div>{guess.age}岁</div>
+                          <div className="text-xs">
+                            {getMatchSymbol(guess.result.ageMatch)}
+                          </div>
+                        </div>
+                      </td>
+                      <td
+                        className={`py-2 px-2 ${getMatchClass(guess.result.majorMapsMatch)}`}
+                      >
+                        <div className="flex gap-4">
+                          <div>{guess.majorMaps}</div>
+                          <div className="text-xs">
+                            {getMatchSymbol(guess.result.majorMapsMatch)}
+                          </div>
+                        </div>
+                      </td>
+                      <td
+                        className={`py-2 px-2 ${getMatchClass(guess.result.roleMatch)}`}
+                      >
+                        <div className="flex gap-4">
+                          <div>{guess.role}</div>
+                          <div className="text-xs">
+                            {getMatchSymbol(guess.result.roleMatch)}
+                          </div>
+                        </div>
                       </td>
                     </tr>
-                  ) : (
-                    guesses.map((guess, idx) => (
-                      <tr
+                  ))}
+                </tbody>
+              </table>
+            </div>
+
+            {/* 移动端转置表格 - 纵向属性，横向记录 */}
+            <div
+              className="md:hidden overflow-x-auto custom-scrollbar"
+              ref={tableRef}
+            >
+              <table className="w-full text-xs">
+                <thead>
+                  <tr className="border-b border-border">
+                    <th className="text-left py-2 px-2 text-muted-foreground font-mono w-24 sticky left-0 bg-card z-10">
+                      属性
+                    </th>
+                    {guesses.map((_, idx) => (
+                      <th
                         key={idx}
-                        className="border-b border-border/50 hover:bg-card/30"
+                        className="text-left py-2 px-2 text-muted-foreground font-mono min-w-[100px]"
                       >
-                        <td className="py-2 px-2">
-                          <div className="font-semibold text-foreground">
-                            {guess.playerName}
-                          </div>
-                        </td>
-                        <td
-                          className={`py-2 px-2 ${getMatchClass(guess.result.teamMatch)}`}
-                        >
-                          <div className="flex gap-4">
-                            <div>{guess.team}</div>
-                            <div className="text-xs">
-                              {getMatchSymbol(guess.result.teamMatch)}
-                            </div>
-                          </div>
-                        </td>
-                        <td
-                          className={`py-2 px-2 ${getMatchClass(guess.result.countryMatch)}`}
-                        >
-                          <div className="flex gap-4">
-                            <div>
-                              {getCountryFlag(guess.country)} {guess.country}
-                            </div>
-                            <div className="text-xs">
-                              {getMatchSymbol(guess.result.countryMatch)}
-                            </div>
-                          </div>
-                        </td>
-                        <td
-                          className={`py-2 px-2 ${getMatchClass(guess.result.ageMatch)}`}
-                        >
-                          <div className="flex gap-4">
-                            <div>{guess.age}岁</div>
-                            <div className="text-xs">
-                              {getMatchSymbol(guess.result.ageMatch)}
-                            </div>
-                          </div>
-                        </td>
-                        <td
-                          className={`py-2 px-2 ${getMatchClass(guess.result.majorMapsMatch)}`}
-                        >
-                          <div className="flex gap-4">
-                            <div>{guess.majorMaps}</div>
-                            <div className="text-xs">
-                              {getMatchSymbol(guess.result.majorMapsMatch)}
-                            </div>
-                          </div>
-                        </td>
-                        <td
-                          className={`py-2 px-2 ${getMatchClass(guess.result.roleMatch)}`}
-                        >
-                          <div className="flex gap-4">
-                            <div>{guess.role}</div>
-                            <div className="text-xs">
-                              {getMatchSymbol(guess.result.roleMatch)}
-                            </div>
-                          </div>
-                        </td>
-                      </tr>
-                    ))
-                  )}
+                        第 {idx + 1} 次
+                      </th>
+                    ))}
+                  </tr>
+                </thead>
+                <tbody>
+                  {/* 选手名字行 */}
+                  <tr className="border-b border-border/50">
+                    <td className="py-2 px-2 font-semibold text-muted-foreground sticky left-0 bg-card z-10">
+                      选手
+                    </td>
+                    {guesses.map((guess, idx) => (
+                      <td
+                        key={idx}
+                        className="py-2 px-2 font-semibold text-foreground"
+                      >
+                        {guess.playerName}
+                      </td>
+                    ))}
+                  </tr>
+
+                  {/* 队伍行 */}
+                  <tr className="border-b border-border/50">
+                    <td className="py-2 px-2 font-semibold text-muted-foreground sticky left-0 bg-card z-10">
+                      队伍
+                    </td>
+                    {guesses.map((guess, idx) => (
+                      <td
+                        key={idx}
+                        className={`py-2 px-2 ${getMatchClass(guess.result.teamMatch)}`}
+                      >
+                        <div className="flex items-center gap-1">
+                          <span>{guess.team}</span>
+                          <span className="text-xs">
+                            {getMatchSymbol(guess.result.teamMatch)}
+                          </span>
+                        </div>
+                      </td>
+                    ))}
+                  </tr>
+
+                  {/* 国家行 */}
+                  <tr className="border-b border-border/50">
+                    <td className="py-2 px-2 font-semibold text-muted-foreground sticky left-0 bg-card z-10">
+                      国家
+                    </td>
+                    {guesses.map((guess, idx) => (
+                      <td
+                        key={idx}
+                        className={`py-2 px-2 ${getMatchClass(guess.result.countryMatch)}`}
+                      >
+                        <div className="flex items-center gap-1">
+                          <span>
+                            {getCountryFlag(guess.country)} {guess.country}
+                          </span>
+                          <span className="text-xs">
+                            {getMatchSymbol(guess.result.countryMatch)}
+                          </span>
+                        </div>
+                      </td>
+                    ))}
+                  </tr>
+
+                  {/* 年龄行 */}
+                  <tr className="border-b border-border/50">
+                    <td className="py-2 px-2 font-semibold text-muted-foreground sticky left-0 bg-card z-10">
+                      年龄
+                    </td>
+                    {guesses.map((guess, idx) => (
+                      <td
+                        key={idx}
+                        className={`py-2 px-2 ${getMatchClass(guess.result.ageMatch)}`}
+                      >
+                        <div className="flex items-center gap-1">
+                          <span>{guess.age}岁</span>
+                          <span className="text-xs">
+                            {getMatchSymbol(guess.result.ageMatch)}
+                          </span>
+                        </div>
+                      </td>
+                    ))}
+                  </tr>
+
+                  {/* Major行 */}
+                  <tr className="border-b border-border/50">
+                    <td className="py-2 px-2 font-semibold text-muted-foreground sticky left-0 bg-card z-10">
+                      Major
+                    </td>
+                    {guesses.map((guess, idx) => (
+                      <td
+                        key={idx}
+                        className={`py-2 px-2 ${getMatchClass(guess.result.majorMapsMatch)}`}
+                      >
+                        <div className="flex items-center gap-1">
+                          <span>{guess.majorMaps}</span>
+                          <span className="text-xs">
+                            {getMatchSymbol(guess.result.majorMapsMatch)}
+                          </span>
+                        </div>
+                      </td>
+                    ))}
+                  </tr>
+
+                  {/* 角色行 */}
+                  <tr className="border-b border-border/50">
+                    <td className="py-2 px-2 font-semibold text-muted-foreground sticky left-0 bg-card z-10">
+                      角色
+                    </td>
+                    {guesses.map((guess, idx) => (
+                      <td
+                        key={idx}
+                        className={`py-2 px-2 ${getMatchClass(guess.result.roleMatch)}`}
+                      >
+                        <div className="flex items-center gap-1">
+                          <span>{guess.role}</span>
+                          <span className="text-xs">
+                            {getMatchSymbol(guess.result.roleMatch)}
+                          </span>
+                        </div>
+                      </td>
+                    ))}
+                  </tr>
                 </tbody>
               </table>
             </div>
