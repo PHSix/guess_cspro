@@ -14,8 +14,7 @@
 **🌐 [https://guess-cspro.chenyi-ph.workers.dev/](https://guess-cspro.chenyi-ph.workers.dev/)**
 
 > ⚠️ 国内访问可能需要使用"魔法"（VPN/代理）
->
-> ☁️ Cloudflare 部署版本开发中...
+
 
 ## ✨ 功能特性
 
