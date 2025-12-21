@@ -1,7 +1,8 @@
 import { useState, useEffect, useRef, useCallback } from "react";
 import { Input } from "@/components/ui/input";
 import { Card } from "@/components/ui/card";
-import { Loader2 } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Loader2, Settings } from "lucide-react";
 import {
   getAllPlayers,
   searchPlayers,
@@ -51,11 +52,9 @@ function getMatchClass(match: MatchType): string {
 }
 
 export default function GamePage() {
-  const totalGuesses = 8;
   const [, navigate] = useLocation();
   const [answerPlayer, setAnswerPlayer] = useState<Player | null>(null);
   const [guesses, setGuesses] = useState<Guess[]>([]);
-  const [guessesRemaining, setGuessesRemaining] = useState(totalGuesses);
   const [searchQuery, setSearchQuery] = useState("");
   const [searchResults, setSearchResults] = useState<Player[]>([]);
   const [highlightedIndex, setHighlightedIndex] = useState(0);
@@ -65,6 +64,29 @@ export default function GamePage() {
   const dropdownRef = useRef<HTMLDivElement>(null);
   const tableRef = useRef<HTMLDivElement>(null);
   const isMobile = useIsMobile();
+
+  // 从本地存储获取设置
+  const getTotalGuesses = () => {
+    const saved = localStorage.getItem("game-total-guesses");
+    return saved ? Math.max(1, Math.min(20, parseInt(saved))) : 8;
+  };
+
+  const [totalGuesses, setTotalGuessesState] = useState(getTotalGuesses());
+  const [guessesRemaining, setGuessesRemaining] = useState(totalGuesses);
+
+  // 监听设置变化
+  useEffect(() => {
+    const handleStorageChange = () => {
+      setTotalGuessesState(getTotalGuesses());
+    };
+
+    window.addEventListener("storage", handleStorageChange);
+    return () => window.removeEventListener("storage", handleStorageChange);
+  }, []);
+
+  const handleGoToSettings = () => {
+    navigate("/settings");
+  };
 
   // 初始化数据
   useEffect(() => {
@@ -118,7 +140,7 @@ export default function GamePage() {
     setHighlightedIndex(0);
     setIsLoading(false);
     setTimeout(() => inputRef.current?.focus(), 100);
-  }, []);
+  }, [totalGuesses]);
 
   // 初始化游戏
   useEffect(() => {
@@ -227,12 +249,20 @@ export default function GamePage() {
   return (
     <div className="bg-background py-8">
       <div className="container max-w-3xl">
-        <div className="mb-6 text-center">
+        <div className="mb-6 text-center relative">
           <h1 className="text-3xl font-bold text-foreground mb-2">
             <span className="glitch-text" data-text="弗一把">
               弗一把
             </span>
           </h1>
+          <Button
+            variant="ghost"
+            size="icon"
+            onClick={handleGoToSettings}
+            className="absolute right-0 top-0 text-muted-foreground hover:text-foreground"
+          >
+            <Settings className="w-5 h-5" />
+          </Button>
         </div>
 
         <Card className="p-6 neon-border space-y-4 flex flex-col-reverse md:flex-col">

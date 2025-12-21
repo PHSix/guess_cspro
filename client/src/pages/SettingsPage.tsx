@@ -1,0 +1,230 @@
+import { useState, useEffect } from "react";
+import { Card } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { useLocation } from "wouter";
+import { Settings, ArrowLeft, AlertCircle } from "lucide-react";
+import { cn } from "@/lib/utils";
+import { clearPlayersCache } from "@/lib/gameEngine";
+import { toast } from "sonner";
+
+type Difficulty = "all" | "normal" | "ylg";
+
+const DIFFICULTY_CONFIG = {
+  all: {
+    label: "ALL 模式",
+    description: "困难模式 - 包含所有选手",
+    difficulty: "困难",
+    disabled: false,
+  },
+  normal: {
+    label: "Normal 模式",
+    description: "中等模式 - 精选选手",
+    difficulty: "中等",
+    disabled: false,
+  },
+  ylg: {
+    label: "YLG 模式",
+    description: "简单模式 - 即将推出",
+    difficulty: "简单",
+    disabled: true,
+    wip: true,
+  },
+};
+
+export default function SettingsPage() {
+  const [, navigate] = useLocation();
+  const [selectedDifficulty, setSelectedDifficulty] = useState<Difficulty>("normal");
+  const [totalGuesses, setTotalGuesses] = useState(8);
+
+  // 从本地存储加载设置
+  useEffect(() => {
+    const savedDifficulty = localStorage.getItem("game-difficulty") as Difficulty;
+    if (savedDifficulty && DIFFICULTY_CONFIG[savedDifficulty]) {
+      setSelectedDifficulty(savedDifficulty);
+    }
+
+    const savedTotalGuesses = localStorage.getItem("game-total-guesses");
+    if (savedTotalGuesses) {
+      const parsed = parseInt(savedTotalGuesses);
+      if (parsed >= 1 && parsed <= 20) {
+        setTotalGuesses(parsed);
+      }
+    }
+  }, []);
+
+  const handleSave = () => {
+    const previousDifficulty = localStorage.getItem("game-difficulty");
+    localStorage.setItem("game-difficulty", selectedDifficulty);
+    localStorage.setItem("game-total-guesses", totalGuesses.toString());
+
+    // 如果难度发生变化，清除缓存
+    if (previousDifficulty !== selectedDifficulty) {
+      clearPlayersCache();
+      toast.success("设置已保存", {
+        description: "难度已切换，数据缓存已清除",
+      });
+    } else {
+      toast.success("设置已保存", {
+        description: "您的游戏设置已更新",
+      });
+    }
+  };
+
+  const handleReset = () => {
+    setSelectedDifficulty("normal");
+    setTotalGuesses(8);
+    localStorage.removeItem("game-difficulty");
+    localStorage.removeItem("game-total-guesses");
+    clearPlayersCache();
+    toast.success("设置已重置", {
+      description: "所有设置已恢复默认值",
+    });
+  };
+
+  const handleTotalGuessesChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = parseInt(e.target.value);
+    if (value >= 1 && value <= 20) {
+      setTotalGuesses(value);
+    }
+  };
+
+  return (
+    <div className="min-h-screen bg-background py-8">
+      <div className="container max-w-3xl">
+        <div className="mb-6 flex items-center gap-4">
+          <Button
+            variant="ghost"
+            size="icon"
+            onClick={() => navigate("/")}
+            className="text-muted-foreground hover:text-foreground"
+          >
+            <ArrowLeft className="w-5 h-5" />
+          </Button>
+          <h1 className="text-3xl font-bold text-foreground">
+            <span className="glitch-text" data-text="设置">
+              设置
+            </span>
+          </h1>
+        </div>
+
+        <Card className="p-6 neon-border space-y-6">
+          {/* 难度设置 */}
+          <div className="space-y-4">
+            <div className="text-xs font-mono text-muted-foreground">
+              <span className="bracket">[</span>DIFFICULTY
+              <span className="bracket">]</span>
+            </div>
+
+            <div className="space-y-3">
+              {(Object.entries(DIFFICULTY_CONFIG) as [Difficulty, typeof DIFFICULTY_CONFIG[Difficulty]][]).map(
+                ([key, config]) => (
+                  <button
+                    key={key}
+                    onClick={() => !config.disabled && setSelectedDifficulty(key)}
+                    disabled={config.disabled}
+                    className={cn(
+                      "w-full p-4 border rounded-lg transition-all text-left",
+                      selectedDifficulty === key
+                        ? "border-accent bg-accent/10"
+                        : "border-border hover:border-accent/50",
+                      config.disabled && "opacity-50 cursor-not-allowed"
+                    )}
+                  >
+                    <div className="flex items-start justify-between">
+                      <div className="space-y-1">
+                        <div className="flex items-center gap-2">
+                          <h3 className="font-semibold text-foreground">{config.label}</h3>
+                          {config.wip && (
+                            <span className="text-xs px-2 py-0.5 bg-yellow-500/20 text-yellow-400 rounded">
+                              WIP
+                            </span>
+                          )}
+                          <span className="text-xs px-2 py-0.5 bg-muted text-muted-foreground rounded">
+                            {config.difficulty}
+                          </span>
+                        </div>
+                        <p className="text-sm text-muted-foreground">{config.description}</p>
+                        {config.wip && (
+                          <p className="text-xs text-yellow-400 flex items-center gap-1">
+                            <AlertCircle className="w-3 h-3" />
+                            此模式正在开发中，暂不可用
+                          </p>
+                        )}
+                      </div>
+                      {selectedDifficulty === key && (
+                        <div className="w-4 h-4 rounded-full border-2 border-accent flex items-center justify-center">
+                          <div className="w-2 h-2 rounded-full bg-accent" />
+                        </div>
+                      )}
+                    </div>
+                  </button>
+                )
+              )}
+            </div>
+          </div>
+
+          {/* 猜测次数设置 */}
+          <div className="space-y-4 pt-4 border-t border-border">
+            <div className="text-xs font-mono text-muted-foreground">
+              <span className="bracket">[</span>TOTAL GUESSES
+              <span className="bracket">]</span>
+            </div>
+
+            <div className="space-y-3">
+              <div>
+                <label className="text-sm text-foreground mb-2 block">
+                  最大猜测次数
+                </label>
+                <Input
+                  type="number"
+                  min={1}
+                  max={20}
+                  value={totalGuesses}
+                  onChange={handleTotalGuessesChange}
+                  className="w-full max-w-[200px]"
+                  placeholder="8"
+                />
+                <p className="text-xs text-muted-foreground mt-1">
+                  设置游戏中的最大猜测次数（1-20之间）
+                </p>
+              </div>
+
+              {/* 预设选项 */}
+              <div className="flex flex-wrap gap-2">
+                {[3, 5, 8, 10, 15].map(num => (
+                  <Button
+                    key={num}
+                    variant={totalGuesses === num ? "default" : "outline"}
+                    size="sm"
+                    onClick={() => setTotalGuesses(num)}
+                  >
+                    {num}
+                  </Button>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          {/* 操作按钮 */}
+          <div className="flex gap-3 pt-4 border-t border-border">
+            <Button onClick={handleSave} className="flex-1">
+              保存设置
+            </Button>
+            <Button variant="outline" onClick={handleReset}>
+              重置
+            </Button>
+          </div>
+
+          {/* 说明 */}
+          <div className="text-xs text-muted-foreground space-y-1 pt-4 border-t border-border">
+            <p>• 难度设置会影响游戏中的选手池和猜测范围</p>
+            <p>• 猜测次数设置会在新游戏中生效</p>
+            <p>• 所有设置会自动保存在浏览器本地存储中</p>
+            <p>• 修改设置后需要重新开始游戏才能生效</p>
+          </div>
+        </Card>
+      </div>
+    </div>
+  );
+}

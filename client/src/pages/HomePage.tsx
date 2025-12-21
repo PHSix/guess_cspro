@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { Loader2 } from "lucide-react";
+import { Loader2, Settings } from "lucide-react";
 import { useState } from "react";
 import { useLocation } from "wouter";
 
@@ -12,6 +12,10 @@ export default function HomePage() {
     setIsLoading(true);
     // 直接导航到游戏页面
     setLocation("/game");
+  };
+
+  const handleGoToSettings = () => {
+    setLocation("/settings");
   };
 
   return (
@@ -37,6 +41,15 @@ export default function HomePage() {
           ) : (
             "▶ START GAME"
           )}
+        </Button>
+        <Button
+          variant="ghost"
+          onClick={handleGoToSettings}
+          className="w-full text-muted-foreground hover:text-foreground"
+          size="sm"
+        >
+          <Settings className="w-4 h-4 mr-2" />
+          设置
         </Button>
       </Card>
     </div>
