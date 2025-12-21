@@ -11,6 +11,8 @@
 
 **🌐 [https://guess-cspro.vercel.app/](https://guess-cspro.vercel.app/)**
 
+**🌐 [https://guess-cspro.chenyi-ph.workers.dev/](https://guess-cspro.chenyi-ph.workers.dev/)**
+
 > ⚠️ 国内访问可能需要使用"魔法"（VPN/代理）
 >
 > ☁️ Cloudflare 部署版本开发中...
@@ -51,7 +53,6 @@
 - **样式**: Tailwind CSS 4.1.14 (自定义霓虹主题)
 - **状态管理**: React Hooks + localStorage
 - **PWA**: VitePWA 插件
-- **数据获取**: @tanstack/react-query
 - **图标**: Lucide React
 - **包管理器**: pnpm
 
