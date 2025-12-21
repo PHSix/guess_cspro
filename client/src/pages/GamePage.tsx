@@ -16,6 +16,7 @@ import {
 import { getCountryFlag } from "@shared/countryUtils";
 import { useLocation } from "wouter";
 import { cn } from "@/lib/utils";
+import { useIsMobile } from "@/hooks/useMobile";
 
 function getMatchSymbol(match: MatchType): string {
   switch (match) {
@@ -63,6 +64,7 @@ export default function GamePage() {
   const inputRef = useRef<HTMLInputElement>(null);
   const dropdownRef = useRef<HTMLDivElement>(null);
   const tableRef = useRef<HTMLDivElement>(null);
+  const isMobile = useIsMobile();
 
   // 初始化数据
   useEffect(() => {
@@ -223,7 +225,7 @@ export default function GamePage() {
   }
 
   return (
-    <div className="min-h-screen bg-background py-8">
+    <div className="bg-background py-8">
       <div className="container max-w-3xl">
         <div className="mb-6 text-center">
           <h1 className="text-3xl font-bold text-foreground mb-2">
@@ -274,7 +276,12 @@ export default function GamePage() {
             {showDropdown && searchResults.length > 0 && (
               <div
                 ref={dropdownRef}
-                className="absolute top-full left-0 right-0 mt-1 bg-card border border-border rounded z-50 max-h-[108px] overflow-y-auto custom-scrollbar"
+                className={cn(
+                  "absolute md:top-full left-0 right-0 mt-1 bg-card border border-border rounded flex flex-col-reverse md:flex-col z-50 max-h-[108px] overflow-y-auto custom-scrollbar",
+                  {
+                    "bottom-[40px]": isMobile,
+                  }
+                )}
               >
                 {searchResults.map((player, idx) => (
                   <button
