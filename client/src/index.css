@@ -333,3 +333,7 @@
 table td {
   white-space: nowrap;
 }
+
+html {
+  font-family: "Inter", sans-serif;
+}
