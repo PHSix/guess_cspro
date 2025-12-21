@@ -5498,5 +5498,95 @@
     "role": "Rifler",
     "majorsPlayed": 1,
     "avatar": null
+  },
+  "r1nkle": {
+    "id": "r1nkle",
+    "link": "https://www.hltv.org/player/20425/r1nkle",
+    "country": "Ukraine",
+    "team": "Ninjas in Pyjamas",
+    "birth_year": 2004,
+    "role": "AWPer",
+    "majorsPlayed": 1,
+    "avatar": ""
+  },
+  "kyousuke": {
+    "id": "kyousuke",
+    "link": "https://www.hltv.org/player/24177/kyousuke",
+    "country": "Russia",
+    "team": "Falcons",
+    "birth_year": 2008,
+    "role": "Rifler",
+    "majorsPlayed": 1,
+    "avatar": "https://img-cdn.hltv.org/playerbodyshot/_s6UUQ4E92xw1uSWWCafsK.png?ixlib=java-2.1.0&w=400&s=d94a122aa9a8ec89f0727656b69e2415"
+  },
+  "molodoy": {
+    "id": "molodoy",
+    "link": "https://www.hltv.org/player/24144/molodoy",
+    "country": "Kazakhstan",
+    "team": "FURIA",
+    "birth_year": 2005,
+    "role": "AWPer",
+    "majorsPlayed": 2,
+    "avatar": "https://img-cdn.hltv.org/playerbodyshot/oPoWLYFq87cIs2cYDo8id7.png?ixlib=java-2.1.0&w=400&s=26d135bacbf9f98ff775421c3ca2bf4c"
+  },
+  "jcobbb": {
+    "id": "jcobbb",
+    "link": "https://www.hltv.org/player/22383/jcobbb",
+    "country": "Poland",
+    "team": "FaZe",
+    "birth_year": 2004,
+    "role": "Rifler",
+    "majorsPlayed": 1,
+    "avatar": "https://img-cdn.hltv.org/playerbodyshot/dCtnbnCxEWJe5rz5ddEdZX.png?ixlib=java-2.1.0&w=400&s=bf7c84bed88d8bf3cfa8f382ff42b92d"
+  },
+  "JamYoung": {
+    "id": "JamYoung",
+    "link": "https://www.hltv.org/player/19645/jamyoung",
+    "country": "China",
+    "team": "TYLOO",
+    "birth_year": 2001,
+    "role": "Rifler",
+    "majorsPlayed": 2,
+    "avatar": ""
+  },
+  "Moseyuh": {
+    "id": "Moseyuh",
+    "link": "https://www.hltv.org/player/21621/moseyuh",
+    "country": "China",
+    "team": "TYLOO",
+    "birth_year": 2004,
+    "role": "Rifler",
+    "majorsPlayed": 2,
+    "avatar": "https://img-cdn.hltv.org/playerbodyshot/2o7IiFaNgIgdyn2iF2BdT7.png?ixlib=java-2.1.0&w=400&s=5040cd09a8a1393108715918b46e6040"
+  },
+  "Mercury": {
+    "id": "Mercury",
+    "link": "https://www.hltv.org/player/20895/mercury",
+    "country": "China",
+    "team": "TYLOO",
+    "birth_year": 2000,
+    "role": "Rifler",
+    "majorsPlayed": 2,
+    "avatar": ""
+  },
+  "yxngstxr": {
+    "id": "yxngstxr",
+    "link": "https://www.hltv.org/player/22047/yxngstxr",
+    "country": "Sweden",
+    "team": "HEROIC",
+    "birth_year": 2004,
+    "role": "Rifler",
+    "majorsPlayed": 1,
+    "avatar": "https://img-cdn.hltv.org/playerbodyshot/GV0GnKexXo17cH1aO1bRcY.png?ixlib=java-2.1.0&w=400&s=19badedd13223f3e6f2c36b8ab4270c1"
+  },
+  "Alkaren": {
+    "id": "Alkaren",
+    "link": "https://www.hltv.org/player/23600/alkaren",
+    "country": "Kazakhstan",
+    "team": "HEROIC",
+    "birth_year": 2007,
+    "role": "AWPer",
+    "majorsPlayed": 0,
+    "avatar": "https://img-cdn.hltv.org/playerbodyshot/biOoj0RdE1iWdYlNZ2B6zt.png?ixlib=java-2.1.0&w=400&s=b39726a7e6894883a3b4d886a23863a2"
   }
 }
