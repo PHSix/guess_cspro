@@ -7,7 +7,7 @@ export interface Player {
   /**
    * 参加major比赛的次数
    */
-  major: number;
+  majorsPlayed: number;
   role: "AWPer" | "Rifler" | "Unknown";
 
   lowerPlayerName: string;
@@ -198,10 +198,10 @@ async function initializePlayers(): Promise<Player[]> {
   if (playersCache) return playersCache;
 
   try {
-    const response = await fetch("/players_data_cleaned.json");
+    const response = await fetch("/all_players_data.json");
     const playersData = await response.json();
 
-    playersCache = Object.entries(playersData).map((entry, index) => {
+    playersCache = Object.entries(playersData).map<Player>((entry, index) => {
       const [key, data]: [string, any] = entry;
       return {
         id: index + 1,
@@ -209,8 +209,9 @@ async function initializePlayers(): Promise<Player[]> {
         team: data.team || "Unknown",
         country: data.country || "Unknown",
         birthYear: data.birth_year || 2000,
-        major: parseInt(data.majapp) || 0,
+        majorsPlayed: data.majorsPlayed || 0,
         role: data.role || "Unknown",
+        avatar: data.avatar || "",
 
         lowerPlayerName: key.toLowerCase(),
         // 搜索时，替换一些常见的数字为小写字母
@@ -329,11 +330,15 @@ export function comparePlayerAttributes(
             ? MatchType.Greater
             : MatchType.Different,
     majorMapsMatch:
-      guessedPlayer.major === answerPlayer.major
+      guessedPlayer.majorsPlayed === answerPlayer.majorsPlayed
         ? MatchType.Exact
-        : inRange(guessedPlayer.major - answerPlayer.major, 0, 3)
+        : inRange(guessedPlayer.majorsPlayed - answerPlayer.majorsPlayed, 0, 3)
           ? MatchType.Less
-          : inRange(guessedPlayer.major - answerPlayer.major, -3, 0)
+          : inRange(
+                guessedPlayer.majorsPlayed - answerPlayer.majorsPlayed,
+                -3,
+                0
+              )
             ? MatchType.Greater
             : MatchType.Different,
     roleMatch:
@@ -366,7 +371,7 @@ export function createGuessRecord(
     team: guessedPlayer.team,
     country: guessedPlayer.country,
     age,
-    majorMaps: guessedPlayer.major,
+    majorMaps: guessedPlayer.majorsPlayed,
     role: guessedPlayer.role,
     result,
   };
