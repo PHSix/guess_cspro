@@ -4,7 +4,10 @@ export interface Player {
   team: string;
   country: string;
   birthYear: number;
-  majorMaps: number;
+  /**
+   * 参加major比赛的次数
+   */
+  major: number;
   role: "AWPer" | "Rifler" | "Unknown";
 
   lowerPlayerName: string;
@@ -206,7 +209,7 @@ async function initializePlayers(): Promise<Player[]> {
         team: data.team || "Unknown",
         country: data.country || "Unknown",
         birthYear: data.birth_year || 2000,
-        majorMaps: parseInt(data.majapp) || 0,
+        major: parseInt(data.majapp) || 0,
         role: data.role || "Unknown",
 
         lowerPlayerName: key.toLowerCase(),
@@ -321,17 +324,17 @@ export function comparePlayerAttributes(
       guessedAge === answerAge
         ? MatchType.Exact
         : inRange(guessedAge - answerAge, 0, 2)
-          ? MatchType.Greater
+          ? MatchType.Less
           : inRange(guessedAge - answerAge, -2, 0)
-            ? MatchType.Less
+            ? MatchType.Greater
             : MatchType.Different,
     majorMapsMatch:
-      guessedPlayer.majorMaps === answerPlayer.majorMaps
+      guessedPlayer.major === answerPlayer.major
         ? MatchType.Exact
-        : inRange(guessedPlayer.majorMaps - answerPlayer.majorMaps, 0, 3)
-          ? MatchType.Greater
-          : inRange(guessedPlayer.majorMaps - answerPlayer.majorMaps, -3, 0)
-            ? MatchType.Less
+        : inRange(guessedPlayer.major - answerPlayer.major, 0, 3)
+          ? MatchType.Less
+          : inRange(guessedPlayer.major - answerPlayer.major, -3, 0)
+            ? MatchType.Greater
             : MatchType.Different,
     roleMatch:
       guessedPlayer.role === answerPlayer.role
@@ -363,7 +366,7 @@ export function createGuessRecord(
     team: guessedPlayer.team,
     country: guessedPlayer.country,
     age,
-    majorMaps: guessedPlayer.majorMaps,
+    majorMaps: guessedPlayer.major,
     role: guessedPlayer.role,
     result,
   };

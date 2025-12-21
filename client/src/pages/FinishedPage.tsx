@@ -112,7 +112,7 @@ export default function FinishedPage() {
                   </div>
                   <div>
                     <span className="text-muted-foreground">Major:</span>
-                    <div className="font-semibold">{answer.majorMaps}</div>
+                    <div className="font-semibold">{answer.major}</div>
                   </div>
                   <div>
                     <span className="text-muted-foreground">角色:</span>
