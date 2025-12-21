@@ -15,6 +15,7 @@ import {
 } from "@/lib/gameEngine";
 import { getCountryFlag } from "@shared/countryUtils";
 import { useLocation } from "wouter";
+import { cn } from "@/lib/utils";
 
 function getMatchSymbol(match: MatchType): string {
   switch (match) {
@@ -49,10 +50,11 @@ function getMatchClass(match: MatchType): string {
 }
 
 export default function GamePage() {
+  const totalGuesses = 8;
   const [, navigate] = useLocation();
   const [answerPlayer, setAnswerPlayer] = useState<Player | null>(null);
   const [guesses, setGuesses] = useState<Guess[]>([]);
-  const [guessesRemaining, setGuessesRemaining] = useState(8);
+  const [guessesRemaining, setGuessesRemaining] = useState(totalGuesses);
   const [searchQuery, setSearchQuery] = useState("");
   const [searchResults, setSearchResults] = useState<Player[]>([]);
   const [highlightedIndex, setHighlightedIndex] = useState(0);
@@ -108,7 +110,7 @@ export default function GamePage() {
     setAnswerPlayer(player);
     console.log(player);
     setGuesses([]);
-    setGuessesRemaining(8);
+    setGuessesRemaining(totalGuesses);
     setSearchQuery("");
     setSearchResults([]);
     setHighlightedIndex(0);
@@ -182,7 +184,7 @@ export default function GamePage() {
         answer: answerPlayer,
       };
       navigate("/finished", { state: winData });
-    } else if (newGuesses.length >= 8) {
+    } else if (newGuesses.length >= totalGuesses) {
       // 用完次数，跳转到失败页面
       const loseData = {
         isWon: false,
@@ -192,7 +194,7 @@ export default function GamePage() {
       navigate("/finished", { state: loseData });
     } else {
       // 没猜中但还有次数，继续游戏
-      setGuessesRemaining(8 - newGuesses.length);
+      setGuessesRemaining(totalGuesses - newGuesses.length);
       setSearchQuery("");
       setSearchResults([]);
       setHighlightedIndex(0);
@@ -231,20 +233,30 @@ export default function GamePage() {
           </h1>
         </div>
 
-        <div className="mb-4 text-center">
-          <div className="text-xs font-mono text-muted-foreground">
-            <span className="bracket">[</span>REMAINING
-            <span className="bracket">]</span>
-          </div>
-          <div className="text-2xl font-bold text-foreground">
-            <span className="text-accent font-bold">{guessesRemaining}</span> /
-            8
-          </div>
-        </div>
-
-        <Card className="p-6 neon-border space-y-4">
+        <Card className="p-6 neon-border space-y-4 flex flex-col-reverse md:flex-col">
           {/* 搜索输入框 */}
           <div className="relative">
+            <div className="flex flex-row items-center gap-4 mb-4">
+              <span className="text-xs font-mono text-muted-foreground">
+                <span className="bracket">[</span>REMAINING
+                <span className="bracket">]</span>
+              </span>
+
+              {/* 小球显示 */}
+              <div className="flex flex-row gap-2">
+                {Array.from({ length: totalGuesses }, (_, idx) => (
+                  <div
+                    key={idx}
+                    className={cn(
+                      "w-2 h-2 rounded-full border-2 border-border bg-accent",
+                      {
+                        "bg-emerald-50": idx < totalGuesses - guessesRemaining,
+                      }
+                    )}
+                  />
+                ))}
+              </div>
+            </div>
             <Input
               ref={inputRef}
               type="text"
