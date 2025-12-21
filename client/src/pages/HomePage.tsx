@@ -1,0 +1,44 @@
+import { Button } from "@/components/ui/button";
+import { Card } from "@/components/ui/card";
+import { Loader2 } from "lucide-react";
+import { useState } from "react";
+import { useLocation } from "wouter";
+
+export default function HomePage() {
+  const [, setLocation] = useLocation();
+  const [isLoading, setIsLoading] = useState(false);
+
+  const handleStartGame = () => {
+    setIsLoading(true);
+    // 直接导航到游戏页面
+    setLocation("/game");
+  };
+
+  return (
+    <div className="min-h-screen bg-background flex items-center justify-center px-4">
+      <Card className="p-8 max-w-md neon-border text-center space-y-6">
+        <h1 className="text-4xl font-bold text-foreground">
+          <span className="glitch-text" data-text="弗一把">
+            弗一把
+          </span>
+        </h1>
+        <p className="text-sm text-muted-foreground">CS职业选手猜猜猜</p>
+        <Button
+          onClick={handleStartGame}
+          disabled={isLoading}
+          className="w-full bg-accent text-accent-foreground hover:bg-accent/90 neon-border"
+          size="lg"
+        >
+          {isLoading ? (
+            <>
+              <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+              初始化中...
+            </>
+          ) : (
+            "▶ START GAME"
+          )}
+        </Button>
+      </Card>
+    </div>
+  );
+}
