@@ -287,7 +287,12 @@ export default function GamePage() {
                   <button
                     key={player.id}
                     data-search-index={idx}
-                    onClick={() => handleGuess(player)}
+                    // 优化移动端收起键盘，使用pointerdown替换click事件
+                    onPointerDown={e => {
+                      e.stopPropagation();
+                      e.preventDefault();
+                      handleGuess(player);
+                    }}
                     className={`w-full text-left px-4 py-2 transition-colors border-b border-border/50 last:border-b-0 ${
                       idx === highlightedIndex
                         ? "bg-accent/20 border-l-2 border-l-accent"
