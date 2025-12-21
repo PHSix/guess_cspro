@@ -5,11 +5,11 @@ import path from "path";
 import { defineConfig } from "vite";
 import { VitePWA } from "vite-plugin-pwa";
 
-export default defineConfig({
+export default defineConfig(({ command }) => ({
   plugins: [
     react(),
     tailwindcss(),
-    jsxLocPlugin(),
+    command === "build" ? undefined : jsxLocPlugin(),
     VitePWA({
       registerType: "autoUpdate",
       injectRegister: "auto",
@@ -83,11 +83,11 @@ export default defineConfig({
     emptyOutDir: true,
   },
   server: {
-    host: false,
+    host: true,
     allowedHosts: ["localhost", "127.0.0.1"],
     fs: {
       strict: true,
       deny: ["**/.*"],
     },
   },
-});
+}));
