@@ -1,6 +1,6 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;700&family=Inter:wght@400;600;700;900&display=swap");
 @import "tailwindcss";
 @import "tw-animate-css";
-@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;700&family=Inter:wght@400;600;700;900&display=swap');
 
 @custom-variant dark (&:is(.dark *));
 
@@ -120,10 +120,11 @@
   }
   body {
     @apply bg-background text-foreground;
-    font-family: 'Inter', sans-serif;
+    font-family: "Inter", sans-serif;
   }
-  code, pre {
-    font-family: 'Roboto Mono', monospace;
+  code,
+  pre {
+    font-family: "Roboto Mono", monospace;
   }
   button:not(:disabled),
   [role="button"]:not([aria-disabled="true"]),
@@ -167,20 +168,19 @@
 
   /* 系统故障美学：扫描线纹理 */
   body::before {
-    content: '';
+    content: "";
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background-image: 
-      repeating-linear-gradient(
-        0deg,
-        rgba(0, 0, 0, 0.15),
-        rgba(0, 0, 0, 0.15) 1px,
-        transparent 1px,
-        transparent 2px
-      );
+    background-image: repeating-linear-gradient(
+      0deg,
+      rgba(0, 0, 0, 0.15),
+      rgba(0, 0, 0, 0.15) 1px,
+      transparent 1px,
+      transparent 2px
+    );
     pointer-events: none;
     z-index: 9999;
   }
@@ -202,14 +202,14 @@
   /* 霓虹色边框 */
   .neon-border {
     border: 2px solid #00ffff;
-    box-shadow: 
+    box-shadow:
       0 0 10px rgba(0, 255, 255, 0.5),
       inset 0 0 10px rgba(0, 255, 255, 0.1);
   }
 
   /* 错误代码样式 */
   .error-code {
-    font-family: 'Roboto Mono', monospace;
+    font-family: "Roboto Mono", monospace;
     color: #ff00ff;
     font-size: 0.875rem;
     opacity: 0.7;
@@ -268,18 +268,19 @@
 
   /* 方向指示器 */
   .direction-up::after {
-    content: ' ↑';
+    content: " ↑";
     color: #00ffff;
   }
 
   .direction-down::after {
-    content: ' ↓';
+    content: " ↓";
     color: #ff00ff;
   }
 
   /* 脉冲动画 */
   @keyframes pulse-glow {
-    0%, 100% {
+    0%,
+    100% {
       box-shadow: 0 0 5px rgba(0, 255, 255, 0.5);
     }
     50% {
@@ -307,7 +308,8 @@
       opacity: 1;
     }
     100% {
-      transform: translate(var(--offset-x), var(--offset-y)) scale(0) rotate(720deg);
+      transform: translate(var(--offset-x), var(--offset-y)) scale(0)
+        rotate(720deg);
       opacity: 0;
     }
   }
@@ -327,3 +329,4 @@
     }
   }
 }
+
