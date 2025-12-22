@@ -4,6 +4,7 @@
 ![React](https://img.shields.io/badge/React-19.2.1-61dafb.svg)
 ![TypeScript](https://img.shields.io/badge/TypeScript-5.9.3-3178c6.svg)
 ![Vite](https://img.shields.io/badge/Vite-7.1.7-646cff.svg)
+![pnpm](https://img.shields.io/badge/pnpm-Monorepo-ff8800.svg)
 
 一个基于 React + TypeScript 开发的 CS:GO/CS2 职业选手猜谜游戏。通过对比选手的各种属性（队伍、国家、年龄、Major 参赛次数、角色），在限定次数内猜出随机选中的职业选手。
 
@@ -56,9 +57,9 @@
 - **UI 组件**: Radix UI + shadcn/ui
 - **样式**: Tailwind CSS 4.1.14 (自定义霓虹主题)
 - **状态管理**: Zustand (全局状态) + localStorage (设置持久化)
+- **包管理**: pnpm (Monorepo)
 - **PWA**: VitePWA 插件
 - **图标**: Lucide React
-- **包管理器**: pnpm
 
 ## 🚀 快速开始
 
@@ -70,24 +71,28 @@
 ### 安装依赖
 
 ```bash
-# 安装项目依赖
+# 安装项目依赖（所有工作空间）
 pnpm install
 ```
 
 ### 开发模式
 
 ```bash
-# 启动开发服务器
+# 启动主应用开发服务器
 pnpm dev
 
-# 访问 http://localhost:5173
+# 或者指定工作空间
+pnpm --filter @guess-cspro/app dev
 ```
 
 ### 构建部署
 
 ```bash
-# 构建生产版本
+# 构建所有工作空间
 pnpm build
+
+# 只构建主应用
+pnpm build:app
 
 # 预览构建结果
 pnpm preview
@@ -96,46 +101,79 @@ pnpm preview
 ### 其他命令
 
 ```bash
-# TypeScript 类型检查
-pnpm check
+# 在所有工作空间运行类型检查
+pnpm -r check
 
-# 代码格式化
+# 格式化代码
 pnpm format
+
+# 清理构建产物
+pnpm clean
 ```
 
 ## 📁 项目结构
 
 ```
 guess_cspro/
-├── client/                 # React 前端应用
+├── app/                   # React 前端应用
 │   ├── src/
-│   │   ├── components/     # UI 组件
-│   │   ├── pages/          # 页面路由
-│   │   ├── lib/            # 核心逻辑 (gameEngine.ts)
-│   │   ├── store/          # Zustand 状态管理
-│   │   │   ├── usePlayerStore.ts    # 玩家数据 store
-│   │   │   └── useSettingsStore.ts  # 设置 store
-│   │   ├── contexts/       # React Context
-│   │   ├── hooks/          # 自定义 Hooks
-│   │   └── const.ts        # 常量定义
-│   └── public/             # 静态资源
-│       ├── all_players_data.json     # 所有选手数据
-│       ├── mode_player_list.json     # 模式配置
-│       └── favicon.png
-├── shared/                 # 共享代码
+│       │   ├── components/     # UI 组件
+│       │   ├── pages/          # 页面路由
+│       │   ├── lib/            # 核心逻辑 (gameEngine.ts)
+│       │   ├── store/          # Zustand 状态管理
+│       │   │   ├── usePlayerStore.ts    # 玩家数据 store
+│       │   │   └── useSettingsStore.ts  # 设置 store
+│       │   ├── contexts/       # React Context
+│       │   ├── hooks/          # 自定义 Hooks
+│       │   └── const.ts        # 常量定义
+│       ├── public/             # 静态资源
+│       │   ├── all_players_data.json     # 所有选手数据
+│       │   ├── mode_player_list.json     # 模式配置
+│       │   └── favicon.png
+│       ├── package.json        # 应用依赖
+│       ├── vite.config.ts      # Vite 配置
+│       └── tsconfig.json       # TypeScript 配置
+├── shared/                # 共享代码
 │   ├── types.ts           # 类型定义
 │   ├── countryUtils.ts    # 国家工具
-│   └── const.ts           # 共享常量
+│   ├── const.ts           # 共享常量
+│   ├── _core/             # 核心错误类型
+│   ├── index.ts           # 主入口
+│   └── package.json       # 共享包配置
 ├── hltv_data_scraper/     # HLTV 数据爬虫
 │   ├── src/               # 爬虫源码
 │   ├── out/               # 输出数据
-│   └── package.json       # 依赖配置
+│   └── package.json       # 爬虫依赖
 ├── scripts/               # 工具脚本
 ├── dist/                  # 构建输出
-├── package.json           # 项目配置
-├── tsconfig.json          # TypeScript 配置
-├── vite.config.ts         # Vite 配置
+├── pnpm-workspace.yaml    # pnpm 工作空间配置
+├── tsconfig.base.json     # 基础 TypeScript 配置
+├── package.json           # 根包配置
 └── README.md              # 项目说明
+```
+
+## 📦 Monorepo 管理
+
+本项目采用 pnpm monorepo 架构，包含三个独立的工作空间：
+
+- **app** - 主应用（React 前端）
+- **shared** - 共享代码和类型定义
+- **hltv_data_scraper** - 数据爬虫工具
+
+### 工作空间命令
+
+```bash
+# 在特定工作空间运行命令
+pnpm --filter @guess-cspro/app dev
+pnpm --filter @guess-cspro/hltv_data_scraper fetch
+
+# 在所有工作空间运行命令
+pnpm -r build
+pnpm -r check
+pnpm -r clean
+
+# 查看工作空间信息
+pnpm ls
 ```
 
 ## 🎮 游戏规则
@@ -159,13 +197,13 @@ guess_cspro/
 
 项目使用 Zustand 进行全局状态管理，包含两个主要 store：
 
-**usePlayerStore** (`client/src/store/usePlayerStore.ts`)
+**usePlayerStore** (`app/src/store/usePlayerStore.ts`)
 - 管理所有选手数据和模式配置
 - 应用启动时加载：`/all_players_data.json` 和 `/mode_player_list.json`
 - 根据难度模式过滤选手列表
 - 处理加载和错误状态
 
-**useSettingsStore** (`client/src/store/useSettingsStore.ts`)
+**useSettingsStore** (`app/src/store/useSettingsStore.ts`)
 - 管理游戏设置（难度、猜测次数）
 - 自动同步到 localStorage
 - 提供设置初始化和重置方法
@@ -174,8 +212,8 @@ guess_cspro/
 
 项目使用精简的 JSON 文件结构：
 
-- `all_players_data.json` - 所有选手的完整数据
-- `mode_player_list.json` - 各模式包含的选手名称列表
+- `app/public/all_players_data.json` - 所有选手的完整数据
+- `app/public/mode_player_list.json` - 各模式包含的选手名称列表
   ```json
   {
     "ylg": [],
@@ -218,7 +256,7 @@ pnpm patch
 1. 从 HLTV 爬取选手数据
 2. 输出到 `all_players_data.json`
 3. 手动维护 `mode_player_list.json` 配置不同模式的选手
-4. 同步文件到 `client/public/`
+4. 同步文件到 `app/public/`
 
 ## 🎨 自定义主题
 
@@ -229,7 +267,7 @@ pnpm patch
 - 📺 复古 CRT 风格文字
 - 🎭 故障艺术特效
 
-如需修改主题，编辑 `client/src/index.css` 文件中的 CSS 自定义属性。
+如需修改主题，编辑 `app/src/index.css` 文件中的 CSS 自定义属性。
 
 ## 📦 部署
 
@@ -245,9 +283,9 @@ pnpm patch
 
 ```bash
 # 构建项目
-pnpm build
+pnpm build:app
 
-# 将 dist/ 目录上传到任意静态托管服务
+# 将 app/dist/ 目录上传到任意静态托管服务
 # 如：Netlify、Cloudflare Pages、GitHub Pages 等
 ```
 

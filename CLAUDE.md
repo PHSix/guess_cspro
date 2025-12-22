@@ -18,9 +18,11 @@ This is a CS:GO/CS2 professional player guessing game built with React and TypeS
 
 ## Architecture
 
-### Directory Structure
+### Monorepo Structure
 
-- **`client/`** - Main React application
+This project is organized as a pnpm monorepo with the following workspaces:
+
+- **`app/`** - Main React application
   - **`src/`** - Source code
     - **`components/`** - Reusable UI components (ErrorBoundary, Confetti, GameResult, GuessHistory, plus shadcn/ui components in `ui/` subdirectory)
     - **`pages/`** - Route pages (HomePage, GamePage, FinishedPage, SettingsPage, NotFound)
@@ -30,21 +32,29 @@ This is a CS:GO/CS2 professional player guessing game built with React and TypeS
     - **`hooks/`** - Custom hooks (e.g., `useMobile`)
     - **`const.ts`** - Game constants
   - **`public/`** - Static data files (JSON player data)
+  - `package.json` - App dependencies and scripts
+  - `vite.config.ts` - Vite configuration
+  - `tsconfig.json` - TypeScript configuration
 
-- **`shared/`** - Shared code between client and other modules
+- **`shared/`** - Shared code between apps and other modules
   - **`types.ts`** - Type definitions (references Drizzle schema)
   - **`countryUtils.ts`** - Country to region mapping utilities
   - **`const.ts`** - Shared constants
   - **`_core/errors.ts`** - Error types
+  - `index.ts` - Main entry point
+  - `package.json` - Shared package configuration
 
 - **`hltv_data_scraper/`** - Node.js scraper for fetching player data from HLTV
   - **`src/`** - TypeScript scraper code
   - **`out/`** - Output JSON files
   - Uses Puppeteer for web scraping
+  - `package.json` - Scraper dependencies and scripts
 
-- **`scripts/`** - Utility scripts (load-players.mjs, seed-players.mjs)
+- **`dist/`** - Build output directory (from app)
 
-- **`dist/`** - Build output directory
+- **`pnpm-workspace.yaml`** - pnpm workspace configuration
+
+- **`tsconfig.base.json`** - Base TypeScript configuration shared across workspaces
 
 ### Core Game Flow
 
@@ -144,23 +154,39 @@ interface Player {
 
 ## Development Commands
 
-### Main Application
+### Monorepo Management
+
+```bash
+# Install dependencies for all workspaces
+pnpm install
+
+# Run command in specific workspace
+pnpm --filter @guess-cspro/app dev
+pnpm --filter @guess-cspro/hltv_data_scraper fetch
+
+# Run command in all workspaces
+pnpm -r build
+pnpm -r check
+```
+
+### Main Application (apps/app)
 
 ```bash
 # Start development server
+pnpm --filter @guess-cspro/app dev
+# or from project root:
 pnpm dev
 
 # Build for production
-pnpm build
+pnpm --filter @guess-cspro/app build
+# or from project root:
+pnpm build:app
 
 # Preview production build locally
-pnpm preview
+pnpm --filter @guess-cspro/app preview
 
 # Type check
-pnpm check
-
-# Format code with Prettier
-pnpm format
+pnpm --filter @guess-cspro/app check
 ```
 
 ### Data Scraper

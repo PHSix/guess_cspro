@@ -1,11 +1,15 @@
 {
-	"name": "hltv_data_scraper",
+	"name": "@guess-cspro/hltv_data_scraper",
 	"version": "1.0.0",
 	"keywords": [],
 	"scripts": {
 		"fetch": "tsx src/index.ts",
 		"sync": "tsx src/sync.ts",
-		"patch": "tsx src/patch.ts"
+		"patch": "tsx src/patch.ts",
+		"build": "echo 'No build required'",
+		"check": "tsc --noEmit",
+		"type-check": "tsc --noEmit",
+		"clean": "echo 'No clean required'"
 	},
 	"packageManager": "pnpm@10.13.1",
 	"devDependencies": {

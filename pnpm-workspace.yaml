@@ -1,0 +1,4 @@
+packages:
+  - 'app'
+  - 'hltv_data_scraper'
+  - 'shared'
