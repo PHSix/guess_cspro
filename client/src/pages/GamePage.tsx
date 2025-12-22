@@ -88,16 +88,11 @@ export default function GamePage() {
     navigate("/settings");
   };
 
-  // 初始化数据
-  useEffect(() => {
-    getAllPlayers().catch(console.error);
-  }, []);
-
   // 搜索玩家
   useEffect(() => {
-    const search = async () => {
+    const search = () => {
       if (searchQuery.trim()) {
-        const results = await searchPlayers(searchQuery);
+        const results = searchPlayers(searchQuery);
         setSearchResults(results);
         setHighlightedIndex(0);
         setShowDropdown(results.length > 0);
@@ -128,9 +123,9 @@ export default function GamePage() {
   /**
    * 开始游戏
    */
-  const handleStartGame = useCallback(async () => {
+  const handleStartGame = useCallback(() => {
     setIsLoading(true);
-    const player = await getRandomPlayer();
+    const player = getRandomPlayer();
     setAnswerPlayer(player);
     console.log(player);
     setGuesses([]);

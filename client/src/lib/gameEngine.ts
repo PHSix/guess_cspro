@@ -1,3 +1,5 @@
+import { usePlayerStore } from "@/store/usePlayerStore";
+
 export type Difficulty = "all" | "normal" | "ylg";
 
 export interface Player {
@@ -18,13 +20,6 @@ export interface Player {
    */
   filterPlayerName: string;
 }
-
-// 数据源映射
-const DATA_SOURCE_MAP: Record<Difficulty, string> = {
-  all: "/all_players_data.json",
-  normal: "/normal_players_data.json",
-  ylg: "/ylg_players_data.json",
-};
 
 export interface ComparisonResult {
   teamMatch: MatchType;
@@ -198,106 +193,37 @@ function getCountryRegion(country: string): Region {
   return COUNTRY_REGIONS[country] || "APAC";
 }
 
-let playersCache: Player[] | null = null;
-
 /**
  * 获取当前难度设置
  */
 function getCurrentDifficulty(): Difficulty {
   const saved = localStorage.getItem("game-difficulty") as Difficulty;
-  return saved && DATA_SOURCE_MAP[saved] ? saved : "normal";
+  return saved && ["all", "normal", "ylg"].includes(saved) ? saved : "normal";
 }
 
 /**
- * 初始化选手数据
+ * 获取所有选手（从全局状态）
  */
-async function initializePlayers(): Promise<Player[]> {
-  // 根据难度清除缓存
-  const currentDifficulty = getCurrentDifficulty();
-  if (playersCache) {
-    // 缓存键包含难度信息，避免不同难度间的数据混淆
-    const cacheKey = `players-${currentDifficulty}`;
-    const cached = sessionStorage.getItem(cacheKey);
-    if (cached) {
-      try {
-        return JSON.parse(cached);
-      } catch {
-        // 忽略解析错误，重新加载
-      }
-    }
-  }
-
-  try {
-    const difficulty = getCurrentDifficulty();
-    const dataSource = DATA_SOURCE_MAP[difficulty];
-
-    const response = await fetch(dataSource);
-    if (!response.ok) {
-      throw new Error(`Failed to load ${difficulty} players data`);
-    }
-
-    const playersData = await response.json();
-
-    playersCache = Object.entries(playersData).map<Player>((entry, index) => {
-      const [key, data]: [string, any] = entry;
-      return {
-        id: index + 1,
-        playerName: key,
-        team: data.team || "Unknown",
-        country: data.country || "Unknown",
-        birthYear: data.birth_year || 2000,
-        majorsPlayed: data.majorsPlayed || 0,
-        role: data.role || "Unknown",
-        avatar: data.avatar || "",
-
-        lowerPlayerName: key.toLowerCase(),
-        // 搜索时，替换一些常见的数字为小写字母
-        filterPlayerName: key
-          .toLowerCase()
-          .replace("1", "i")
-          .replace("0", "o")
-          .replace("3", "e"),
-      };
-    });
-
-    // 缓存数据（带难度标识）
-    if (playersCache) {
-      const cacheKey = `players-${currentDifficulty}`;
-      sessionStorage.setItem(cacheKey, JSON.stringify(playersCache));
-    }
-
-    return playersCache;
-  } catch (error) {
-    console.error("Failed to load players data:", error);
-    return [];
-  }
+export function getAllPlayers(): Player[] {
+  const store = usePlayerStore.getState();
+  const difficulty = getCurrentDifficulty();
+  return store.getPlayersByMode(difficulty);
 }
 
 /**
- * 获取所有选手
- */
-export async function getAllPlayers(): Promise<Player[]> {
-  return initializePlayers();
-}
-
-/**
- * 清除玩家数据缓存（用于切换难度后重新加载）
+ * 清除玩家数据缓存（由于使用全局状态，此函数不再需要，但保留以保持接口兼容）
  */
 export function clearPlayersCache(): void {
-  playersCache = null;
-  // 清除所有难度的缓存
-  Object.keys(DATA_SOURCE_MAP).forEach(difficulty => {
-    sessionStorage.removeItem(`players-${difficulty}`);
-  });
+  // 全局状态不需要清除缓存，保持接口兼容性
 }
 
 /**
  * 搜索选手（快速搜索）
  */
-export async function searchPlayers(query: string): Promise<Player[]> {
+export function searchPlayers(query: string): Player[] {
   if (!query.trim()) return [];
 
-  const players = await initializePlayers();
+  const players = getAllPlayers();
   const lowerQuery = query.toLowerCase();
 
   // 搜索匹配项并按匹配度排序
@@ -334,8 +260,8 @@ export async function searchPlayers(query: string): Promise<Player[]> {
 /**
  * 随机选择一个选手
  */
-export async function getRandomPlayer(): Promise<Player> {
-  const players = await initializePlayers();
+export function getRandomPlayer(): Player {
+  const players = getAllPlayers();
   return players[Math.floor(Math.random() * players.length)];
 }
 
