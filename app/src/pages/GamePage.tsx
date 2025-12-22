@@ -106,7 +106,7 @@ interface GuessWithClass extends Guess {
 
 export default function GamePage() {
   const [, navigate] = useLocation();
-  const { totalGuesses } = useSettingsStore();
+  const { totalGuesses, fribergAutoGuess } = useSettingsStore();
   const [answerPlayer, setAnswerPlayer] = useState<Player | null>(null);
   const [guesses, setGuesses] = useState<GuessWithClass[]>([]);
   const [searchQuery, setSearchQuery] = useState("");
@@ -172,7 +172,43 @@ export default function GamePage() {
     setHighlightedIndex(0);
     setIsLoading(false);
     setTimeout(() => inputRef.current?.focus(), 100);
-  }, []);
+
+    // 如果开启了 friberg 自动猜测，则自动添加 friberg 的猜测
+    if (fribergAutoGuess) {
+      const players = searchPlayers("friberg");
+      if (players.length > 0) {
+        const friberg = players.find(p => p.playerName.toLowerCase().includes("friberg"));
+        if (friberg) {
+          const result = comparePlayerAttributes(friberg, player);
+          const guessRecord = createGuessRecord(friberg, result);
+          const newGuesses = [
+            ...[],
+            { ...guessRecord, compareResults: getCompareResults(guessRecord) },
+          ];
+          setGuesses(newGuesses);
+
+          // 检查是否直接猜中
+          if (isCorrectGuess(friberg, player)) {
+            const winData = {
+              isWon: true,
+              guesses: newGuesses,
+              answer: player,
+            };
+            navigate("/finished", { state: winData });
+          } else if (newGuesses.length >= totalGuesses) {
+            const loseData = {
+              isWon: false,
+              guesses: newGuesses,
+              answer: player,
+            };
+            navigate("/finished", { state: loseData });
+          } else {
+            setGuessesRemaining(totalGuesses - newGuesses.length);
+          }
+        }
+      }
+    }
+  }, [fribergAutoGuess]);
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === "ArrowDown" || (e.key === "Tab" && !e.shiftKey)) {

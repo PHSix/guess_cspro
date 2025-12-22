@@ -1,9 +1,18 @@
-import { useEffect } from "react";
+import { useState } from "react";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
+import { Switch } from "@/components/ui/switch";
 import { useLocation } from "wouter";
-import { Settings, ArrowLeft, AlertCircle } from "lucide-react";
+import { ArrowLeft, AlertCircle } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useSettingsStore } from "@/store/useSettingsStore";
 import { toast } from "sonner";
@@ -34,7 +43,17 @@ const DIFFICULTY_CONFIG = {
 
 export default function SettingsPage() {
   const [, navigate] = useLocation();
-  const { difficulty, totalGuesses, setDifficulty, setTotalGuesses, reset } = useSettingsStore();
+  const {
+    difficulty,
+    totalGuesses,
+    fribergAutoGuess,
+    setDifficulty,
+    setTotalGuesses,
+    setFribergAutoGuess,
+    reset,
+  } = useSettingsStore();
+  const [showFribergDialog, setShowFribergDialog] = useState(false);
+  const [pendingFribergValue, setPendingFribergValue] = useState(false);
 
   const handleSave = () => {
     toast.success("设置已保存", {
@@ -54,6 +73,24 @@ export default function SettingsPage() {
     if (value >= 1 && value <= 20) {
       setTotalGuesses(value);
     }
+  };
+
+  const handleFribergToggle = (checked: boolean) => {
+    if (fribergAutoGuess && !checked) {
+      setPendingFribergValue(false);
+      setShowFribergDialog(true);
+    } else {
+      setFribergAutoGuess(checked);
+    }
+  };
+
+  const handleFribergDialogConfirm = () => {
+    setFribergAutoGuess(pendingFribergValue);
+    setShowFribergDialog(false);
+  };
+
+  const handleFribergDialogCancel = () => {
+    setShowFribergDialog(false);
   };
 
   return (
@@ -84,50 +121,57 @@ export default function SettingsPage() {
             </div>
 
             <div className="space-y-3">
-              {(Object.entries(DIFFICULTY_CONFIG) as [Difficulty, typeof DIFFICULTY_CONFIG[Difficulty]][]).map(
-                ([key, config]) => (
-                  <button
-                    key={key}
-                    onClick={() => !config.disabled && setDifficulty(key)}
-                    disabled={config.disabled}
-                    className={cn(
-                      "w-full p-4 border rounded-lg transition-all text-left",
-                      difficulty === key
-                        ? "border-accent bg-accent/10"
-                        : "border-border hover:border-accent/50",
-                      config.disabled && "opacity-50 cursor-not-allowed"
-                    )}
-                  >
-                    <div className="flex items-start justify-between">
-                      <div className="space-y-1">
-                        <div className="flex items-center gap-2">
-                          <h3 className="font-semibold text-foreground">{config.label}</h3>
-                          {config.wip && (
-                            <span className="text-xs px-2 py-0.5 bg-yellow-500/20 text-yellow-400 rounded">
-                              WIP
-                            </span>
-                          )}
-                          <span className="text-xs px-2 py-0.5 bg-muted text-muted-foreground rounded">
-                            {config.difficulty}
-                          </span>
-                        </div>
-                        <p className="text-sm text-muted-foreground">{config.description}</p>
+              {(
+                Object.entries(DIFFICULTY_CONFIG) as [
+                  Difficulty,
+                  (typeof DIFFICULTY_CONFIG)[Difficulty],
+                ][]
+              ).map(([key, config]) => (
+                <button
+                  key={key}
+                  onClick={() => !config.disabled && setDifficulty(key)}
+                  disabled={config.disabled}
+                  className={cn(
+                    "w-full p-4 border rounded-lg transition-all text-left",
+                    difficulty === key
+                      ? "border-accent bg-accent/10"
+                      : "border-border hover:border-accent/50",
+                    config.disabled && "opacity-50 cursor-not-allowed"
+                  )}
+                >
+                  <div className="flex items-start justify-between">
+                    <div className="space-y-1">
+                      <div className="flex items-center gap-2">
+                        <h3 className="font-semibold text-foreground">
+                          {config.label}
+                        </h3>
                         {config.wip && (
-                          <p className="text-xs text-yellow-400 flex items-center gap-1">
-                            <AlertCircle className="w-3 h-3" />
-                            此模式正在开发中，暂不可用
-                          </p>
+                          <span className="text-xs px-2 py-0.5 bg-yellow-500/20 text-yellow-400 rounded">
+                            WIP
+                          </span>
                         )}
+                        <span className="text-xs px-2 py-0.5 bg-muted text-muted-foreground rounded">
+                          {config.difficulty}
+                        </span>
                       </div>
-                      {difficulty === key && (
-                        <div className="w-4 h-4 rounded-full border-2 border-accent flex items-center justify-center">
-                          <div className="w-2 h-2 rounded-full bg-accent" />
-                        </div>
+                      <p className="text-sm text-muted-foreground">
+                        {config.description}
+                      </p>
+                      {config.wip && (
+                        <p className="text-xs text-yellow-400 flex items-center gap-1">
+                          <AlertCircle className="w-3 h-3" />
+                          此模式正在开发中，暂不可用
+                        </p>
                       )}
                     </div>
-                  </button>
-                )
-              )}
+                    {difficulty === key && (
+                      <div className="w-4 h-4 rounded-full border-2 border-accent flex items-center justify-center">
+                        <div className="w-2 h-2 rounded-full bg-accent" />
+                      </div>
+                    )}
+                  </div>
+                </button>
+              ))}
             </div>
           </div>
 
@@ -173,6 +217,35 @@ export default function SettingsPage() {
             </div>
           </div>
 
+          {/* friberg 自动猜测设置 */}
+          <div className="space-y-4 pt-4 border-t border-border">
+            <div className="text-xs font-mono text-muted-foreground">
+              <span className="bracket">[</span>GAME OPTIONS
+              <span className="bracket">]</span>
+            </div>
+
+            <div className="space-y-3">
+              <div className="flex items-center justify-between p-4 border border-border rounded-lg">
+                <div className="space-y-1">
+                  <label
+                    className="text-sm font-semibold text-foreground cursor-pointer"
+                    onClick={() => handleFribergToggle(!fribergAutoGuess)}
+                  >
+                    friberg
+                  </label>
+                  <p className="text-xs text-muted-foreground">自动玩高祖</p>
+                </div>
+                <Switch
+                  checked={fribergAutoGuess}
+                  onCheckedChange={handleFribergToggle}
+                />
+              </div>
+              <p className="text-xs text-muted-foreground">
+                开启后，每次开始新游戏时会自动先猜测 friberg 选手
+              </p>
+            </div>
+          </div>
+
           {/* 操作按钮 */}
           <div className="flex gap-3 pt-4 border-t border-border">
             <Button onClick={handleSave} className="flex-1">
@@ -191,6 +264,24 @@ export default function SettingsPage() {
             <p>• 修改设置后需要重新开始游戏才能生效</p>
           </div>
         </Card>
+
+        {/* friberg 确认对话框 */}
+        <Dialog open={showFribergDialog} onOpenChange={setShowFribergDialog}>
+          <DialogContent>
+            <DialogHeader>
+              <DialogTitle>关闭自动玩高祖</DialogTitle>
+              <DialogDescription>
+                此为系统自动开启，不可以关闭！
+              </DialogDescription>
+            </DialogHeader>
+            <DialogFooter>
+              <Button onClick={handleFribergDialogCancel}>确认取消</Button>
+              <Button variant="outline" onClick={handleFribergDialogConfirm}>
+                取消开启
+              </Button>
+            </DialogFooter>
+          </DialogContent>
+        </Dialog>
       </div>
     </div>
   );
