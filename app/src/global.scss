@@ -1,0 +1,77 @@
+// 历史记录表格
+.history-table {
+  // @apply w-full text-xs;
+  width: 100%;
+  font-size: 0.75rem;
+
+  thead {
+    // 表头
+    tr {
+      // @apply border-b border-border;
+
+      border-bottom: 1px solid;
+      border-color: var(--border);
+
+      // 表头单元格
+      th {
+        // @apply text-left py-2 px-2 text-muted-foreground font-mono whitespace-nowrap;
+
+        text-align: center;
+        padding: 0.5rem;
+        font-size: 0.875rem;
+        font-weight: 500;
+        color: #a1a1a1;
+        white-space: nowrap;
+      }
+    }
+  }
+
+  tbody {
+    // 表行
+    .body-row {
+      // @apply border-b border-border/50 hover:bg-card/30;
+
+      border-bottom: 1px solid;
+      border-color: color-mix(in oklab, var(--border) 50%, transparent);
+      &:hover {
+        background-color: color-mix(in oklab, var(--card) 30%, transparent);
+      }
+
+      td {
+        // td 单元格内部元素
+        border: 1px solid;
+        border-color: transparent;
+
+        .cell {
+          display: flex;
+          white-space: nowrap;
+          justify-content: center;
+          text-align: center;
+          padding: 0.5rem 2px;
+
+          @media (min-width: 748px) {
+            padding: 0.5rem;
+          }
+
+          border: 1px solid;
+          border-color: transparent;
+          width: 100%;
+
+          @media (min-width: 748px) {
+            gap: 1rem;
+          }
+
+          // 对比符号，只有在大屏幕下才显示
+          .symbol {
+            // @apply shrink-0 hidden md:visible;
+            flex-shrink: 0;
+            display: none;
+            @media (min-width: 748px) {
+              display: block;
+            }
+          }
+        }
+      }
+    }
+  }
+}
