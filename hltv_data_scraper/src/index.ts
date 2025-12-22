@@ -2,7 +2,7 @@ import { INPUT_FILE, OUTPUT_FILE, OUTPUT_MODE } from "./constants";
 import { info, readJsonFile, writeOutputJsonFile } from "./utils";
 import puppeteerExtra from "puppeteer-extra";
 import { fetchPlayer } from "./fetchPlayer";
-import { sync, syncCopy } from "./sync";
+import { syncCopy } from "./sync";
 
 async function main() {
 	const players: Array<{
@@ -37,7 +37,6 @@ async function main() {
 	});
 
 	info("已完成数据获取，开始同步模式数据...");
-	await sync();
 	await syncCopy();
 
 	info("已完成同步模式数据...");
