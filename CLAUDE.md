@@ -12,7 +12,7 @@ This is a CS:GO/CS2 professional player guessing game built with React and TypeS
 - **Routing**: Wouter (lightweight alternative to React Router)
 - **Styling**: Tailwind CSS 4.1.14 with custom cyberpunk/neon theme
 - **UI Components**: Radix UI primitives
-- **State Management**: React hooks + localStorage for settings
+- **State Management**: Zustand (global state) + localStorage for settings persistence
 - **PWA**: VitePWA plugin for offline support
 - **Package Manager**: pnpm
 
@@ -25,10 +25,11 @@ This is a CS:GO/CS2 professional player guessing game built with React and TypeS
     - **`components/`** - Reusable UI components (ErrorBoundary, Confetti, GameResult, GuessHistory, plus shadcn/ui components in `ui/` subdirectory)
     - **`pages/`** - Route pages (HomePage, GamePage, FinishedPage, SettingsPage, NotFound)
     - **`lib/`** - Core game logic (`gameEngine.ts`), utilities (`utils.ts`)
+    - **`store/`** - Zustand global state stores (`usePlayerStore.ts`, `useSettingsStore.ts`)
     - **`contexts/`** - React contexts (ThemeContext)
     - **`hooks/`** - Custom hooks (e.g., `useMobile`)
     - **`const.ts`** - Game constants
-  - **`public/`** - Static data files (JSON player data for different modes)
+  - **`public/`** - Static data files (JSON player data)
 
 - **`shared/`** - Shared code between client and other modules
   - **`types.ts`** - Type definitions (references Drizzle schema)
@@ -47,22 +48,45 @@ This is a CS:GO/CS2 professional player guessing game built with React and TypeS
 
 ### Core Game Flow
 
-1. **HomePage** (`/`) - Landing page with START GAME button
-2. **GamePage** (`/game`) - Main gameplay interface
+1. **App Initialization** - Data loaded on app start with loading screen
+2. **HomePage** (`/`) - Landing page with START GAME button
+3. **GamePage** (`/game`) - Main gameplay interface
    - Displays answer player attributes to guess
    - Searchable dropdown to select player guesses
    - Comparison table showing guess results with match indicators
    - Mobile-optimized layout with horizontal scrolling
-3. **FinishedPage** (`/finished`) - Game completion (win/loss)
-4. **SettingsPage** (`/settings`) - Game configuration
+4. **FinishedPage** (`/finished`) - Game completion (win/loss)
+5. **SettingsPage** (`/settings`) - Game configuration
 
-### Game Modes
+### Data Management Architecture
 
-The game supports three difficulty modes stored as JSON files in `client/public/`:
+#### Global State (Zustand)
 
-- **`all_players_data.json`** - ALL mode (hardest, all players)
-- **`normal_players_data.json`** - Normal mode (curated selection)
-- **`ylg_players_data.json`** - YLG mode (easiest, coming soon)
+**usePlayerStore** (`client/src/store/usePlayerStore.ts`)
+- Manages all player data and mode configuration
+- Loads data on app initialization: `/all_players_data.json` and `/mode_player_list.json`
+- Provides filtered player lists based on difficulty mode
+- Caches data for performance
+- Handles loading and error states
+
+**useSettingsStore** (`client/src/store/useSettingsStore.ts`)
+- Manages game settings (difficulty, total guesses)
+- Auto-syncs to localStorage
+- Initializes from localStorage on app start
+- Provides setter methods that automatically persist changes
+
+#### Game Modes
+
+The game supports three difficulty modes:
+- **ALL mode**: All players (hardest)
+- **Normal mode**: Curated selection of players
+- **YLG mode**: Coming soon (easiest)
+
+Mode configuration is managed via `mode_player_list.json` which contains player name arrays for each mode.
+
+**Data Files:**
+- `all_players_data.json` - Complete player database
+- `mode_player_list.json` - Mode-specific player lists (ylg: [], normal: [player names])
 
 Settings stored in localStorage:
 - `game-difficulty` - Current difficulty mode
@@ -73,19 +97,34 @@ Settings stored in localStorage:
 #### `gameEngine.ts` (client/src/lib/gameEngine.ts)
 
 Core game logic including:
-- `getAllPlayers()` - Load player data from JSON files
-- `searchPlayers(query)` - Fuzzy search players by name
-- `getRandomPlayer()` - Select random player for current mode
+- `getAllPlayers()` - Get players for current mode (sync, from global state)
+- `searchPlayers(query)` - Fuzzy search players by name (sync)
+- `getRandomPlayer()` - Select random player for current mode (sync)
 - `comparePlayerAttributes()` - Compare guess vs answer with match types
 - `isCorrectGuess()` - Check if guess matches answer
 - `createGuessRecord()` - Format guess with comparison results
 
-Match types:
+**Match types:**
 - `Exact` - Perfect match (✓, green)
 - `Near` - Close match (≈, yellow)
 - `Different` - Wrong value (✗, red)
 - `Greater` - Value is higher (↑, yellow)
 - `Less` - Value is lower (↓, yellow)
+
+#### `usePlayerStore.ts` (client/src/store/usePlayerStore.ts)
+
+Global player data management:
+- `initializeData()` - Loads player on app start
+- `getPlayersByMode(mode)` data and mode config - Returns filtered players for difficulty
+- `isLoading`, `error`, `isInitialized` - Loading state management
+
+#### `useSettingsStore.ts` (client/src/store/useSettingsStore.ts)
+
+Settings management:
+- `difficulty`, `totalGuesses` - Current settings state
+- `setDifficulty()`, `setTotalGuesses()` - Auto-persist to localStorage
+- `reset()` - Reset to defaults
+- `initialize()` - Load from localStorage on app start
 
 #### Player Data Structure
 
@@ -172,11 +211,25 @@ Custom cyberpunk/neon theme with:
 
 ## Data Management
 
-Player data is stored in JSON files and loaded dynamically based on difficulty mode. The game engine caches data in memory and localStorage for performance.
+### Data Loading Strategy
+
+**App Initialization Flow:**
+1. App component mounts
+2. `useEffect` triggers `initializeData()` and `initializeSettings()`
+3. Both stores load data concurrently:
+   - Player store: fetches `/all_players_data.json` and `/mode_player_list.json`
+   - Settings store: loads from localStorage
+4. Loading screen displayed until both complete
+5. App renders normally once initialized
 
 **Data Sources:**
 - Public directory: `client/public/*.json`
 - Scraper output: `hltv_data_scraper/out/*.json`
+
+**Mode Filtering:**
+- All modes use the same `all_players_data.json`
+- `mode_player_list.json` defines which players belong to each mode
+- Filtering happens in `getPlayersByMode()` based on player names
 
 **Database Integration:**
 - Optional MySQL integration via `scripts/load-players.mjs`
@@ -213,10 +266,13 @@ Player data is stored in JSON files and loaded dynamically based on difficulty m
 5. **Error Handling**:
    - ErrorBoundary component wraps entire app
    - Toast notifications via Sonner for user feedback
+   - Loading states handled in App.tsx
 
-6. **Game State**:
-   - Settings persist in localStorage
-   - Game progress stored in component state (not persisted)
+6. **State Management**:
+   - All data loaded once on app start
+   - Zustand stores manage global state
+   - Settings auto-persist to localStorage
+   - No async operations in game logic (data is pre-loaded)
 
 ## Common Development Tasks
 
@@ -230,10 +286,10 @@ Player data is stored in JSON files and loaded dynamically based on difficulty m
 
 ### Adding New Difficulty Mode
 
-1. Create new JSON file in `client/public/`
-2. Add entry to `DATA_SOURCE_MAP` in `gameEngine.ts`
-3. Add mode config to `DIFFICULTY_CONFIG` in `SettingsPage.tsx`
-4. Update type definition for `Difficulty`
+1. Update `mode_player_list.json` to include player names for new mode
+2. Add mode config to `DIFFICULTY_CONFIG` in `SettingsPage.tsx`
+3. Update type definition for `Difficulty` in `useSettingsStore.ts`
+4. No changes needed to data files - all modes share `all_players_data.json`
 
 ### Modifying Game Logic
 
@@ -241,6 +297,20 @@ Player data is stored in JSON files and loaded dynamically based on difficulty m
 - Comparison rules: `gameEngine.ts`
 - UI components: `components/`
 - Styling: `index.css` for theme, component files for individual styles
+
+### Working with Zustand Stores
+
+**Player Store:**
+- Located in `client/src/store/usePlayerStore.ts`
+- Data initialization happens in App.tsx
+- Use `getPlayersByMode()` to get filtered player list
+- Check `isInitialized` before accessing data
+
+**Settings Store:**
+- Located in `client/src/store/useSettingsStore.ts`
+- Auto-syncs to localStorage via setter methods
+- Use `initialize()` in App.tsx to load saved settings
+- All changes persist automatically
 
 ### Building and Deploying
 
@@ -264,16 +334,22 @@ The `hltv_data_scraper/` subproject fetches player data from HLTV using Puppetee
 
 The scraper requires a JSON input file with player links, then fetches detailed data for each player and outputs structured JSON files.
 
+**Data Sync Process:**
+1. Scrapes player data from HLTV
+2. Outputs to `all_players_data.json`
+3. Manually curate `mode_player_list.json` for Normal/YLG modes
+4. Sync copies files to `client/public/`
+
 ## Dependencies
 
 ### Main Application
-- React ecosystem (React, React DOM, React Hook Form)
+- React ecosystem (React, React DOM)
 - UI libraries (Radix UI, shadcn/ui, Lucide React icons)
 - Routing (Wouter)
-- Data fetching (@tanstack/react-query, axios)
+- State Management (Zustand)
 - Styling (Tailwind CSS, class-variance-authority, clsx, tailwind-merge)
 - Animations (Framer Motion)
-- Utilities (date-fns, nanoid, jose for JWT)
+- Utilities (date-fns, nanoid)
 
 ### Scraper
 - Puppeteer + puppeteer-extra for web scraping
