@@ -10,6 +10,7 @@ import GamePage from "./pages/GamePage";
 import FinishedPage from "./pages/FinishedPage";
 import SettingsPage from "./pages/SettingsPage";
 import { usePlayerStore } from "./store/usePlayerStore";
+import { useSettingsStore } from "./store/useSettingsStore";
 import { Loader2 } from "lucide-react";
 
 function Router() {
@@ -33,11 +34,13 @@ function Router() {
 
 function App() {
   const { initializeData, isLoading, error, isInitialized } = usePlayerStore();
+  const { initialize: initializeSettings } = useSettingsStore();
 
   // 在应用启动时初始化数据
   useEffect(() => {
     initializeData();
-  }, [initializeData]);
+    initializeSettings();
+  }, []);
 
   // 如果正在加载或未初始化，显示加载界面
   if (isLoading || !isInitialized) {

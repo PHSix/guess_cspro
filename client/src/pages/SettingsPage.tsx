@@ -1,11 +1,11 @@
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useLocation } from "wouter";
 import { Settings, ArrowLeft, AlertCircle } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { clearPlayersCache } from "@/lib/gameEngine";
+import { useSettingsStore } from "@/store/useSettingsStore";
 import { toast } from "sonner";
 
 type Difficulty = "all" | "normal" | "ylg";
@@ -34,49 +34,16 @@ const DIFFICULTY_CONFIG = {
 
 export default function SettingsPage() {
   const [, navigate] = useLocation();
-  const [selectedDifficulty, setSelectedDifficulty] = useState<Difficulty>("normal");
-  const [totalGuesses, setTotalGuesses] = useState(8);
-
-  // 从本地存储加载设置
-  useEffect(() => {
-    const savedDifficulty = localStorage.getItem("game-difficulty") as Difficulty;
-    if (savedDifficulty && DIFFICULTY_CONFIG[savedDifficulty]) {
-      setSelectedDifficulty(savedDifficulty);
-    }
-
-    const savedTotalGuesses = localStorage.getItem("game-total-guesses");
-    if (savedTotalGuesses) {
-      const parsed = parseInt(savedTotalGuesses);
-      if (parsed >= 1 && parsed <= 20) {
-        setTotalGuesses(parsed);
-      }
-    }
-  }, []);
+  const { difficulty, totalGuesses, setDifficulty, setTotalGuesses, reset } = useSettingsStore();
 
   const handleSave = () => {
-    const previousDifficulty = localStorage.getItem("game-difficulty");
-    localStorage.setItem("game-difficulty", selectedDifficulty);
-    localStorage.setItem("game-total-guesses", totalGuesses.toString());
-
-    // 如果难度发生变化，清除缓存
-    if (previousDifficulty !== selectedDifficulty) {
-      clearPlayersCache();
-      toast.success("设置已保存", {
-        description: "难度已切换，数据缓存已清除",
-      });
-    } else {
-      toast.success("设置已保存", {
-        description: "您的游戏设置已更新",
-      });
-    }
+    toast.success("设置已保存", {
+      description: "您的游戏设置已更新",
+    });
   };
 
   const handleReset = () => {
-    setSelectedDifficulty("normal");
-    setTotalGuesses(8);
-    localStorage.removeItem("game-difficulty");
-    localStorage.removeItem("game-total-guesses");
-    clearPlayersCache();
+    reset();
     toast.success("设置已重置", {
       description: "所有设置已恢复默认值",
     });
@@ -121,11 +88,11 @@ export default function SettingsPage() {
                 ([key, config]) => (
                   <button
                     key={key}
-                    onClick={() => !config.disabled && setSelectedDifficulty(key)}
+                    onClick={() => !config.disabled && setDifficulty(key)}
                     disabled={config.disabled}
                     className={cn(
                       "w-full p-4 border rounded-lg transition-all text-left",
-                      selectedDifficulty === key
+                      difficulty === key
                         ? "border-accent bg-accent/10"
                         : "border-border hover:border-accent/50",
                       config.disabled && "opacity-50 cursor-not-allowed"
@@ -152,7 +119,7 @@ export default function SettingsPage() {
                           </p>
                         )}
                       </div>
-                      {selectedDifficulty === key && (
+                      {difficulty === key && (
                         <div className="w-4 h-4 rounded-full border-2 border-accent flex items-center justify-center">
                           <div className="w-2 h-2 rounded-full bg-accent" />
                         </div>

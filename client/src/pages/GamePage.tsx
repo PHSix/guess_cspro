@@ -18,6 +18,7 @@ import { getCountryFlag } from "@shared/countryUtils";
 import { useLocation } from "wouter";
 import { cn } from "@/lib/utils";
 import { useIsMobile } from "@/hooks/useMobile";
+import { useSettingsStore } from "@/store/useSettingsStore";
 
 function getMatchSymbol(match: MatchType): string {
   switch (match) {
@@ -53,6 +54,7 @@ function getMatchClass(match: MatchType): string {
 
 export default function GamePage() {
   const [, navigate] = useLocation();
+  const { totalGuesses } = useSettingsStore();
   const [answerPlayer, setAnswerPlayer] = useState<Player | null>(null);
   const [guesses, setGuesses] = useState<Guess[]>([]);
   const [searchQuery, setSearchQuery] = useState("");
@@ -65,24 +67,7 @@ export default function GamePage() {
   const tableRef = useRef<HTMLDivElement>(null);
   const isMobile = useIsMobile();
 
-  // 从本地存储获取设置
-  const getTotalGuesses = () => {
-    const saved = localStorage.getItem("game-total-guesses");
-    return saved ? Math.max(1, Math.min(20, parseInt(saved))) : 8;
-  };
-
-  const [totalGuesses, setTotalGuessesState] = useState(getTotalGuesses());
   const [guessesRemaining, setGuessesRemaining] = useState(totalGuesses);
-
-  // 监听设置变化
-  useEffect(() => {
-    const handleStorageChange = () => {
-      setTotalGuessesState(getTotalGuesses());
-    };
-
-    window.addEventListener("storage", handleStorageChange);
-    return () => window.removeEventListener("storage", handleStorageChange);
-  }, []);
 
   const handleGoToSettings = () => {
     navigate("/settings");

@@ -1,4 +1,5 @@
 import { usePlayerStore } from "@/store/usePlayerStore";
+import { useSettingsStore } from "@/store/useSettingsStore";
 
 export type Difficulty = "all" | "normal" | "ylg";
 
@@ -197,8 +198,7 @@ function getCountryRegion(country: string): Region {
  * 获取当前难度设置
  */
 function getCurrentDifficulty(): Difficulty {
-  const saved = localStorage.getItem("game-difficulty") as Difficulty;
-  return saved && ["all", "normal", "ylg"].includes(saved) ? saved : "normal";
+  return useSettingsStore.getState().difficulty;
 }
 
 /**
