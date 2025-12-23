@@ -28,21 +28,30 @@
     "build:service": "pnpm --filter @guess-cspro/service build",
     "build:scraper": "pnpm --filter @guess-cspro/hltv_data_scraper build",
     "preview": "pnpm --filter @guess-cspro/app preview",
-    "sync-player-data": "cp app/public/all_players_data.json service/src/data/all_players_data.json",
     "check": "pnpm -r check",
     "format": "prettier --write \"**/*.{ts,tsx,md,json}\"",
     "clean": "pnpm -r clean || true",
     "type-check": "pnpm -r type-check"
   },
   "dependencies": {
+    "ofetch": "^1.5.1",
     "zod": "^3.0.0"
   },
   "devDependencies": {
-    "typescript": "5.9.3",
+    "prettier": "^3.6.2",
     "tsx": "^4.0.0",
-    "prettier": "^3.6.2"
+    "typescript": "5.9.3"
   },
   "engines": {
     "node": ">=18.0.0"
+  },
+  "pnpm": {
+    "overrides": {
+      "tailwindcss>nanoid": "3.3.7"
+    },
+    "onlyBuiltDependencies": [
+      "@tailwindcss/oxide",
+      "esbuild"
+    ]
   }
 }

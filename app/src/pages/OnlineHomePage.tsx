@@ -14,6 +14,18 @@ import type {
   ErrorResponse,
 } from "@/types/multiplayer.js";
 
+type Difficulty = "all" | "normal" | "ylg";
+
+/** 难度配置 */
+const DIFFICULTY_CONFIG: Record<
+  Difficulty,
+  { label: string; description: string }
+> = {
+  all: { label: "All Players", description: "所有职业选手" },
+  normal: { label: "Normal", description: "精选常见选手" },
+  ylg: { label: "YLG", description: "YLG 战队选手" },
+};
+
 export default function OnlineHomePage() {
   const [, setLocation] = useLocation();
   const { setGamerInfo, setSessionInfo, reset, initializeGamerId, gamerId } =
@@ -21,6 +33,7 @@ export default function OnlineHomePage() {
   const { username } = useSettingsStore();
 
   const [roomIdInput, setRoomIdInput] = useState<string>("");
+  const [difficulty, setDifficulty] = useState<Difficulty>("all");
   const [isCreating, setIsCreating] = useState(false);
   const [isJoining, setIsJoining] = useState(false);
 
@@ -43,6 +56,7 @@ export default function OnlineHomePage() {
         body: JSON.stringify({
           gamerId,
           gamerName: username.trim(),
+          difficulty,
         } satisfies CreateRoomRequest),
       });
 
@@ -142,6 +156,35 @@ export default function OnlineHomePage() {
         </div>
 
         <div className="space-y-6">
+          {/* Difficulty selector */}
+          <div>
+            <label className="text-sm font-medium text-foreground mb-2 block">
+              Difficulty (for creating room)
+            </label>
+            <div className="grid grid-cols-3 gap-2">
+              {(Object.keys(DIFFICULTY_CONFIG) as Difficulty[]).map(
+                (diff) => (
+                  <button
+                    key={diff}
+                    onClick={() => setDifficulty(diff)}
+                    className={`p-3 rounded-lg border transition-all ${
+                      difficulty === diff
+                        ? "bg-accent text-accent-foreground border-accent neon-border"
+                        : "bg-card text-muted-foreground border-border hover:border-accent/50"
+                    }`}
+                  >
+                    <div className="font-semibold text-sm">
+                      {DIFFICULTY_CONFIG[diff].label}
+                    </div>
+                    <div className="text-xs opacity-70">
+                      {DIFFICULTY_CONFIG[diff].description}
+                    </div>
+                  </button>
+                )
+              )}
+            </div>
+          </div>
+
           <div>
             <label
               className="text-sm font-medium text-foreground mb-2 block"

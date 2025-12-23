@@ -1,19 +1,22 @@
+/**
+ * 房间管理器
+ * 负责创建、管理、销毁游戏房间，处理玩家加入、游戏流程等
+ */
+
 import type { Room } from "../models/Room";
-import type { GamerState } from "../models/PlayerData";
-import type { MysteryPlayer } from "../models/PlayerData";
+import type { GamerState, Player } from "../models/PlayerData";
 import type { SessionManager } from "./SessionManager";
 import { v4 as uuidv4 } from "uuid";
-import { compareGuess } from "../utils/comparison";
-import {
-  findPlayerByName,
-  getMysteryPlayers,
-} from "../models/playerDataLoader";
+import type { Difficulty } from "@guess-cspro/shared";
+import { compareGuess } from "@guess-cspro/shared";
+import { getRandomPlayer, findPlayerByName } from "../models/playerDataLoader";
 import {
   GUESSES_PER_GAMER,
   MAX_GAMERS_PER_ROOM,
   PENDING_TIMEOUT_MS,
 } from "../constants";
 
+/** 待确认会话信息 */
 interface PendingSessionInfo {
   roomId: string;
   gamerId: string;
@@ -21,18 +24,23 @@ interface PendingSessionInfo {
   timeout: NodeJS.Timeout;
 }
 
+/** 创建房间结果 */
 interface CreateRoomResult {
   roomId: string;
   sessionId: string;
 }
 
+/** 加入房间结果 */
 interface JoinRoomResult {
   sessionId: string;
 }
 
 export class RoomManager {
+  /** 所有房间 */
   private rooms: Map<string, Room>;
+  /** 待确认的会话 */
   private pendingSessions: Map<string, PendingSessionInfo>;
+  /** Session管理器（依赖注入） */
   private sessionManager?: SessionManager;
 
   constructor() {
@@ -40,14 +48,31 @@ export class RoomManager {
     this.pendingSessions = new Map();
   }
 
+  /**
+   * 设置 SessionManager
+   * @param sessionManager - SessionManager 实例
+   */
   setSessionManager(sessionManager: SessionManager): void {
     this.sessionManager = sessionManager;
   }
 
-  createRoom(gamerId: string, gamerName: string): CreateRoomResult {
+  /**
+   * 创建新房间
+   *
+   * @param gamerId - 创建者ID
+   * @param gamerName - 创建者名称
+   * @param difficulty - 游戏难度
+   * @returns 房间ID和会话ID
+   */
+  createRoom(
+    gamerId: string,
+    gamerName: string,
+    difficulty: string = "all"
+  ): CreateRoomResult {
     const roomId = uuidv4();
     const sessionId = uuidv4();
 
+    // 设置待确认会话超时
     const timeout = setTimeout(() => {
       console.log(`Room ${roomId} pending session timeout, deleting`);
       this.pendingSessions.delete(sessionId);
@@ -66,6 +91,7 @@ export class RoomManager {
       hostGamerId: gamerId,
       gamers: new Map(),
       status: "pending",
+      difficulty,
       mysteryPlayer: null,
       createdAt: new Date(),
     };
@@ -75,10 +101,23 @@ export class RoomManager {
     return { roomId, sessionId };
   }
 
+  /**
+   * 获取待确认会话信息
+   * @param sessionId - 会话ID
+   * @returns 会话信息或null
+   */
   getPendingSession(sessionId: string): PendingSessionInfo | null {
     return this.pendingSessions.get(sessionId) || null;
   }
 
+  /**
+   * 加入房间
+   *
+   * @param roomId - 房间ID
+   * @param gamerId - 玩家ID
+   * @param gamerName - 玩家名称
+   * @returns 会话ID或错误信息
+   */
   joinRoom(
     roomId: string,
     gamerId: string,
@@ -103,6 +142,7 @@ export class RoomManager {
 
     const sessionId = uuidv4();
 
+    // 设置待确认会话超时
     const timeout = setTimeout(() => {
       console.log(`Pending session ${sessionId} timeout, cleaning up`);
       this.pendingSessions.delete(sessionId);
@@ -118,6 +158,12 @@ export class RoomManager {
     return { sessionId };
   }
 
+  /**
+   * 确认加入房间
+   *
+   * @param sessionId - 会话ID
+   * @throws Error 如果会话无效或过期
+   */
   confirmJoin(sessionId: string): void {
     const pending = this.pendingSessions.get(sessionId);
     if (!pending) {
@@ -143,11 +189,18 @@ export class RoomManager {
 
     room.gamers.set(pending.gamerId, gamer);
 
+    // 第一个玩家确认后，房间状态变为 waiting
     if (room.status === "pending") {
       room.status = "waiting";
     }
   }
 
+  /**
+   * 获取房间信息
+   *
+   * @param roomId - 房间ID
+   * @returns 房间信息或null
+   */
   getRoom(roomId: string): Room | null {
     const room = this.rooms.get(roomId);
     if (!room) return null;
@@ -155,12 +208,19 @@ export class RoomManager {
     return room;
   }
 
+  /**
+   * 移除玩家
+   *
+   * @param roomId - 房间ID
+   * @param gamerId - 玩家ID
+   */
   removeGamer(roomId: string, gamerId: string): void {
     const room = this.rooms.get(roomId);
     if (!room) return;
 
     room.gamers.delete(gamerId);
 
+    // 如果房间空了或房主离开，删除房间
     if (room.gamers.size === 0) {
       this.deleteRoom(roomId);
     } else if (gamerId === room.hostGamerId) {
@@ -168,6 +228,14 @@ export class RoomManager {
     }
   }
 
+  /**
+   * 设置玩家准备状态
+   *
+   * @param roomId - 房间ID
+   * @param gamerId - 玩家ID
+   * @param ready - 是否准备
+   * @returns 是否所有玩家都准备好了
+   */
   setReady(roomId: string, gamerId: string, ready: boolean): boolean {
     const room = this.rooms.get(roomId);
     if (!room) return false;
@@ -186,20 +254,22 @@ export class RoomManager {
     return false;
   }
 
-  startGame(roomId: string): MysteryPlayer | null {
+  /**
+   * 开始游戏
+   *
+   * @param roomId - 房间ID
+   * @returns 神秘玩家信息
+   * @throws Error 如果无法开始游戏
+   */
+  startGame(roomId: string): Player {
     const room = this.rooms.get(roomId);
     if (!room || room.status !== "ready") {
       throw new Error("Cannot start game");
     }
 
-    const players = getMysteryPlayers();
-    const randomPlayerName =
-      players[Math.floor(Math.random() * players.length)].playerName;
-    const mysteryPlayer = findPlayerByName(randomPlayerName);
-
-    if (!mysteryPlayer) {
-      throw new Error("Failed to generate mystery player");
-    }
+    // 根据房间难度选择神秘玩家
+    const difficulty = (room.difficulty || "all") as Difficulty;
+    const mysteryPlayer = getRandomPlayer(difficulty);
 
     room.mysteryPlayer = mysteryPlayer;
     room.status = "inProgress";
@@ -208,6 +278,15 @@ export class RoomManager {
     return mysteryPlayer;
   }
 
+  /**
+   * 处理玩家猜测
+   *
+   * @param roomId - 房间ID
+   * @param gamerId - 玩家ID
+   * @param guessId - 猜测的玩家ID
+   * @returns 猜测结果
+   * @throws Error 如果游戏未进行或猜测无效
+   */
   processGuess(roomId: string, gamerId: string, guessId: string) {
     const room = this.rooms.get(roomId);
     if (!room || room.status !== "inProgress") {
@@ -223,7 +302,10 @@ export class RoomManager {
       throw new Error("No guesses left");
     }
 
-    const guessedPlayer = findPlayerByName(guessId);
+    const guessedPlayer = findPlayerByName(
+      guessId,
+      room.difficulty as Difficulty
+    );
     if (!guessedPlayer) {
       throw new Error("Player not found");
     }
@@ -258,9 +340,15 @@ export class RoomManager {
     };
   }
 
+  /**
+   * 删除房间
+   *
+   * @param roomId - 房间ID
+   */
   deleteRoom(roomId: string): void {
     const room = this.rooms.get(roomId);
     if (room) {
+      // 清理所有相关待确认会话
       room.gamers.forEach((_, gamerId) => {
         const pendingKeys = Array.from(this.pendingSessions.entries());
         pendingKeys.forEach(([sessionId, pending]) => {
@@ -274,6 +362,13 @@ export class RoomManager {
     this.rooms.delete(roomId);
   }
 
+  /**
+   * 向房间内所有玩家广播消息
+   *
+   * @param roomId - 房间ID
+   * @param event - 事件名称
+   * @param data - 事件数据
+   */
   broadcastToRoom(roomId: string, event: string, data: unknown): void {
     const room = this.rooms.get(roomId);
     if (!room) return;
@@ -305,10 +400,18 @@ export class RoomManager {
     });
   }
 
+  /**
+   * 获取所有房间
+   * @returns 房间Map的副本
+   */
   getAllRooms(): Map<string, Room> {
     return new Map(this.rooms);
   }
 
+  /**
+   * 获取房间数量
+   * @returns 房间数量
+   */
   getRoomCount(): number {
     return this.rooms.size;
   }

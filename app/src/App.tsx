@@ -14,6 +14,7 @@ import SettingsPage from "./pages/SettingsPage";
 import NotFound from "./pages/NotFound";
 import OnlineHomePage from "./pages/OnlineHomePage";
 import OnlineRoomPage from "./pages/OnlineRoomPage";
+import { ofetch } from "ofetch";
 
 function Router() {
   return (
@@ -42,20 +43,20 @@ function App() {
 
   // 在应用启动时初始化数据
   useEffect(() => {
-    const init = async () => {
-      initializeData();
-      initializeSettings();
+    initializeData();
+    initializeSettings();
 
-      // Check if server is available
-      try {
-        const response = await fetch("/api/alive");
+    // Check if server is available
+    ofetch("/api/alive", {
+      timeout: 1000,
+      method: "GET",
+      onResponse({ response }) {
         setOnlineModeAvailable(response.ok);
-      } catch {
+      },
+      onResponseError() {
         setOnlineModeAvailable(false);
-      }
-    };
-
-    init();
+      },
+    });
   }, []);
 
   // 如果正在加载或未初始化，显示加载界面

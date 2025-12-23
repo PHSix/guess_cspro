@@ -11,6 +11,7 @@ export interface MysteryPlayer {
 export interface CreateRoomRequest {
   gamerId: string;
   gamerName: string;
+  difficulty?: "all" | "normal" | "ylg";
 }
 
 export interface JoinRoomRequest {

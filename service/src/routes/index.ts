@@ -1,15 +1,15 @@
 import { Hono } from "hono";
 import type { Context } from "hono";
 import type { ServerResponse } from "node:http";
-import { RoomManager } from "../managers/RoomManager.js";
-import { SessionManager } from "../managers/SessionManager.js";
+import { RoomManager } from "../managers/RoomManager";
+import { SessionManager } from "../managers/SessionManager";
 import {
   createRoomSchema,
   joinRoomSchema,
   readySchema,
   guessSchema,
   sessionIdSchema,
-} from "../utils/validation.js";
+} from "../utils/validation";
 
 const roomManager = new RoomManager();
 const sessionManager = new SessionManager();
@@ -36,7 +36,11 @@ app.post("/room/create", async c => {
     const body = await c.req.json();
     const parsed = createRoomSchema.parse(body);
 
-    const result = roomManager.createRoom(parsed.gamerId, parsed.gamerName);
+    const result = roomManager.createRoom(
+      parsed.gamerId,
+      parsed.gamerName,
+      parsed.difficulty
+    );
 
     return c.json(result);
   } catch (error) {

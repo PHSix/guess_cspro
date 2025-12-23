@@ -3,6 +3,7 @@ import { z } from "zod";
 export const createRoomSchema = z.object({
   gamerId: z.string().uuid(),
   gamerName: z.string().min(1).max(50),
+  difficulty: z.enum(["all", "normal", "ylg"]).default("all"),
 });
 
 export const joinRoomSchema = z.object({

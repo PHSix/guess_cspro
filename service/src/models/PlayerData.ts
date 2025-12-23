@@ -1,39 +1,31 @@
-export interface MysteryPlayer {
-  id: string;
-  playerName: string;
-  team: string;
-  country: string;
-  birthYear: number;
-  majorsPlayed: number;
-  role: "AWPer" | "Rifler" | "Unknown";
-}
+/**
+ * 玩家相关数据模型
+ * 使用共享类型定义
+ */
 
-export interface ServerPlayerData {
-  [key: string]: {
-    team: string;
-    country: string;
-    birth_year: number;
-    majorsPlayed: number;
-    role: string;
-  };
-}
+// 导入共享类型
+import type {
+  Player,
+  Mask,
+  MatchType,
+  PlayerRole,
+  Difficulty,
+} from "@guess-cspro/shared";
 
-export interface Mask {
-  playerName: MatchType;
-  team: MatchType;
-  country: MatchType;
-  birthYear: MatchType;
-  majorsPlayed: MatchType;
-  role: MatchType;
-}
+// 重新导出共享类型
+export type { Player, Mask, MatchType, PlayerRole, Difficulty };
 
-export type MatchType = "M" | "N" | "D";
-
+/**
+ * 猜测记录
+ */
 export interface Guess {
   guessId: string;
   mask: Mask;
 }
 
+/**
+ * 游戏者状态
+ */
 export interface GamerState {
   gamerId: string;
   gamerName: string;
@@ -42,3 +34,6 @@ export interface GamerState {
   guessesLeft: number;
   guesses: Guess[];
 }
+
+// 为了向后兼容，导出 MysteryPlayer 作为 Player 的别名
+export type { Player as MysteryPlayer };
