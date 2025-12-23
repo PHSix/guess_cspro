@@ -3,12 +3,12 @@ import { Card } from "@/components/ui/card";
 import { useLocation } from "wouter";
 import { useEffect, useMemo, useEffectEvent } from "react";
 import { getCountryFlag } from "@shared/countryUtils";
-import type { Player, Guess } from "@/lib/gameEngine";
+import type { Player, GameEngineGuess } from "@/lib/gameEngine";
 import Confetti from "@/components/Confetti";
 
 interface FinishData {
   isWon: boolean;
-  guesses: Guess[];
+  guesses: GameEngineGuess[];
   answer: Player;
 }
 

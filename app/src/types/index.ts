@@ -20,7 +20,7 @@ export interface JoinRoomRequest {
   roomId: string;
 }
 
-export type MatchType = "M" | "N" | "D";
+export type MatchType = "M" | "N" | "D" | "ND" | "NU";
 
 export interface Mask {
   playerName: MatchType;

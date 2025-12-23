@@ -1,5 +1,4 @@
 import { useState, useEffect, useRef } from "react";
-import { Input } from "@/components/ui/input";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Loader2, Settings } from "lucide-react";
@@ -10,14 +9,14 @@ import {
   isCorrectGuess,
   createGuessRecord,
   type Player,
-  type Guess,
+  type GameEngineGuess,
   MatchType,
 } from "@/lib/gameEngine";
 import { getCountryFlag, getCountryChinese } from "@shared/countryUtils";
 import { useLocation } from "wouter";
 import { cn } from "@/lib/utils";
-import { useIsMobile } from "@/hooks/useMobile";
 import { useSettingsStore } from "@/store/useSettingsStore";
+import { PlayerSearchInput } from "@/components/PlayerSearchInput";
 
 function getMatchSymbol(match: MatchType): string {
   switch (match) {
@@ -59,7 +58,7 @@ interface CompareResult {
   symbol?: string;
 }
 
-function getCompareResults(record: Guess): CompareResult[] {
+function getCompareResults(record: GameEngineGuess): CompareResult[] {
   function wrapGetMatchClass(type: MatchType) {
     return `${getMatchClass(type)}`;
   }
@@ -100,7 +99,7 @@ function getCompareResults(record: Guess): CompareResult[] {
   ];
 }
 
-interface GuessWithClass extends Guess {
+interface GuessWithCompareResult extends GameEngineGuess {
   compareResults: CompareResult[];
 }
 
@@ -108,53 +107,15 @@ export default function GamePage() {
   const [, navigate] = useLocation();
   const { totalGuesses, fribergAutoGuess } = useSettingsStore();
   const [answerPlayer, setAnswerPlayer] = useState<Player | null>(null);
-  const [guesses, setGuesses] = useState<GuessWithClass[]>([]);
+  const [guesses, setGuesses] = useState<GuessWithCompareResult[]>([]);
   const [searchQuery, setSearchQuery] = useState("");
-  const [searchResults, setSearchResults] = useState<Player[]>([]);
-  const [highlightedIndex, setHighlightedIndex] = useState(0);
   const [isLoading, setIsLoading] = useState(false);
-  const [showDropdown, setShowDropdown] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
-  const dropdownRef = useRef<HTMLDivElement>(null);
-  const tableRef = useRef<HTMLDivElement>(null);
-  const isMobile = useIsMobile();
 
   const [guessesRemaining, setGuessesRemaining] = useState(totalGuesses);
 
   const handleGoToSettings = () => {
     navigate("/settings");
-  };
-
-  // 搜索玩家
-  useEffect(() => {
-    const search = () => {
-      if (searchQuery.trim()) {
-        const results = searchPlayers(searchQuery);
-        setSearchResults(results);
-        setHighlightedIndex(0);
-        setShowDropdown(results.length > 0);
-      } else {
-        setSearchResults([]);
-        setHighlightedIndex(0);
-        setShowDropdown(false);
-      }
-    };
-
-    const timer = setTimeout(search, 150);
-    return () => clearTimeout(timer);
-  }, [searchQuery]);
-
-  // 失焦处理
-  const handleBlur = () => {
-    setTimeout(() => {
-      setShowDropdown(false);
-    }, 200);
-  };
-
-  const handleFocus = () => {
-    if (searchQuery.trim() && searchResults.length > 0) {
-      setShowDropdown(true);
-    }
   };
 
   /**
@@ -168,8 +129,6 @@ export default function GamePage() {
     setGuesses([]);
     setGuessesRemaining(totalGuesses);
     setSearchQuery("");
-    setSearchResults([]);
-    setHighlightedIndex(0);
     setIsLoading(false);
     setTimeout(() => inputRef.current?.focus(), 100);
 
@@ -212,47 +171,6 @@ export default function GamePage() {
     }
   }, [fribergAutoGuess]);
 
-  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === "ArrowDown" || (e.key === "Tab" && !e.shiftKey)) {
-      e.preventDefault();
-      const newIndex =
-        highlightedIndex < searchResults.length - 1
-          ? highlightedIndex + 1
-          : highlightedIndex;
-      setHighlightedIndex(newIndex);
-      setTimeout(() => {
-        const highlightedElement = document.querySelector(
-          `[data-search-index="${newIndex}"]`
-        ) as HTMLElement;
-        if (highlightedElement) {
-          highlightedElement.scrollIntoView({ block: "nearest" });
-        }
-      }, 0);
-    } else if (e.key === "ArrowUp" || (e.key === "Tab" && e.shiftKey)) {
-      e.preventDefault();
-      const newIndex = highlightedIndex > 0 ? highlightedIndex - 1 : 0;
-      setHighlightedIndex(newIndex);
-      setTimeout(() => {
-        const highlightedElement = document.querySelector(
-          `[data-search-index="${newIndex}"]`
-        ) as HTMLElement;
-        if (highlightedElement) {
-          highlightedElement.scrollIntoView({ block: "nearest" });
-        }
-      }, 0);
-    } else if (
-      e.key === "Enter" ||
-      e.key === "Go" ||
-      e.key === "Search" ||
-      e.key === "Done"
-    ) {
-      e.preventDefault();
-      if (searchResults.length > 0) {
-        handleGuess(searchResults[highlightedIndex]);
-      }
-    }
-  };
-
   /**
    * 猜测选手
    */
@@ -288,9 +206,6 @@ export default function GamePage() {
       // 没猜中但还有次数，继续游戏
       setGuessesRemaining(totalGuesses - newGuesses.length);
       setSearchQuery("");
-      setSearchResults([]);
-      setHighlightedIndex(0);
-      setShowDropdown(false);
     }
   };
 
@@ -323,7 +238,7 @@ export default function GamePage() {
 
         <Card className="px-3 md:px-6 py-6 neon-border space-y-4 flex flex-col-reverse md:flex-col">
           {/* 搜索输入框 */}
-          <div className="relative">
+          <div>
             <div className="flex flex-row items-center gap-4 mb-4">
               <span className="text-xs font-mono text-muted-foreground">
                 <span className="bracket">[</span>REMAINING
@@ -345,60 +260,12 @@ export default function GamePage() {
                 ))}
               </div>
             </div>
-            <Input
-              ref={inputRef}
-              type="text"
-              placeholder="输入选手名字... (↑↓ 或 Tab 切换, Enter 确认)"
-              value={searchQuery}
-              onChange={e => setSearchQuery(e.target.value)}
-              onKeyDown={handleKeyDown}
-              onBlur={handleBlur}
-              onFocus={handleFocus}
-              className="bg-input text-foreground placeholder:text-muted-foreground border-border"
-              autoFocus
-              enterKeyHint="search"
-            />
 
-            {showDropdown && searchResults.length > 0 && (
-              <div
-                ref={dropdownRef}
-                className={cn(
-                  "absolute md:top-full left-0 right-0 mt-1 bg-card border border-border rounded flex flex-col-reverse md:flex-col z-50 max-h-27 overflow-y-auto custom-scrollbar",
-                  {
-                    "bottom-10": isMobile,
-                  }
-                )}
-              >
-                {searchResults.map((player, idx) => (
-                  <button
-                    key={player.id}
-                    data-search-index={idx}
-                    // 优化移动端收起键盘，使用pointerdown替换click事件
-                    onPointerDown={e => {
-                      e.stopPropagation();
-                      e.preventDefault();
-                      handleGuess(player);
-                    }}
-                    className={`w-full text-left px-4 py-2 transition-colors border-b border-border/50 last:border-b-0 ${
-                      idx === highlightedIndex
-                        ? "bg-accent/20 border-l-2 border-l-accent"
-                        : "hover:bg-accent/10 hover:border-l-2 hover:border-l-accent/50"
-                    }`}
-                  >
-                    <div className="flex justify-between items-center">
-                      <div className="font-semibold text-foreground text-sm">
-                        {player.playerName}
-                      </div>
-                      <div className="text-xs text-muted-foreground text-right">
-                        {player.team} • {getCountryFlag(player.country)}{" "}
-                        {player.country} •{" "}
-                        {new Date().getFullYear() - player.birthYear}岁
-                      </div>
-                    </div>
-                  </button>
-                ))}
-              </div>
-            )}
+            <PlayerSearchInput
+              value={searchQuery}
+              onChange={setSearchQuery}
+              onSelectPlayer={handleGuess}
+            />
           </div>
 
           {/* 猜测历史表格 */}
@@ -409,7 +276,7 @@ export default function GamePage() {
             </div>
 
             {/* 统一横向表格 */}
-            <div className="overflow-x-auto custom-scrollbar" ref={tableRef}>
+            <div className="overflow-x-auto custom-scrollbar">
               <table className="history-table">
                 <thead>
                   <tr>

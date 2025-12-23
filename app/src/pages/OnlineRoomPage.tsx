@@ -1,43 +1,17 @@
-import { useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useLayoutEffect, useMemo, useState } from "react";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
 import { toast } from "sonner";
 import { useLocation } from "wouter";
-import type { MatchType, Guess, RoomStatus, GamerInfo } from "@/types";
+import type { RoomStatus, GamerInfo } from "@/types";
 import type { Player } from "@/lib/gameEngine";
-import { searchPlayers } from "@/lib/gameEngine";
+import { PlayerSearchInput } from "@/components/PlayerSearchInput";
+import { OnlineGuessHistory } from "@/components/OnlineGuessHistory";
 import { useSSEConnection } from "@/hooks/useSSEConnection";
 import { useOnlineStore } from "@/store/useOnlineStore";
 import { getCountryChinese } from "@shared/countryUtils";
 import { Copy } from "lucide-react";
-
-function getMatchClass(match: MatchType): string {
-  switch (match) {
-    case "M":
-      return "text-green-400 font-bold bg-green-700/20";
-    case "N":
-      return "text-yellow-400 font-bold bg-yellow-700/20";
-    case "D":
-      return "text-red-400";
-    default:
-      return "";
-  }
-}
-
-function getMatchSymbol(match: MatchType): string {
-  switch (match) {
-    case "M":
-      return "✓";
-    case "N":
-      return "≈";
-    case "D":
-      return "✗";
-    default:
-      return "?";
-  }
-}
 
 export default function OnlineRoomPage() {
   const [, navigate] = useLocation();
@@ -60,10 +34,6 @@ export default function OnlineRoomPage() {
   } = useSSEConnection();
 
   const [searchQuery, setSearchQuery] = useState("");
-  const [searchResults, setSearchResults] = useState<Player[]>([]);
-  const [showDropdown, setShowDropdown] = useState(false);
-  const [highlightedIndex, setHighlightedIndex] = useState(0);
-  const inputRef = useRef<HTMLInputElement>(null);
   const isReady = useMemo(
     () => gamers.find(g => g.gamerId === myGamerId)?.ready,
     [gamers, myGamerId]
@@ -79,65 +49,8 @@ export default function OnlineRoomPage() {
   }, [roomId]);
 
   useEffect(() => {
-    if (roomStatus === "inProgress" && mysteryPlayer) {
-      inputRef.current?.focus();
-    }
-  }, [roomStatus, mysteryPlayer]);
-
-  useEffect(() => {
     initializeGamerId();
   }, []);
-
-  useEffect(() => {
-    if (!searchQuery.trim()) {
-      setSearchResults([]);
-      setShowDropdown(false);
-      setHighlightedIndex(0);
-      return;
-    }
-
-    const results = searchPlayers(searchQuery).slice(0, 20);
-    setSearchResults(results);
-    setHighlightedIndex(0);
-    setShowDropdown(results.length > 0);
-  }, [searchQuery]);
-
-  const handleBlur = () => {
-    setTimeout(() => {
-      setShowDropdown(false);
-    }, 200);
-  };
-
-  const handleFocus = () => {
-    if (searchQuery.trim() && searchResults.length > 0) {
-      setShowDropdown(true);
-    }
-  };
-
-  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === "ArrowDown" || (e.key === "Tab" && !e.shiftKey)) {
-      e.preventDefault();
-      const newIndex =
-        highlightedIndex < searchResults.length - 1
-          ? highlightedIndex + 1
-          : highlightedIndex;
-      setHighlightedIndex(newIndex);
-    } else if (e.key === "ArrowUp" || (e.key === "Tab" && e.shiftKey)) {
-      e.preventDefault();
-      const newIndex = highlightedIndex > 0 ? highlightedIndex - 1 : 0;
-      setHighlightedIndex(newIndex);
-    } else if (
-      e.key === "Enter" ||
-      e.key === "Go" ||
-      e.key === "Search" ||
-      e.key === "Done"
-    ) {
-      e.preventDefault();
-      if (searchResults.length > 0 && searchResults[highlightedIndex]) {
-        handleSubmitGuess(searchResults[highlightedIndex]);
-      }
-    }
-  };
 
   const handleSubmitGuess = async (player: Player) => {
     if (roomStatus !== "inProgress" || !myGamerId) return;
@@ -145,9 +58,6 @@ export default function OnlineRoomPage() {
     try {
       await sendAction("/room/action", { guess: player.playerName });
       setSearchQuery("");
-      setSearchResults([]);
-      setShowDropdown(false);
-      setHighlightedIndex(0);
     } catch (error) {
       console.error("Failed to submit guess:", error);
       toast.error("Failed to submit guess");
@@ -341,150 +251,14 @@ export default function OnlineRoomPage() {
         {roomStatus === "inProgress" && (
           <div className="space-y-6">
             {/* 搜索框 */}
-            <div className="relative mb-6">
-              <Input
-                ref={inputRef}
-                type="text"
-                placeholder="Search player name..."
-                value={searchQuery}
-                onChange={e => setSearchQuery(e.target.value)}
-                onKeyDown={handleKeyDown}
-                onBlur={handleBlur}
-                onFocus={handleFocus}
-                className="bg-input text-foreground border-border pr-20"
-                autoComplete="off"
-              />
-
-              {showDropdown && searchResults.length > 0 && (
-                <div className="absolute top-full left-0 right-0 z-50 max-h-80 overflow-y-auto border border-border bg-card shadow-lg rounded-lg">
-                  {searchResults.map((player, idx) => (
-                    <button
-                      key={player.id}
-                      data-search-index={idx}
-                      onPointerDown={e => {
-                        e.stopPropagation();
-                        e.preventDefault();
-                        handleSubmitGuess(player);
-                      }}
-                      className={`w-full text-left px-4 py-2 border-b border-border/50 last:border-b-0 transition-colors ${
-                        idx === highlightedIndex
-                          ? "bg-accent/20 text-accent-foreground"
-                          : "hover:bg-accent/5"
-                      }`}
-                    >
-                      <div className="flex items-center gap-3">
-                        <div className="font-semibold text-foreground">
-                          {player.playerName}
-                        </div>
-                      </div>
-                    </button>
-                  ))}
-                </div>
-              )}
-            </div>
+            <PlayerSearchInput
+              value={searchQuery}
+              onChange={setSearchQuery}
+              onSelectPlayer={handleSubmitGuess}
+            />
 
             {/* 我的猜测历史 */}
-            <div className="mb-6">
-              <h2 className="text-2xl font-bold text-foreground mb-2">
-                My Guesses ({myGuesses.length}/8)
-              </h2>
-            </div>
-
-            {myGuesses.length === 0 ? (
-              <div className="text-center py-12 text-muted-foreground">
-                <p>No guesses yet</p>
-              </div>
-            ) : (
-              <div className="space-y-4">
-                {myGuesses.map((guess: Guess, idx: number) => (
-                  <div
-                    key={`${myGamerId}-${idx}`}
-                    className="grid grid-cols-6 gap-2 text-sm"
-                  >
-                    <div className="text-muted-foreground">Player</div>
-                    <div className="text-muted-foreground">Team</div>
-                    <div className="text-muted-foreground">Country</div>
-                    <div className="text-muted-foreground">Age</div>
-                    <div className="text-muted-foreground">Majors</div>
-                    <div className="text-muted-foreground">Role</div>
-
-                    <div className="flex items-center gap-2">
-                      <div
-                        className={`font-semibold ${getMatchClass(guess.mask.playerName)}`}
-                      >
-                        {guess.playerName}
-                      </div>
-                      <div
-                        className={`text-xl ${getMatchClass(guess.mask.playerName)}`}
-                      >
-                        {getMatchSymbol(guess.mask.playerName)}
-                      </div>
-                    </div>
-
-                    <div
-                      className={`text-muted-foreground ${getMatchClass(guess.mask.team)}`}
-                    >
-                      {guess.team}
-                    </div>
-
-                    <div
-                      className={`flex items-center gap-1 ${getMatchClass(guess.mask.country)}`}
-                    >
-                      <span
-                        className={`text-xl ${getMatchClass(guess.mask.country)}`}
-                      >
-                        {getMatchSymbol(guess.mask.country)}
-                      </span>
-                      <span
-                        className={`text-sm ${getMatchClass(guess.mask.country)}`}
-                      >
-                        {getCountryChinese(guess.country)}
-                      </span>
-                    </div>
-
-                    <div
-                      className={`flex items-center gap-1 ${getMatchClass(guess.mask.birthYear)}`}
-                    >
-                      <span
-                        className={`text-xl ${getMatchClass(guess.mask.birthYear)}`}
-                      >
-                        {getMatchSymbol(guess.mask.birthYear)}
-                      </span>
-                    </div>
-                    <div
-                      className={`text-sm text-muted-foreground ${getMatchClass(guess.mask.birthYear)}`}
-                    >
-                      {guess.age}岁
-                    </div>
-
-                    <div
-                      className={`flex items-center gap-1 ${getMatchClass(guess.mask.majorsPlayed)}`}
-                    >
-                      <span
-                        className={`text-xl ${getMatchClass(guess.mask.majorsPlayed)}`}
-                      >
-                        {getMatchSymbol(guess.mask.majorsPlayed)}
-                      </span>
-                    </div>
-                    <div
-                      className={`text-sm text-muted-foreground ${getMatchClass(guess.mask.majorsPlayed)}`}
-                    >
-                      {guess.majorMaps}
-                    </div>
-
-                    <div
-                      className={`flex items-center gap-1 ${getMatchClass(guess.mask.role)}`}
-                    >
-                      <span
-                        className={`text-xl ${getMatchClass(guess.mask.role)}`}
-                      >
-                        {getMatchSymbol(guess.mask.role)}
-                      </span>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            )}
+            <OnlineGuessHistory guesses={myGuesses} maxGuesses={8} />
           </div>
         )}
 

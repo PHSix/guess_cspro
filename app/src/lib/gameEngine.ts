@@ -30,7 +30,7 @@ export interface ComparisonResult {
   roleMatch: MatchType;
 }
 
-export interface Guess {
+export interface GameEngineGuess {
   playerName: string;
   team: string;
   country: string;
@@ -344,7 +344,7 @@ export function isCorrectGuess(
 export function createGuessRecord(
   guessedPlayer: Player,
   result: ComparisonResult
-): Guess {
+): GameEngineGuess {
   const age = new Date().getFullYear() - guessedPlayer.birthYear;
   return {
     playerName: guessedPlayer.playerName,

@@ -17,7 +17,14 @@ export type Difficulty = "all" | "normal" | "ylg";
  * - N: Near - 接近（同赛区或数值接近）
  * - D: Different - 不同
  */
-export type MatchType = "M" | "N" | "D";
+// export type MatchType = "M" | "N" | "D";
+export enum MatchType {
+  Exact = "M",
+  Near = "N",
+  Different = "D",
+  Greater = "G",
+  Less = "L",
+}
 
 /**
  * 玩家角色
@@ -50,7 +57,7 @@ export interface Mask {
   playerName: MatchType;
   team: MatchType;
   country: MatchType;
-  birthYear: MatchType;
+  age: MatchType;
   majorsPlayed: MatchType;
   role: MatchType;
 }
@@ -340,8 +347,7 @@ export function comparePlayerAttributes(
   const answerAge = calculateAge(answerPlayer.birthYear);
 
   return {
-    teamMatch:
-      guessedPlayer.team === answerPlayer.team ? "M" : "D",
+    teamMatch: guessedPlayer.team === answerPlayer.team ? "M" : "D",
     countryMatch:
       guessedPlayer.country === answerPlayer.country
         ? "M"
@@ -394,9 +400,7 @@ export function findPlayerByName(
   players: Player[],
   name: string
 ): Player | undefined {
-  return players.find(
-    p => p.playerName.toLowerCase() === name.toLowerCase()
-  );
+  return players.find(p => p.playerName.toLowerCase() === name.toLowerCase());
 }
 
 /**
