@@ -5567,7 +5567,7 @@
     "birth_year": 2000,
     "role": "Rifler",
     "majorsPlayed": 2,
-    "avatar": ""
+    "avatar": "https://img-cdn.hltv.org/playerbodyshot/tDaixXVrLWc5ipvc7WLvgB.png?ixlib=java-2.1.0&w=400&s=2b781cfd227f793111395c48c1baed4e"
   },
   "yxngstxr": {
     "id": "yxngstxr",
@@ -5588,5 +5588,525 @@
     "role": "AWPer",
     "majorsPlayed": 0,
     "avatar": "https://img-cdn.hltv.org/playerbodyshot/biOoj0RdE1iWdYlNZ2B6zt.png?ixlib=java-2.1.0&w=400&s=b39726a7e6894883a3b4d886a23863a2"
+  },
+  "prb": {
+    "id": "prb",
+    "link": "https://www.hltv.org/player/1040/prb",
+    "country": "Norway",
+    "team": "No team",
+    "birth_year": 1987,
+    "role": "Rifler",
+    "majorsPlayed": 1,
+    "avatar": null
+  },
+  "deviaNt": {
+    "id": "deviaNt",
+    "link": "https://www.hltv.org/player/7994/deviant",
+    "country": "South Africa",
+    "team": "Retired (?)",
+    "birth_year": 1988,
+    "role": "Rifler",
+    "majorsPlayed": 1,
+    "avatar": null
+  },
+  "jottAAA": {
+    "id": "jottAAA",
+    "link": "https://www.hltv.org/player/22361/jottaaa",
+    "country": "Turkey",
+    "team": "Aurora",
+    "birth_year": 2002,
+    "role": "Rifler",
+    "majorsPlayed": 2,
+    "avatar": "https://img-cdn.hltv.org/playerbodyshot/m_O5IfbyBy2eWdnEshLSJJ.png?ixlib=java-2.1.0&w=400&s=8b33c9eec77951acd12ace9bdb3149b5"
+  },
+  "Swisher": {
+    "id": "Swisher",
+    "link": "https://www.hltv.org/player/16599/swisher",
+    "country": "United States",
+    "team": "M80",
+    "birth_year": 1998,
+    "role": "Rifler",
+    "majorsPlayed": 2,
+    "avatar": "https://img-cdn.hltv.org/playerbodyshot/29ZsyLzmin7ulOnJCcA3wM.png?ixlib=java-2.1.0&w=400&s=6644ca2a670a81840d9f20cb95676f9e"
+  },
+  "Lake": {
+    "id": "Lake",
+    "link": "https://www.hltv.org/player/22921/lake",
+    "country": "United States",
+    "team": "M80",
+    "birth_year": 2004,
+    "role": "Rifler",
+    "majorsPlayed": 2,
+    "avatar": "https://img-cdn.hltv.org/playerbodyshot/fcLbbeY2MoA_9_WCCA-p_R.png?ixlib=java-2.1.0&w=400&s=a8106291a5f1f811c793e2ca5478329b"
+  },
+  "reck": {
+    "id": "reck",
+    "link": "https://www.hltv.org/player/17378/reck",
+    "country": "United States",
+    "team": "SportsBetExpert",
+    "birth_year": 2003,
+    "role": "Rifler",
+    "majorsPlayed": 1,
+    "avatar": "https://img-cdn.hltv.org/playerbodyshot/ycADLPRDZVWTaVe9LTbHye.png?ixlib=java-2.1.0&w=400&s=892e3c8ca31154b4838f28606a4953f3"
+  },
+  "brnz4n": {
+    "id": "brnz4n",
+    "link": "https://www.hltv.org/player/20987/brnz4n",
+    "country": "Brazil",
+    "team": "MIBR",
+    "birth_year": 2003,
+    "role": "Rifler",
+    "majorsPlayed": 2,
+    "avatar": "https://img-cdn.hltv.org/playerbodyshot/jlinafjrKvwMU0vsE43yzD.png?ixlib=java-2.1.0&w=400&s=939332c0a00c0a5f8cebda2424c223e6"
+  },
+  "tN1R": {
+    "id": "tN1R",
+    "link": "https://www.hltv.org/player/19808/tn1r",
+    "country": "Belarus",
+    "team": "Spirit",
+    "birth_year": 2001,
+    "role": "Rifler",
+    "majorsPlayed": 2,
+    "avatar": "https://img-cdn.hltv.org/playerbodyshot/flQgMyPRl5KKCYljlpwfZk.png?ixlib=java-2.1.0&w=400&s=c6bf5d3f1d654f2e0ecdd88972115247"
+  },
+  "1eeR": {
+    "id": "1eeR",
+    "link": "https://www.hltv.org/player/21266/1eer",
+    "country": "Belarus",
+    "team": "Nemiga",
+    "birth_year": 2002,
+    "role": "Rifler",
+    "majorsPlayed": 1,
+    "avatar": "https://img-cdn.hltv.org/playerbodyshot/-4fCkgzdO9nYYW_BBpFT6D.png?ixlib=java-2.1.0&w=400&s=4bb555b181cea12e45cfa9e93b39abaa"
+  },
+  "khaN": {
+    "id": "khaN",
+    "link": "https://www.hltv.org/player/23317/khan",
+    "country": "Kazakhstan",
+    "team": "Nemiga",
+    "birth_year": 2003,
+    "role": "AWPer",
+    "majorsPlayed": 1,
+    "avatar": "https://img-cdn.hltv.org/playerbodyshot/XoUqYYj1yA_QxZewFm6Mf3.png?ixlib=java-2.1.0&w=400&s=b23c91276ce2bee280fde269a191132a"
+  },
+  "riskyb0b": {
+    "id": "riskyb0b",
+    "link": "https://www.hltv.org/player/22460/riskyb0b",
+    "country": "Russia",
+    "team": "Nemiga",
+    "birth_year": 2002,
+    "role": "Rifler",
+    "majorsPlayed": 1,
+    "avatar": "https://img-cdn.hltv.org/playerbodyshot/467isUgVVV84EG1Lq9DDbI.png?ixlib=java-2.1.0&w=400&s=16573a625c865dcd61e597b930af362d"
+  },
+  "zweih": {
+    "id": "zweih",
+    "link": "https://www.hltv.org/player/23685/zweih",
+    "country": "Russia",
+    "team": "Spirit",
+    "birth_year": 2007,
+    "role": "Rifler",
+    "majorsPlayed": 2,
+    "avatar": "https://img-cdn.hltv.org/playerbodyshot/J9t3sy81h9iHcJxKdYSVVy.png?ixlib=java-2.1.0&w=400&s=95b0fa94137509d7d044ed11348a8cd4"
+  },
+  "Xant3r": {
+    "id": "Xant3r",
+    "link": "https://www.hltv.org/player/20387/xant3r",
+    "country": "Russia",
+    "team": "Nemiga",
+    "birth_year": 2004,
+    "role": "Rifler",
+    "majorsPlayed": 1,
+    "avatar": "https://img-cdn.hltv.org/playerbodyshot/gNc_ru2F-tlk_6D6EXF3p_.png?ixlib=java-2.1.0&w=400&s=94af9d9f2eba7dafe2a6eacfc4dff73b"
+  },
+  "Chr1zN": {
+    "id": "Chr1zN",
+    "link": "https://www.hltv.org/player/21983/chr1zn",
+    "country": "Denmark",
+    "team": "HEROIC",
+    "birth_year": 2006,
+    "role": "Rifler",
+    "majorsPlayed": 1,
+    "avatar": "https://img-cdn.hltv.org/playerbodyshot/H-QRvtgKaO8fovJJVKZGdx.png?ixlib=java-2.1.0&w=400&s=24f0f7472714e1168ee0d8caa84e4875"
+  },
+  "Buzz": {
+    "id": "Buzz",
+    "link": "https://www.hltv.org/player/20941/buzz",
+    "country": "Denmark",
+    "team": "OG",
+    "birth_year": 2003,
+    "role": "Rifler",
+    "majorsPlayed": 1,
+    "avatar": null
+  },
+  "spooke": {
+    "id": "spooke",
+    "link": "https://www.hltv.org/player/19064/spooke",
+    "country": "Sweden",
+    "team": "OG",
+    "birth_year": 2001,
+    "role": "Rifler",
+    "majorsPlayed": 1,
+    "avatar": "https://img-cdn.hltv.org/playerbodyshot/YFazifI1F-MezfiG3AYIa4.png?ixlib=java-2.1.0&w=400&s=e599588bdb62accc70bf60efe8cd3b78"
+  },
+  "regali": {
+    "id": "regali",
+    "link": "https://www.hltv.org/player/20123/regali",
+    "country": "Romania",
+    "team": "FlyQuest",
+    "birth_year": 2002,
+    "role": "AWPer",
+    "majorsPlayed": 2,
+    "avatar": "https://img-cdn.hltv.org/playerbodyshot/FoWOeCpTIRWZL54x0moRMO.png?ixlib=java-2.1.0&w=400&s=bcbb1b70a252f0193217b59463babf23"
+  },
+  "nettik": {
+    "id": "nettik",
+    "link": "https://www.hltv.org/player/18214/nettik",
+    "country": "New Zealand",
+    "team": "FlyQuest",
+    "birth_year": 2003,
+    "role": "Rifler",
+    "majorsPlayed": 2,
+    "avatar": "https://img-cdn.hltv.org/playerbodyshot/vkz7kyupmO38SpwpfsbeC5.png?ixlib=java-2.1.0&w=400&s=46e5e502ea487f965fcc1e23a81f05f8"
+  },
+  "alex666": {
+    "id": "alex666",
+    "link": "https://www.hltv.org/player/20112/alex666",
+    "country": "Ukraine",
+    "team": "B8",
+    "birth_year": 2001,
+    "role": "Rifler",
+    "majorsPlayed": 2,
+    "avatar": "https://img-cdn.hltv.org/playerbodyshot/Jt-DXIL47Y0W1S4bCVcM0F.png?ixlib=java-2.1.0&w=400&s=a5188eb66527f10742aec39c554044aa"
+  },
+  "esenthial": {
+    "id": "esenthial",
+    "link": "https://www.hltv.org/player/23643/esenthial",
+    "country": "Ukraine",
+    "team": "B8",
+    "birth_year": 2006,
+    "role": "Rifler",
+    "majorsPlayed": 2,
+    "avatar": "https://img-cdn.hltv.org/playerbodyshot/TrvdZmKdSvomvCvfBwk163.png?ixlib=java-2.1.0&w=400&s=ae95d94270a1625cf05eb9e6863f5128"
+  },
+  "kensizor": {
+    "id": "kensizor",
+    "link": "https://www.hltv.org/player/22842/kensizor",
+    "country": "Ukraine",
+    "team": "B8",
+    "birth_year": 2006,
+    "role": "Rifler",
+    "majorsPlayed": 2,
+    "avatar": "https://img-cdn.hltv.org/playerbodyshot/xucg3E9L0Ykx-0HrQRH4zp.png?ixlib=java-2.1.0&w=400&s=2f72c12d87b3d945c1814fc2b22fab9b"
+  },
+  "Cxzi": {
+    "id": "Cxzi",
+    "link": "https://www.hltv.org/player/17353/cxzi",
+    "country": "United States",
+    "team": "Marsborne",
+    "birth_year": 2000,
+    "role": "Rifler",
+    "majorsPlayed": 1,
+    "avatar": "https://img-cdn.hltv.org/playerbodyshot/DE-pevxZibHfUujRIc0F9A.png?ixlib=java-2.1.0&w=400&s=e58d72275fcf6887dd48745f3136c858"
+  },
+  "nicx": {
+    "id": "nicx",
+    "link": "https://www.hltv.org/player/21620/nicx",
+    "country": "United States",
+    "team": "Passion UA",
+    "birth_year": 2004,
+    "role": "Rifler",
+    "majorsPlayed": 2,
+    "avatar": "https://img-cdn.hltv.org/playerbodyshot/gDmWONK4SNHmfU2xKz5kOg.png?ixlib=java-2.1.0&w=400&s=c6b7bed4067ab2773cba02481a546003"
+  },
+  "Jeorge": {
+    "id": "Jeorge",
+    "link": "https://www.hltv.org/player/20333/jeorge",
+    "country": "United States",
+    "team": "NRG",
+    "birth_year": 2003,
+    "role": "Rifler",
+    "majorsPlayed": 2,
+    "avatar": "https://img-cdn.hltv.org/playerbodyshot/iCl8dqGOG2NFbXuBwv0gLG.png?ixlib=java-2.1.0&w=400&s=edde1a0cb99e9f5222dad3b349eca49b"
+  },
+  "br0": {
+    "id": "br0",
+    "link": "https://www.hltv.org/player/16717/br0",
+    "country": "Denmark",
+    "team": "NRG",
+    "birth_year": 2002,
+    "role": "Rifler",
+    "majorsPlayed": 2,
+    "avatar": "https://img-cdn.hltv.org/playerbodyshot/Zn19du_0uIoq7fOvffE_cv.png?ixlib=java-2.1.0&w=400&s=952157fd8865dbdb6bcc0276ca077567"
+  },
+  "adamb": {
+    "id": "adamb",
+    "link": "https://www.hltv.org/player/20878/adamb",
+    "country": "Sweden",
+    "team": "OG",
+    "birth_year": 2005,
+    "role": "Rifler",
+    "majorsPlayed": 1,
+    "avatar": "https://img-cdn.hltv.org/playerbodyshot/SFMZq09cEbrse5mI4vyQY7.png?ixlib=java-2.1.0&w=400&s=5d864a3dbefb3a76d390f5a04207b4c8"
+  },
+  "L00m1": {
+    "id": "L00m1",
+    "link": "https://www.hltv.org/player/21164/l00m1",
+    "country": "Sweden",
+    "team": "No team",
+    "birth_year": 2001,
+    "role": "AWPer",
+    "majorsPlayed": 1,
+    "avatar": "https://img-cdn.hltv.org/playerbodyshot/4FDg5TTaAIPVnZfTLGnUXc.png?ixlib=java-2.1.0&w=400&s=f66beed0d40e99b9357f4ba6efce060a"
+  },
+  "chayJESUS": {
+    "id": "chayJESUS",
+    "link": "https://www.hltv.org/player/20026/chayjesus",
+    "country": "Brazil",
+    "team": "RED Canids",
+    "birth_year": 2001,
+    "role": "Rifler",
+    "majorsPlayed": 2,
+    "avatar": "https://img-cdn.hltv.org/playerbodyshot/xEcBlEHzSQM8gXAijZlXJ3.png?ixlib=java-2.1.0&w=400&s=325af33b520b9b96e9232f810382071e"
+  },
+  "kye": {
+    "id": "kye",
+    "link": "https://www.hltv.org/player/20385/kye",
+    "country": "Brazil",
+    "team": "Fluxo",
+    "birth_year": 2004,
+    "role": "Rifler",
+    "majorsPlayed": 2,
+    "avatar": "https://img-cdn.hltv.org/playerbodyshot/FO22Xw6CuC7mY-L_dfFGNS.png?ixlib=java-2.1.0&w=400&s=06ffbb2705848994be69bf1d424ffe91"
+  },
+  "piriajr": {
+    "id": "piriajr",
+    "link": "https://www.hltv.org/player/18714/piriajr",
+    "country": "Brazil",
+    "team": "Bounty Hunters",
+    "birth_year": 2002,
+    "role": "Rifler",
+    "majorsPlayed": 1,
+    "avatar": "https://img-cdn.hltv.org/playerbodyshot/ukyRgdbJhBfC3HRJqFnEfX.png?ixlib=java-2.1.0&w=400&s=1f8d4f8c50c7bdac9434578e3ba30e0b"
+  },
+  "mlhzin": {
+    "id": "mlhzin",
+    "link": "https://www.hltv.org/player/21286/mlhzin",
+    "country": "Brazil",
+    "team": "Fluxo",
+    "birth_year": 2005,
+    "role": "Rifler",
+    "majorsPlayed": 1,
+    "avatar": "https://img-cdn.hltv.org/playerbodyshot/LbAUElfVPTdRPxFmzfy7kn.png?ixlib=java-2.1.0&w=400&s=40364216e7370ec533eb0ad79a659d7f"
+  },
+  "ROUX": {
+    "id": "ROUX",
+    "link": "https://www.hltv.org/player/19229/roux",
+    "country": "Mongolia",
+    "team": "Chinggis Warriors",
+    "birth_year": 2000,
+    "role": "Rifler",
+    "majorsPlayed": 1,
+    "avatar": "https://img-cdn.hltv.org/playerbodyshot/TP5ZP5tT0ieewG8iGEXOvp.png?ixlib=java-2.1.0&w=400&s=dd3c8f4da1b95a3bd186e9f74ef727b5"
+  },
+  "cool4st": {
+    "id": "cool4st",
+    "link": "https://www.hltv.org/player/19537/cool4st",
+    "country": "Mongolia",
+    "team": "Chinggis Warriors",
+    "birth_year": 2002,
+    "role": "AWPer",
+    "majorsPlayed": 1,
+    "avatar": "https://img-cdn.hltv.org/playerbodyshot/tdSnbAz8rgC5qlbDxGUYbs.png?ixlib=java-2.1.0&w=400&s=95a826fa3c6094976114f894d266f73e"
+  },
+  "ariucle": {
+    "id": "ariucle",
+    "link": "https://www.hltv.org/player/21396/ariucle",
+    "country": "Mongolia",
+    "team": "Chinggis Warriors",
+    "birth_year": 2004,
+    "role": "Rifler",
+    "majorsPlayed": 1,
+    "avatar": "https://img-cdn.hltv.org/playerbodyshot/uV96kwTpbQgXp95oHxF_fX.png?ixlib=java-2.1.0&w=400&s=c8e1b6f9d0341dda1aa9606b9923e966"
+  },
+  "controlez": {
+    "id": "controlez",
+    "link": "https://www.hltv.org/player/21398/controlez",
+    "country": "Mongolia",
+    "team": "No team",
+    "birth_year": 1997,
+    "role": "Rifler",
+    "majorsPlayed": 2,
+    "avatar": "https://img-cdn.hltv.org/playerbodyshot/S82TwVUyLeUTIjZ3Gtj9oO.png?ixlib=java-2.1.0&w=400&s=947697e63d2f15a5a01b77cf8b75d45e"
+  },
+  "Efire": {
+    "id": "Efire",
+    "link": "https://www.hltv.org/player/22414/efire",
+    "country": "Mongolia",
+    "team": "Chinggis Warriors",
+    "birth_year": 2005,
+    "role": "Rifler",
+    "majorsPlayed": 1,
+    "avatar": "https://img-cdn.hltv.org/playerbodyshot/MmpUjCUqYGgNyzGbXuMhCJ.png?ixlib=java-2.1.0&w=400&s=18f9b2ff62631b2154e02b5a81817224"
+  },
+  "makazze": {
+    "id": "makazze",
+    "link": "https://www.hltv.org/player/22673/makazze",
+    "country": "Kosovo",
+    "team": "Natus Vincere",
+    "birth_year": 2006,
+    "role": "Rifler",
+    "majorsPlayed": 1,
+    "avatar": "https://img-cdn.hltv.org/playerbodyshot/ozffGzbZ-mTWP2q_fScidz.png?ixlib=java-2.1.0&w=400&s=0910a906b0a829f40e9ffd55335c7c69"
+  },
+  "kl1m": {
+    "id": "kl1m",
+    "link": "https://www.hltv.org/player/23192/kl1m",
+    "country": "Russia",
+    "team": "MIBR",
+    "birth_year": 2005,
+    "role": "AWPer",
+    "majorsPlayed": 1,
+    "avatar": "https://img-cdn.hltv.org/playerbodyshot/3f2Oda0LpfeiOkjCxY3E_L.png?ixlib=java-2.1.0&w=400&s=d8d429505d5752590d1485cedaa124b3"
+  },
+  "Kvem": {
+    "id": "Kvem",
+    "link": "https://www.hltv.org/player/21452/kvem",
+    "country": "Ukraine",
+    "team": "Passion UA",
+    "birth_year": 2001,
+    "role": "Rifler",
+    "majorsPlayed": 1,
+    "avatar": "https://img-cdn.hltv.org/playerbodyshot/l9Pqz5PtBgmGYDvKrn34gi.png?ixlib=java-2.1.0&w=400&s=742b4a3dfebd4b83be75eaf1a6304aac"
+  },
+  "hypex": {
+    "id": "hypex",
+    "link": "https://www.hltv.org/player/23766/hypex",
+    "country": "Poland",
+    "team": "GamerLegion",
+    "birth_year": 2003,
+    "role": "AWPer",
+    "majorsPlayed": 1,
+    "avatar": "https://img-cdn.hltv.org/playerbodyshot/_AdiIHHMI1Uc935Rc4cjKu.png?ixlib=java-2.1.0&w=400&s=17ed3f70765273d2b8debb876911c0cd"
+  },
+  "PR": {
+    "id": "PR",
+    "link": "https://www.hltv.org/player/22279/pr",
+    "country": "Czech Republic",
+    "team": "GamerLegion",
+    "birth_year": 2007,
+    "role": "Rifler",
+    "majorsPlayed": 1,
+    "avatar": "https://img-cdn.hltv.org/playerbodyshot/IKV9i3RUVkwVa2Io1VPLgO.png?ixlib=java-2.1.0&w=400&s=a60c88ebe9164c1cb1560d285bb9f0ee"
+  },
+  "xKacpersky": {
+    "id": "xKacpersky",
+    "link": "https://www.hltv.org/player/23372/xkacpersky",
+    "country": "Poland",
+    "team": "Ninjas in Pyjamas",
+    "birth_year": 2006,
+    "role": "Rifler",
+    "majorsPlayed": 1,
+    "avatar": "https://img-cdn.hltv.org/playerbodyshot/4ICjUyvBowN1B8nI2ipn1_.png?ixlib=java-2.1.0&w=400&s=84ca08e91c4000525b16f22d93b321ed"
+  },
+  "xerolte": {
+    "id": "xerolte",
+    "link": "https://www.hltv.org/player/20703/xerolte",
+    "country": "Mongolia",
+    "team": "The Huns",
+    "birth_year": 2003,
+    "role": "Rifler",
+    "majorsPlayed": 1,
+    "avatar": "https://img-cdn.hltv.org/playerbodyshot/DailvlXht6sLKJwwU_ITfW.png?ixlib=java-2.1.0&w=400&s=282e3a60a585ef48503319cbd36f592e"
+  },
+  "cobrazera": {
+    "id": "cobrazera",
+    "link": "https://www.hltv.org/player/23402/cobrazera",
+    "country": "Mongolia",
+    "team": "The Huns",
+    "birth_year": 2005,
+    "role": "Rifler",
+    "majorsPlayed": 1,
+    "avatar": "https://img-cdn.hltv.org/playerbodyshot/dZjhIExekqAZRI4nNDJko4.png?ixlib=java-2.1.0&w=400&s=23cf1908ddd1c9cad9ffdb77a284abf1"
+  },
+  "XotiC": {
+    "id": "XotiC",
+    "link": "https://www.hltv.org/player/14109/xotic",
+    "country": "United States",
+    "team": "NRG",
+    "birth_year": 2001,
+    "role": "AWPer",
+    "majorsPlayed": 1,
+    "avatar": "https://img-cdn.hltv.org/playerbodyshot/PZNBeDrb9tlrqXA6FtGM4d.png?ixlib=java-2.1.0&w=400&s=c8648cd990520cfef26a6d19ce45e29e"
+  },
+  "venomzera": {
+    "id": "venomzera",
+    "link": "https://www.hltv.org/player/21288/venomzera",
+    "country": "Brazil",
+    "team": "RED Canids",
+    "birth_year": 2004,
+    "role": "Rifler",
+    "majorsPlayed": 1,
+    "avatar": "https://img-cdn.hltv.org/playerbodyshot/8UqoQ2RFkqAja1ynZ5bFyi.png?ixlib=java-2.1.0&w=400&s=ad9455cabdd391d224e91f5cf89eebce"
+  },
+  "BELCHONOKK": {
+    "id": "BELCHONOKK",
+    "link": "https://www.hltv.org/player/19235/belchonokk",
+    "country": "Russia",
+    "team": "PARIVISION",
+    "birth_year": 2004,
+    "role": "Rifler",
+    "majorsPlayed": 1,
+    "avatar": "https://img-cdn.hltv.org/playerbodyshot/AVAcVdTlDAMP4xIvxu7Zwa.png?ixlib=java-2.1.0&w=400&s=b3ee7c2febd539834fcdc07a67c4f311"
+  },
+  "AW": {
+    "id": "AW",
+    "link": "https://www.hltv.org/player/22076/aw",
+    "country": "Russia",
+    "team": "PARIVISION",
+    "birth_year": 2006,
+    "role": "Rifler",
+    "majorsPlayed": 1,
+    "avatar": "https://img-cdn.hltv.org/playerbodyshot/XLPL1Nl1yIhX5LDPl74k1F.png?ixlib=java-2.1.0&w=400&s=b52f649c7d493485148c47334e04e1dd"
+  },
+  "xiELO": {
+    "id": "xiELO",
+    "link": "https://www.hltv.org/player/22471/xielo",
+    "country": "Russia",
+    "team": "PARIVISION",
+    "birth_year": 2006,
+    "role": "Rifler",
+    "majorsPlayed": 1,
+    "avatar": "https://img-cdn.hltv.org/playerbodyshot/VFPZwUG0KoP5dEalUQlCjS.png?ixlib=java-2.1.0&w=400&s=a652e856502de9d98e7129357c3ce45b"
+  },
+  "nota": {
+    "id": "nota",
+    "link": "https://www.hltv.org/player/22929/nota",
+    "country": "Russia",
+    "team": "PARIVISION",
+    "birth_year": 2007,
+    "role": "Rifler",
+    "majorsPlayed": 1,
+    "avatar": "https://img-cdn.hltv.org/playerbodyshot/4Y5GZVVeR703RcIq1JzAzt.png?ixlib=java-2.1.0&w=400&s=25d997f94b4f506ad3a554d1e226bfa2"
+  },
+  "Marek": {
+    "id": "Marek",
+    "link": "https://www.hltv.org/player/8598/marek",
+    "country": "Taiwan",
+    "team": "No team",
+    "birth_year": 1993,
+    "role": "Rifler",
+    "majorsPlayed": 1,
+    "avatar": "https://img-cdn.hltv.org/playerbodyshot/wv5MrWaAy8HASPWO0TCa9q.png?ixlib=java-2.1.0&w=400&s=2f0cded45a965b1c36ccbc555b27d03e"
+  },
+  "TiGeR": {
+    "id": "TiGeR",
+    "link": "https://www.hltv.org/player/20808/tiger",
+    "country": "China",
+    "team": "Rare Atom",
+    "birth_year": 2003,
+    "role": "AWPer",
+    "majorsPlayed": 1,
+    "avatar": "https://img-cdn.hltv.org/playerbodyshot/V7l3A4K0CbuemL1v9mhF7Y.png?ixlib=java-2.1.0&w=400&s=744c783bd7a8127b731b6dbe8b9be39d"
   }
 }

@@ -1,2312 +1,2450 @@
 [
-	{
-		"id": "910",
-		"link": "https://www.hltv.org/player/21809/910"
-	},
-	{
-		"id": "donk",
-		"link": "https://www.hltv.org/player/21167/donk"
-	},
-	{
-		"id": "blameF",
-		"link": "https://www.hltv.org/player/15165/blamef"
-	},
-	{
-		"id": "COLON",
-		"link": "https://www.hltv.org/player/515/colon"
-	},
-	{
-		"id": "ZywOo",
-		"link": "https://www.hltv.org/player/11893/zywoo"
-	},
-	{
-		"id": "coldzera",
-		"link": "https://www.hltv.org/player/9216/coldzera"
-	},
-	{
-		"id": "m0NESY",
-		"link": "https://www.hltv.org/player/19230/m0nesy"
-	},
-	{
-		"id": "smooya",
-		"link": "https://www.hltv.org/player/11271/smooya"
-	},
-	{
-		"id": "s1mple",
-		"link": "https://www.hltv.org/player/7998/s1mple"
-	},
-	{
-		"id": "sh1ro",
-		"link": "https://www.hltv.org/player/16920/sh1ro"
-	},
-	{
-		"id": "ICY",
-		"link": "https://www.hltv.org/player/21439/icy"
-	},
-	{
-		"id": "headtr1ck",
-		"link": "https://www.hltv.org/player/19592/headtr1ck"
-	},
-	{
-		"id": "znajder",
-		"link": "https://www.hltv.org/player/3847/znajder"
-	},
-	{
-		"id": "device",
-		"link": "https://www.hltv.org/player/7592/device"
-	},
-	{
-		"id": "degster",
-		"link": "https://www.hltv.org/player/17306/degster"
-	},
-	{
-		"id": "ultimate",
-		"link": "https://www.hltv.org/player/21763/ultimate"
-	},
-	{
-		"id": "fear",
-		"link": "https://www.hltv.org/player/17803/fear"
-	},
-	{
-		"id": "fame",
-		"link": "https://www.hltv.org/player/20101/fame"
-	},
-	{
-		"id": "zorte",
-		"link": "https://www.hltv.org/player/15662/zorte"
-	},
-	{
-		"id": "KENSI",
-		"link": "https://www.hltv.org/player/19236/kensi"
-	},
-	{
-		"id": "NiKo",
-		"link": "https://www.hltv.org/player/3741/niko"
-	},
-	{
-		"id": "kNgV-",
-		"link": "https://www.hltv.org/player/5736/kngv"
-	},
-	{
-		"id": "KSCERATO",
-		"link": "https://www.hltv.org/player/15631/kscerato"
-	},
-	{
-		"id": "w0nderful",
-		"link": "https://www.hltv.org/player/20127/w0nderful"
-	},
-	{
-		"id": "autimatic",
-		"link": "https://www.hltv.org/player/8735/autimatic"
-	},
-	{
-		"id": "flusha",
-		"link": "https://www.hltv.org/player/3055/flusha"
-	},
-	{
-		"id": "ropz",
-		"link": "https://www.hltv.org/player/11816/ropz"
-	},
-	{
-		"id": "BOROS",
-		"link": "https://www.hltv.org/player/19763/boros"
-	},
-	{
-		"id": "ottoNd",
-		"link": "https://www.hltv.org/player/11283/ottond"
-	},
-	{
-		"id": "Snax",
-		"link": "https://www.hltv.org/player/2553/snax"
-	},
-	{
-		"id": "Brehze",
-		"link": "https://www.hltv.org/player/9136/brehze"
-	},
-	{
-		"id": "stavn",
-		"link": "https://www.hltv.org/player/10994/stavn"
-	},
-	{
-		"id": "flamie",
-		"link": "https://www.hltv.org/player/7594/flamie"
-	},
-	{
-		"id": "El1an",
-		"link": "https://www.hltv.org/player/13281/el1an"
-	},
-	{
-		"id": "xsepower",
-		"link": "https://www.hltv.org/player/12733/xsepower"
-	},
-	{
-		"id": "suNny",
-		"link": "https://www.hltv.org/player/5479/sunny"
-	},
-	{
-		"id": "facecrack",
-		"link": "https://www.hltv.org/player/8726/facecrack"
-	},
-	{
-		"id": "Spinx",
-		"link": "https://www.hltv.org/player/18221/spinx"
-	},
-	{
-		"id": "CRUC1AL",
-		"link": "https://www.hltv.org/player/7996/cruc1al"
-	},
-	{
-		"id": "swag",
-		"link": "https://www.hltv.org/player/5021/swag"
-	},
-	{
-		"id": "XANTARES",
-		"link": "https://www.hltv.org/player/7938/xantares"
-	},
-	{
-		"id": "electroNic",
-		"link": "https://www.hltv.org/player/8918/electronic"
-	},
-	{
-		"id": "broky",
-		"link": "https://www.hltv.org/player/18053/broky"
-	},
-	{
-		"id": "insani",
-		"link": "https://www.hltv.org/player/21037/insani"
-	},
-	{
-		"id": "JOTA",
-		"link": "https://www.hltv.org/player/17861/jota"
-	},
-	{
-		"id": "syrsoN",
-		"link": "https://www.hltv.org/player/7266/syrson"
-	},
-	{
-		"id": "ISSAA",
-		"link": "https://www.hltv.org/player/10449/issaa"
-	},
-	{
-		"id": "Jimpphat",
-		"link": "https://www.hltv.org/player/18850/jimpphat"
-	},
-	{
-		"id": "Tuurtle",
-		"link": "https://www.hltv.org/player/14394/tuurtle"
-	},
-	{
-		"id": "paz",
-		"link": "https://www.hltv.org/player/9353/paz"
-	},
-	{
-		"id": "sl3nd",
-		"link": "https://www.hltv.org/player/20870/sl3nd"
-	},
-	{
-		"id": "jambo",
-		"link": "https://www.hltv.org/player/23046/jambo"
-	},
-	{
-		"id": "Kjaerbye",
-		"link": "https://www.hltv.org/player/8394/kjaerbye"
-	},
-	{
-		"id": "frozen",
-		"link": "https://www.hltv.org/player/9960/frozen"
-	},
-	{
-		"id": "olofmeister",
-		"link": "https://www.hltv.org/player/885/olofmeister"
-	},
-	{
-		"id": "faveN",
-		"link": "https://www.hltv.org/player/14932/faven"
-	},
-	{
-		"id": "f0rest",
-		"link": "https://www.hltv.org/player/29/f0rest"
-	},
-	{
-		"id": "Jame",
-		"link": "https://www.hltv.org/player/13776/jame"
-	},
-	{
-		"id": "Nico",
-		"link": "https://www.hltv.org/player/7413/nico"
-	},
-	{
-		"id": "Djoko",
-		"link": "https://www.hltv.org/player/19738/djoko"
-	},
-	{
-		"id": "Magisk",
-		"link": "https://www.hltv.org/player/9032/magisk"
-	},
-	{
-		"id": "Twistzz",
-		"link": "https://www.hltv.org/player/10394/twistzz"
-	},
-	{
-		"id": "Ethan",
-		"link": "https://www.hltv.org/player/10671/ethan"
-	},
-	{
-		"id": "NertZ",
-		"link": "https://www.hltv.org/player/9436/nertz"
-	},
-	{
-		"id": "Bymas",
-		"link": "https://www.hltv.org/player/19015/bymas"
-	},
-	{
-		"id": "Patsi",
-		"link": "https://www.hltv.org/player/19673/patsi"
-	},
-	{
-		"id": "huNter-",
-		"link": "https://www.hltv.org/player/3972/hunter"
-	},
-	{
-		"id": "Ex3rcice",
-		"link": "https://www.hltv.org/player/19739/ex3rcice"
-	},
-	{
-		"id": "Happy",
-		"link": "https://www.hltv.org/player/7429/happy"
-	},
-	{
-		"id": "GuardiaN",
-		"link": "https://www.hltv.org/player/2757/guardian"
-	},
-	{
-		"id": "DemQQ",
-		"link": "https://www.hltv.org/player/19733/demqq"
-	},
-	{
-		"id": "oskar",
-		"link": "https://www.hltv.org/player/798/oskar"
-	},
-	{
-		"id": "COLDYY1",
-		"link": "https://www.hltv.org/player/9083/coldyy1"
-	},
-	{
-		"id": "cajunb",
-		"link": "https://www.hltv.org/player/2469/cajunb"
-	},
-	{
-		"id": "nawwk",
-		"link": "https://www.hltv.org/player/13670/nawwk"
-	},
-	{
-		"id": "GeT_RiGhT",
-		"link": "https://www.hltv.org/player/39/get-right"
-	},
-	{
-		"id": "b1t",
-		"link": "https://www.hltv.org/player/18987/b1t"
-	},
-	{
-		"id": "KRIMZ",
-		"link": "https://www.hltv.org/player/7528/krimz"
-	},
-	{
-		"id": "kennyS",
-		"link": "https://www.hltv.org/player/7167/kennys"
-	},
-	{
-		"id": "decenty",
-		"link": "https://www.hltv.org/player/20183/decenty"
-	},
-	{
-		"id": "NAF",
-		"link": "https://www.hltv.org/player/8520/naf"
-	},
-	{
-		"id": "susp",
-		"link": "https://www.hltv.org/player/21163/susp"
-	},
-	{
-		"id": "biguzera",
-		"link": "https://www.hltv.org/player/18141/biguzera"
-	},
-	{
-		"id": "oSee",
-		"link": "https://www.hltv.org/player/13249/osee"
-	},
-	{
-		"id": "jackasmo",
-		"link": "https://www.hltv.org/player/23414/jackasmo"
-	},
-	{
-		"id": "Zyphon",
-		"link": "https://www.hltv.org/player/20090/zyphon"
-	},
-	{
-		"id": "jks",
-		"link": "https://www.hltv.org/player/4679/jks"
-	},
-	{
-		"id": "nicoodoz",
-		"link": "https://www.hltv.org/player/13602/nicoodoz"
-	},
-	{
-		"id": "Perfecto",
-		"link": "https://www.hltv.org/player/16947/perfecto"
-	},
-	{
-		"id": "pashaBiceps",
-		"link": "https://www.hltv.org/player/317/pashabiceps"
-	},
-	{
-		"id": "dupreeh",
-		"link": "https://www.hltv.org/player/7398/dupreeh"
-	},
-	{
-		"id": "tarik",
-		"link": "https://www.hltv.org/player/8523/tarik"
-	},
-	{
-		"id": "snatchie",
-		"link": "https://www.hltv.org/player/9574/snatchie"
-	},
-	{
-		"id": "hardzao",
-		"link": "https://www.hltv.org/player/16817/hardzao"
-	},
-	{
-		"id": "nexa",
-		"link": "https://www.hltv.org/player/9618/nexa"
-	},
-	{
-		"id": "Kvik",
-		"link": "https://www.hltv.org/player/8459/kvik"
-	},
-	{
-		"id": "saffee",
-		"link": "https://www.hltv.org/player/18835/saffee"
-	},
-	{
-		"id": "hallzerk",
-		"link": "https://www.hltv.org/player/12840/hallzerk"
-	},
-	{
-		"id": "Woro2k",
-		"link": "https://www.hltv.org/player/16885/woro2k"
-	},
-	{
-		"id": "EliGE",
-		"link": "https://www.hltv.org/player/8738/elige"
-	},
-	{
-		"id": "torzsi",
-		"link": "https://www.hltv.org/player/18072/torzsi"
-	},
-	{
-		"id": "allu",
-		"link": "https://www.hltv.org/player/695/allu"
-	},
-	{
-		"id": "Lekr0",
-		"link": "https://www.hltv.org/player/9261/lekr0"
-	},
-	{
-		"id": "DAVEY",
-		"link": "https://www.hltv.org/player/8508/davey"
-	},
-	{
-		"id": "shox",
-		"link": "https://www.hltv.org/player/1225/shox"
-	},
-	{
-		"id": "Wicadia",
-		"link": "https://www.hltv.org/player/21243/wicadia"
-	},
-	{
-		"id": "woxic",
-		"link": "https://www.hltv.org/player/8574/woxic"
-	},
-	{
-		"id": "HEN1",
-		"link": "https://www.hltv.org/player/8565/hen1"
-	},
-	{
-		"id": "bLitz",
-		"link": "https://www.hltv.org/player/20194/blitz"
-	},
-	{
-		"id": "byali",
-		"link": "https://www.hltv.org/player/5386/byali"
-	},
-	{
-		"id": "yuurih",
-		"link": "https://www.hltv.org/player/12553/yuurih"
-	},
-	{
-		"id": "magixx",
-		"link": "https://www.hltv.org/player/18317/magixx"
-	},
-	{
-		"id": "CeRq",
-		"link": "https://www.hltv.org/player/11219/cerq"
-	},
-	{
-		"id": "mou",
-		"link": "https://www.hltv.org/player/964/mou"
-	},
-	{
-		"id": "Edward",
-		"link": "https://www.hltv.org/player/483/edward"
-	},
-	{
-		"id": "Starry",
-		"link": "https://www.hltv.org/player/20254/starry"
-	},
-	{
-		"id": "cadiaN",
-		"link": "https://www.hltv.org/player/7964/cadian"
-	},
-	{
-		"id": "Xyp9x",
-		"link": "https://www.hltv.org/player/4954/xyp9x"
-	},
-	{
-		"id": "mzinho",
-		"link": "https://www.hltv.org/player/21001/mzinho"
-	},
-	{
-		"id": "SKYTTEN",
-		"link": "https://www.hltv.org/player/2398/skytten"
-	},
-	{
-		"id": "HObbit",
-		"link": "https://www.hltv.org/player/8528/hobbit"
-	},
-	{
-		"id": "EXR",
-		"link": "https://www.hltv.org/player/2881/exr"
-	},
-	{
-		"id": "acoR",
-		"link": "https://www.hltv.org/player/10330/acor"
-	},
-	{
-		"id": "fer",
-		"link": "https://www.hltv.org/player/8564/fer"
-	},
-	{
-		"id": "xccurate",
-		"link": "https://www.hltv.org/player/10263/xccurate"
-	},
-	{
-		"id": "YEKINDAR",
-		"link": "https://www.hltv.org/player/13915/yekindar"
-	},
-	{
-		"id": "skullz",
-		"link": "https://www.hltv.org/player/18676/skullz"
-	},
-	{
-		"id": "n1ssim",
-		"link": "https://www.hltv.org/player/19686/n1ssim"
-	},
-	{
-		"id": "hampus",
-		"link": "https://www.hltv.org/player/9766/hampus"
-	},
-	{
-		"id": "vice",
-		"link": "https://www.hltv.org/player/9260/vice"
-	},
-	{
-		"id": "Ax1Le",
-		"link": "https://www.hltv.org/player/16555/ax1le"
-	},
-	{
-		"id": "kaze",
-		"link": "https://www.hltv.org/player/8950/kaze"
-	},
-	{
-		"id": "JW",
-		"link": "https://www.hltv.org/player/3849/jw"
-	},
-	{
-		"id": "nqz",
-		"link": "https://www.hltv.org/player/19694/nqz"
-	},
-	{
-		"id": "jL",
-		"link": "https://www.hltv.org/player/19206/jl"
-	},
-	{
-		"id": "dgt",
-		"link": "https://www.hltv.org/player/14736/dgt"
-	},
-	{
-		"id": "DANK1NG",
-		"link": "https://www.hltv.org/player/16207/dank1ng"
-	},
-	{
-		"id": "iM",
-		"link": "https://www.hltv.org/player/14759/im"
-	},
-	{
-		"id": "SunPayus",
-		"link": "https://www.hltv.org/player/19164/sunpayus"
-	},
-	{
-		"id": "friberg",
-		"link": "https://www.hltv.org/player/7148/friberg"
-	},
-	{
-		"id": "jkaem",
-		"link": "https://www.hltv.org/player/8248/jkaem"
-	},
-	{
-		"id": "buster",
-		"link": "https://www.hltv.org/player/11942/buster"
-	},
-	{
-		"id": "Senzu",
-		"link": "https://www.hltv.org/player/20903/senzu"
-	},
-	{
-		"id": "seized",
-		"link": "https://www.hltv.org/player/3347/seized"
-	},
-	{
-		"id": "Brollan",
-		"link": "https://www.hltv.org/player/13666/brollan"
-	},
-	{
-		"id": "FalleN",
-		"link": "https://www.hltv.org/player/2023/fallen"
-	},
-	{
-		"id": "k0nfig",
-		"link": "https://www.hltv.org/player/9078/k0nfig"
-	},
-	{
-		"id": "BnTeT",
-		"link": "https://www.hltv.org/player/7131/bntet"
-	},
-	{
-		"id": "Calyx",
-		"link": "https://www.hltv.org/player/8575/calyx"
-	},
-	{
-		"id": "REZ",
-		"link": "https://www.hltv.org/player/9278/rez"
-	},
-	{
-		"id": "Ramz1kBO$$",
-		"link": "https://www.hltv.org/player/11842/ramz1kbo"
-	},
-	{
-		"id": "SEMPHIS",
-		"link": "https://www.hltv.org/player/1915/semphis"
-	},
-	{
-		"id": "ANDROID",
-		"link": "https://www.hltv.org/player/9043/android"
-	},
-	{
-		"id": "TaZ",
-		"link": "https://www.hltv.org/player/161/taz"
-	},
-	{
-		"id": "jabbi",
-		"link": "https://www.hltv.org/player/17956/jabbi"
-	},
-	{
-		"id": "Freeman",
-		"link": "https://www.hltv.org/player/10774/freeman"
-	},
-	{
-		"id": "nin9",
-		"link": "https://www.hltv.org/player/15072/nin9"
-	},
-	{
-		"id": "n0rb3r7",
-		"link": "https://www.hltv.org/player/16612/n0rb3r7"
-	},
-	{
-		"id": "mezii",
-		"link": "https://www.hltv.org/player/18462/mezii"
-	},
-	{
-		"id": "flameZ",
-		"link": "https://www.hltv.org/player/16693/flamez"
-	},
-	{
-		"id": "NBK-",
-		"link": "https://www.hltv.org/player/7168/nbk"
-	},
-	{
-		"id": "S1ren",
-		"link": "https://www.hltv.org/player/18506/s1ren"
-	},
-	{
-		"id": "kioShiMa",
-		"link": "https://www.hltv.org/player/4959/kioshima"
-	},
-	{
-		"id": "es3tag",
-		"link": "https://www.hltv.org/player/8611/es3tag"
-	},
-	{
-		"id": "CYPHER",
-		"link": "https://www.hltv.org/player/18571/cypher"
-	},
-	{
-		"id": "tabseN",
-		"link": "https://www.hltv.org/player/5794/tabsen"
-	},
-	{
-		"id": "sdy",
-		"link": "https://www.hltv.org/player/12731/sdy"
-	},
-	{
-		"id": "amanek",
-		"link": "https://www.hltv.org/player/9616/amanek"
-	},
-	{
-		"id": "exit",
-		"link": "https://www.hltv.org/player/11154/exit"
-	},
-	{
-		"id": "apEX",
-		"link": "https://www.hltv.org/player/7322/apex"
-	},
-	{
-		"id": "AdreN",
-		"link": "https://www.hltv.org/player/334/adren"
-	},
-	{
-		"id": "kraghen",
-		"link": "https://www.hltv.org/player/20300/kraghen"
-	},
-	{
-		"id": "NEOFRAG",
-		"link": "https://www.hltv.org/player/15821/neofrag"
-	},
-	{
-		"id": "jdm64",
-		"link": "https://www.hltv.org/player/8346/jdm64"
-	},
-	{
-		"id": "xfl0ud",
-		"link": "https://www.hltv.org/player/19187/xfl0ud"
-	},
-	{
-		"id": "kauez",
-		"link": "https://www.hltv.org/player/20085/kauez"
-	},
-	{
-		"id": "RUBINO",
-		"link": "https://www.hltv.org/player/1485/rubino"
-	},
-	{
-		"id": "Lucky",
-		"link": "https://www.hltv.org/player/13843/lucky"
-	},
-	{
-		"id": "Queenix",
-		"link": "https://www.hltv.org/player/13749/queenix"
-	},
-	{
-		"id": "Skadoodle",
-		"link": "https://www.hltv.org/player/7440/skadoodle"
-	},
-	{
-		"id": "gade",
-		"link": "https://www.hltv.org/player/8875/gade"
-	},
-	{
-		"id": "boltz",
-		"link": "https://www.hltv.org/player/8568/boltz"
-	},
-	{
-		"id": "Gratisfaction",
-		"link": "https://www.hltv.org/player/9686/gratisfaction"
-	},
-	{
-		"id": "dycha",
-		"link": "https://www.hltv.org/player/16080/dycha"
-	},
-	{
-		"id": "RUSH",
-		"link": "https://www.hltv.org/player/7805/rush"
-	},
-	{
-		"id": "berg",
-		"link": "https://www.hltv.org/player/7442/berg"
-	},
-	{
-		"id": "b4rtiN",
-		"link": "https://www.hltv.org/player/17585/b4rtin"
-	},
-	{
-		"id": "Maikelele",
-		"link": "https://www.hltv.org/player/1045/maikelele"
-	},
-	{
-		"id": "pyth",
-		"link": "https://www.hltv.org/player/7527/pyth"
-	},
-	{
-		"id": "sergej",
-		"link": "https://www.hltv.org/player/11916/sergej"
-	},
-	{
-		"id": "LUCAS1",
-		"link": "https://www.hltv.org/player/8566/lucas1"
-	},
-	{
-		"id": "k1to",
-		"link": "https://www.hltv.org/player/12781/k1to"
-	},
-	{
-		"id": "Attacker",
-		"link": "https://www.hltv.org/player/8552/attacker"
-	},
-	{
-		"id": "Dosia",
-		"link": "https://www.hltv.org/player/735/dosia"
-	},
-	{
-		"id": "isak",
-		"link": "https://www.hltv.org/player/17937/isak"
-	},
-	{
-		"id": "Hiko",
-		"link": "https://www.hltv.org/player/2644/hiko"
-	},
-	{
-		"id": "rain",
-		"link": "https://www.hltv.org/player/8183/rain"
-	},
-	{
-		"id": "Xizt",
-		"link": "https://www.hltv.org/player/884/xizt"
-	},
-	{
-		"id": "juanflatroo",
-		"link": "https://www.hltv.org/player/17147/juanflatroo"
-	},
-	{
-		"id": "dennis",
-		"link": "https://www.hltv.org/player/1146/dennis"
-	},
-	{
-		"id": "NEO",
-		"link": "https://www.hltv.org/player/165/neo"
-	},
-	{
-		"id": "Lucaozy",
-		"link": "https://www.hltv.org/player/18717/lucaozy"
-	},
-	{
-		"id": "xertioN",
-		"link": "https://www.hltv.org/player/20312/xertion"
-	},
-	{
-		"id": "aumaN",
-		"link": "https://www.hltv.org/player/8604/auman"
-	},
-	{
-		"id": "aizy",
-		"link": "https://www.hltv.org/player/8095/aizy"
-	},
-	{
-		"id": "raalz",
-		"link": "https://www.hltv.org/player/2898/raalz"
-	},
-	{
-		"id": "Maniac",
-		"link": "https://www.hltv.org/player/823/maniac"
-	},
-	{
-		"id": "fnx",
-		"link": "https://www.hltv.org/player/557/fnx"
-	},
-	{
-		"id": "shalfey",
-		"link": "https://www.hltv.org/player/17011/shalfey"
-	},
-	{
-		"id": "MATYS",
-		"link": "https://www.hltv.org/player/21062/matys"
-	},
-	{
-		"id": "Boombl4",
-		"link": "https://www.hltv.org/player/11840/boombl4"
-	},
-	{
-		"id": "FL1T",
-		"link": "https://www.hltv.org/player/12732/fl1t"
-	},
-	{
-		"id": "Krimbo",
-		"link": "https://www.hltv.org/player/19899/krimbo"
-	},
-	{
-		"id": "crush",
-		"link": "https://www.hltv.org/player/9348/crush"
-	},
-	{
-		"id": "rigoN",
-		"link": "https://www.hltv.org/player/12708/rigon"
-	},
-	{
-		"id": "xseveN",
-		"link": "https://www.hltv.org/player/7248/xseven"
-	},
-	{
-		"id": "snow",
-		"link": "https://www.hltv.org/player/20171/snow"
-	},
-	{
-		"id": "AZR",
-		"link": "https://www.hltv.org/player/8082/azr"
-	},
-	{
-		"id": "volt",
-		"link": "https://www.hltv.org/player/20358/volt"
-	},
-	{
-		"id": "ShahZaM",
-		"link": "https://www.hltv.org/player/7810/shahzam"
-	},
-	{
-		"id": "Hyper",
-		"link": "https://www.hltv.org/player/7368/hyper"
-	},
-	{
-		"id": "EspiranTo",
-		"link": "https://www.hltv.org/player/12030/espiranto"
-	},
-	{
-		"id": "neaLaN",
-		"link": "https://www.hltv.org/player/11940/nealan"
-	},
-	{
-		"id": "JBa",
-		"link": "https://www.hltv.org/player/21665/jba"
-	},
-	{
-		"id": "markeloff",
-		"link": "https://www.hltv.org/player/338/markeloff"
-	},
-	{
-		"id": "nafany",
-		"link": "https://www.hltv.org/player/16921/nafany"
-	},
-	{
-		"id": "chrisJ",
-		"link": "https://www.hltv.org/player/2730/chrisj"
-	},
-	{
-		"id": "gxx-",
-		"link": "https://www.hltv.org/player/19725/gxx"
-	},
-	{
-		"id": "malbsMd",
-		"link": "https://www.hltv.org/player/11617/malbsmd"
-	},
-	{
-		"id": "adreN",
-		"link": "https://www.hltv.org/player/7433/adren"
-	},
-	{
-		"id": "Techno",
-		"link": "https://www.hltv.org/player/20275/techno"
-	},
-	{
-		"id": "jnt",
-		"link": "https://www.hltv.org/player/11747/jnt"
-	},
-	{
-		"id": "Shara",
-		"link": "https://www.hltv.org/player/1866/shara"
-	},
-	{
-		"id": "roeJ",
-		"link": "https://www.hltv.org/player/14419/roej"
-	},
-	{
-		"id": "mir",
-		"link": "https://www.hltv.org/player/8789/mir"
-	},
-	{
-		"id": "devoduvek",
-		"link": "https://www.hltv.org/player/10569/devoduvek"
-	},
-	{
-		"id": "gla1ve",
-		"link": "https://www.hltv.org/player/7412/gla1ve"
-	},
-	{
-		"id": "Qikert",
-		"link": "https://www.hltv.org/player/13239/qikert"
-	},
-	{
-		"id": "FL4MUS",
-		"link": "https://www.hltv.org/player/20994/fl4mus"
-	},
-	{
-		"id": "Goofy",
-		"link": "https://www.hltv.org/player/15428/goofy"
-	},
-	{
-		"id": "RpK",
-		"link": "https://www.hltv.org/player/7169/rpk"
-	},
-	{
-		"id": "twist",
-		"link": "https://www.hltv.org/player/7443/twist"
-	},
-	{
-		"id": "Stewie2K",
-		"link": "https://www.hltv.org/player/8797/stewie2k"
-	},
-	{
-		"id": "Nodios",
-		"link": "https://www.hltv.org/player/8891/nodios"
-	},
-	{
-		"id": "fxy0",
-		"link": "https://www.hltv.org/player/7708/fxy0"
-	},
-	{
-		"id": "zehN",
-		"link": "https://www.hltv.org/player/1378/zehn"
-	},
-	{
-		"id": "nex",
-		"link": "https://www.hltv.org/player/7256/nex"
-	},
-	{
-		"id": "alex",
-		"link": "https://www.hltv.org/player/8371/alex"
-	},
-	{
-		"id": "fox",
-		"link": "https://www.hltv.org/player/629/fox"
-	},
-	{
-		"id": "HS",
-		"link": "https://www.hltv.org/player/8994/hs"
-	},
-	{
-		"id": "Maden",
-		"link": "https://www.hltv.org/player/11777/maden"
-	},
-	{
-		"id": "KQLY",
-		"link": "https://www.hltv.org/player/7833/kqly"
-	},
-	{
-		"id": "jR",
-		"link": "https://www.hltv.org/player/8786/jr"
-	},
-	{
-		"id": "t0rick",
-		"link": "https://www.hltv.org/player/9382/t0rick"
-	},
-	{
-		"id": "sjuush",
-		"link": "https://www.hltv.org/player/14148/sjuush"
-	},
-	{
-		"id": "ScreaM",
-		"link": "https://www.hltv.org/player/7390/scream"
-	},
-	{
-		"id": "Troubley",
-		"link": "https://www.hltv.org/player/128/troubley"
-	},
-	{
-		"id": "zont1x",
-		"link": "https://www.hltv.org/player/20423/zont1x"
-	},
-	{
-		"id": "phzy",
-		"link": "https://www.hltv.org/player/16726/phzy"
-	},
-	{
-		"id": "kinqie",
-		"link": "https://www.hltv.org/player/3459/kinqie"
-	},
-	{
-		"id": "misutaaa",
-		"link": "https://www.hltv.org/player/14176/misutaaa"
-	},
-	{
-		"id": "stanislaw",
-		"link": "https://www.hltv.org/player/8507/stanislaw"
-	},
-	{
-		"id": "kyxsan",
-		"link": "https://www.hltv.org/player/19677/kyxsan"
-	},
-	{
-		"id": "Forester",
-		"link": "https://www.hltv.org/player/13982/forester"
-	},
-	{
-		"id": "max",
-		"link": "https://www.hltv.org/player/12092/max"
-	},
-	{
-		"id": "TeSeS",
-		"link": "https://www.hltv.org/player/12018/teses"
-	},
-	{
-		"id": "Kylar",
-		"link": "https://www.hltv.org/player/19114/kylar"
-	},
-	{
-		"id": "valde",
-		"link": "https://www.hltv.org/player/9031/valde"
-	},
-	{
-		"id": "SicK",
-		"link": "https://www.hltv.org/player/9258/sick"
-	},
-	{
-		"id": "ChildKing",
-		"link": "https://www.hltv.org/player/19681/childking"
-	},
-	{
-		"id": "yay",
-		"link": "https://www.hltv.org/player/8513/yay"
-	},
-	{
-		"id": "bondik",
-		"link": "https://www.hltv.org/player/2131/bondik"
-	},
-	{
-		"id": "Aerial",
-		"link": "https://www.hltv.org/player/4076/aerial"
-	},
-	{
-		"id": "ALEX",
-		"link": "https://www.hltv.org/player/8184/alex"
-	},
-	{
-		"id": "MICHU",
-		"link": "https://www.hltv.org/player/7356/michu"
-	},
-	{
-		"id": "Norwi",
-		"link": "https://www.hltv.org/player/19882/norwi"
-	},
-	{
-		"id": "rallen",
-		"link": "https://www.hltv.org/player/5388/rallen"
-	},
-	{
-		"id": "Zeus",
-		"link": "https://www.hltv.org/player/484/zeus"
-	},
-	{
-		"id": "WorldEdit",
-		"link": "https://www.hltv.org/player/7403/worldedit"
-	},
-	{
-		"id": "DD",
-		"link": "https://www.hltv.org/player/7026/dd"
-	},
-	{
-		"id": "erkaSt",
-		"link": "https://www.hltv.org/player/11141/erkast"
-	},
-	{
-		"id": "draken",
-		"link": "https://www.hltv.org/player/9255/draken"
-	},
-	{
-		"id": "chelo",
-		"link": "https://www.hltv.org/player/10566/chelo"
-	},
-	{
-		"id": "EmiliaQAQ",
-		"link": "https://www.hltv.org/player/22922/emiliaqaq"
-	},
-	{
-		"id": "nitr0",
-		"link": "https://www.hltv.org/player/7687/nitr0"
-	},
-	{
-		"id": "s1n",
-		"link": "https://www.hltv.org/player/20104/s1n"
-	},
-	{
-		"id": "JUGi",
-		"link": "https://www.hltv.org/player/8783/jugi"
-	},
-	{
-		"id": "Rickeh",
-		"link": "https://www.hltv.org/player/8745/rickeh"
-	},
-	{
-		"id": "LEGIJA",
-		"link": "https://www.hltv.org/player/3252/legija"
-	},
-	{
-		"id": "JACKZ",
-		"link": "https://www.hltv.org/player/284/jackz"
-	},
-	{
-		"id": "latto",
-		"link": "https://www.hltv.org/player/19045/latto"
-	},
-	{
-		"id": "chopper",
-		"link": "https://www.hltv.org/player/7716/chopper"
-	},
-	{
-		"id": "sk0R",
-		"link": "https://www.hltv.org/player/18638/sk0r"
-	},
-	{
-		"id": "disturbed",
-		"link": "https://www.hltv.org/player/7235/disturbed"
-	},
-	{
-		"id": "kUcheR",
-		"link": "https://www.hltv.org/player/302/kucher"
-	},
-	{
-		"id": "MAJ3R",
-		"link": "https://www.hltv.org/player/150/maj3r"
-	},
-	{
-		"id": "doto",
-		"link": "https://www.hltv.org/player/9819/doto"
-	},
-	{
-		"id": "FeTiSh",
-		"link": "https://www.hltv.org/player/7582/fetish"
-	},
-	{
-		"id": "SANJI",
-		"link": "https://www.hltv.org/player/11716/sanji"
-	},
-	{
-		"id": "DeathZz",
-		"link": "https://www.hltv.org/player/13093/deathzz"
-	},
-	{
-		"id": "arrozdoce",
-		"link": "https://www.hltv.org/player/20465/arrozdoce"
-	},
-	{
-		"id": "SmithZz",
-		"link": "https://www.hltv.org/player/7170/smithzz"
-	},
-	{
-		"id": "kRaSnaL",
-		"link": "https://www.hltv.org/player/20282/krasnal"
-	},
-	{
-		"id": "hades",
-		"link": "https://www.hltv.org/player/16848/hades"
-	},
-	{
-		"id": "desi",
-		"link": "https://www.hltv.org/player/8350/desi"
-	},
-	{
-		"id": "PKL",
-		"link": "https://www.hltv.org/player/6593/pkl"
-	},
-	{
-		"id": "story",
-		"link": "https://www.hltv.org/player/20462/story"
-	},
-	{
-		"id": "Liazz",
-		"link": "https://www.hltv.org/player/10588/liazz"
-	},
-	{
-		"id": "almazer",
-		"link": "https://www.hltv.org/player/11654/almazer"
-	},
-	{
-		"id": "history",
-		"link": "https://www.hltv.org/player/20939/history"
-	},
-	{
-		"id": "siuhy",
-		"link": "https://www.hltv.org/player/16820/siuhy"
-	},
-	{
-		"id": "TACO",
-		"link": "https://www.hltv.org/player/9217/taco"
-	},
-	{
-		"id": "STYKO",
-		"link": "https://www.hltv.org/player/6904/styko"
-	},
-	{
-		"id": "VINI",
-		"link": "https://www.hltv.org/player/12822/vini"
-	},
-	{
-		"id": "mopoz",
-		"link": "https://www.hltv.org/player/9254/mopoz"
-	},
-	{
-		"id": "lux",
-		"link": "https://www.hltv.org/player/20563/lux"
-	},
-	{
-		"id": "Staehr",
-		"link": "https://www.hltv.org/player/20304/staehr"
-	},
-	{
-		"id": "steel",
-		"link": "https://www.hltv.org/player/7253/steel"
-	},
-	{
-		"id": "Dimaoneshot",
-		"link": "https://www.hltv.org/player/8125/dimaoneshot"
-	},
-	{
-		"id": "aliStair",
-		"link": "https://www.hltv.org/player/11139/alistair"
-	},
-	{
-		"id": "NickelBack",
-		"link": "https://www.hltv.org/player/11498/nickelback"
-	},
-	{
-		"id": "HeavyGod",
-		"link": "https://www.hltv.org/player/20447/heavygod"
-	},
-	{
-		"id": "Krad",
-		"link": "https://www.hltv.org/player/12027/krad"
-	},
-	{
-		"id": "sinnopsyy",
-		"link": "https://www.hltv.org/player/18120/sinnopsyy"
-	},
-	{
-		"id": "L1haNg",
-		"link": "https://www.hltv.org/player/21825/l1hang"
-	},
-	{
-		"id": "vsm",
-		"link": "https://www.hltv.org/player/16816/vsm"
-	},
-	{
-		"id": "Aleksib",
-		"link": "https://www.hltv.org/player/9816/aleksib"
-	},
-	{
-		"id": "salazar",
-		"link": "https://www.hltv.org/player/21379/salazar"
-	},
-	{
-		"id": "BENDJI",
-		"link": "https://www.hltv.org/player/8396/bendji"
-	},
-	{
-		"id": "zende",
-		"link": "https://www.hltv.org/player/5045/zende"
-	},
-	{
-		"id": "bodyy",
-		"link": "https://www.hltv.org/player/8374/bodyy"
-	},
-	{
-		"id": "wayLander",
-		"link": "https://www.hltv.org/player/7796/waylander"
-	},
-	{
-		"id": "s-chilla",
-		"link": "https://www.hltv.org/player/23413/s-chilla"
-	},
-	{
-		"id": "innocent",
-		"link": "https://www.hltv.org/player/3669/innocent"
-	},
-	{
-		"id": "mixwell",
-		"link": "https://www.hltv.org/player/8370/mixwell"
-	},
-	{
-		"id": "dumau",
-		"link": "https://www.hltv.org/player/15698/dumau"
-	},
-	{
-		"id": "n0thing",
-		"link": "https://www.hltv.org/player/203/n0thing"
-	},
-	{
-		"id": "Jee",
-		"link": "https://www.hltv.org/player/20702/jee"
-	},
-	{
-		"id": "dexter",
-		"link": "https://www.hltv.org/player/9115/dexter"
-	},
-	{
-		"id": "FASHR",
-		"link": "https://www.hltv.org/player/11954/fashr"
-	},
-	{
-		"id": "kRYSTAL",
-		"link": "https://www.hltv.org/player/7218/krystal"
-	},
-	{
-		"id": "adamS",
-		"link": "https://www.hltv.org/player/19698/adams"
-	},
-	{
-		"id": "Graviti",
-		"link": "https://www.hltv.org/player/21969/graviti"
-	},
-	{
-		"id": "sterling",
-		"link": "https://www.hltv.org/player/12591/sterling"
-	},
-	{
-		"id": "zhokiNg",
-		"link": "https://www.hltv.org/player/8601/zhoking"
-	},
-	{
-		"id": "hazed",
-		"link": "https://www.hltv.org/player/8347/hazed"
-	},
-	{
-		"id": "USTILO",
-		"link": "https://www.hltv.org/player/8771/ustilo"
-	},
-	{
-		"id": "Nifty",
-		"link": "https://www.hltv.org/player/9069/nifty"
-	},
-	{
-		"id": "kabal",
-		"link": "https://www.hltv.org/player/10870/kabal"
-	},
-	{
-		"id": "JDC",
-		"link": "https://www.hltv.org/player/14929/jdc"
-	},
-	{
-		"id": "denis",
-		"link": "https://www.hltv.org/player/7511/denis"
-	},
-	{
-		"id": "oBo",
-		"link": "https://www.hltv.org/player/14614/obo"
-	},
-	{
-		"id": "zEVES",
-		"link": "https://www.hltv.org/player/3018/zeves"
-	},
-	{
-		"id": "shroud",
-		"link": "https://www.hltv.org/player/8349/shroud"
-	},
-	{
-		"id": "noway",
-		"link": "https://www.hltv.org/player/22564/noway"
-	},
-	{
-		"id": "Delpan",
-		"link": "https://www.hltv.org/player/438/delpan"
-	},
-	{
-		"id": "felps",
-		"link": "https://www.hltv.org/player/9219/felps"
-	},
-	{
-		"id": "GMX",
-		"link": "https://www.hltv.org/player/7565/gmx"
-	},
-	{
-		"id": "z4kr",
-		"link": "https://www.hltv.org/player/18744/z4kr"
-	},
-	{
-		"id": "Spiidi",
-		"link": "https://www.hltv.org/player/7499/spiidi"
-	},
-	{
-		"id": "GruBy",
-		"link": "https://www.hltv.org/player/8570/gruby"
-	},
-	{
-		"id": "waterfaLLZ",
-		"link": "https://www.hltv.org/player/8727/waterfallz"
-	},
-	{
-		"id": "keev",
-		"link": "https://www.hltv.org/player/5799/keev"
-	},
-	{
-		"id": "spaze",
-		"link": "https://www.hltv.org/player/8345/spaze"
-	},
-	{
-		"id": "malta",
-		"link": "https://www.hltv.org/player/11485/malta"
-	},
-	{
-		"id": "stadodo",
-		"link": "https://www.hltv.org/player/11205/stadodo"
-	},
-	{
-		"id": "Sf",
-		"link": "https://www.hltv.org/player/7591/sf"
-	},
-	{
-		"id": "Lack1",
-		"link": "https://www.hltv.org/player/13240/lack1"
-	},
-	{
-		"id": "Grim",
-		"link": "https://www.hltv.org/player/13578/grim"
-	},
-	{
-		"id": "SZPERO",
-		"link": "https://www.hltv.org/player/973/szpero"
-	},
-	{
-		"id": "Keoz",
-		"link": "https://www.hltv.org/player/15117/keoz"
-	},
-	{
-		"id": "loWel",
-		"link": "https://www.hltv.org/player/3997/lowel"
-	},
-	{
-		"id": "FNS",
-		"link": "https://www.hltv.org/player/6451/fns"
-	},
-	{
-		"id": "karrigan",
-		"link": "https://www.hltv.org/player/429/karrigan"
-	},
-	{
-		"id": "DavCost",
-		"link": "https://www.hltv.org/player/8124/davcost"
-	},
-	{
-		"id": "somebody",
-		"link": "https://www.hltv.org/player/8605/somebody"
-	},
-	{
-		"id": "jmqa",
-		"link": "https://www.hltv.org/player/8368/jmqa"
-	},
-	{
-		"id": "Sonic",
-		"link": "https://www.hltv.org/player/8711/sonic"
-	},
-	{
-		"id": "refrezh",
-		"link": "https://www.hltv.org/player/10610/refrezh"
-	},
-	{
-		"id": "dephh",
-		"link": "https://www.hltv.org/player/7873/dephh"
-	},
-	{
-		"id": "Patti",
-		"link": "https://www.hltv.org/player/13077/patti"
-	},
-	{
-		"id": "DickStacy",
-		"link": "https://www.hltv.org/player/12876/dickstacy"
-	},
-	{
-		"id": "NEKIZ",
-		"link": "https://www.hltv.org/player/9482/nekiz"
-	},
-	{
-		"id": "zevy",
-		"link": "https://www.hltv.org/player/19692/zevy"
-	},
-	{
-		"id": "speed4k",
-		"link": "https://www.hltv.org/player/13155/speed4k"
-	},
-	{
-		"id": "Pimp",
-		"link": "https://www.hltv.org/player/7154/pimp"
-	},
-	{
-		"id": "Fifflaren",
-		"link": "https://www.hltv.org/player/7147/fifflaren"
-	},
-	{
-		"id": "interz",
-		"link": "https://www.hltv.org/player/15071/interz"
-	},
-	{
-		"id": "INS",
-		"link": "https://www.hltv.org/player/11140/ins"
-	},
-	{
-		"id": "Annihilation",
-		"link": "https://www.hltv.org/player/18689/annihilation"
-	},
-	{
-		"id": "AcilioN",
-		"link": "https://www.hltv.org/player/8151/acilion"
-	},
-	{
-		"id": "Tauson",
-		"link": "https://www.hltv.org/player/20301/tauson"
-	},
-	{
-		"id": "DaZeD",
-		"link": "https://www.hltv.org/player/7347/dazed"
-	},
-	{
-		"id": "mouz",
-		"link": "https://www.hltv.org/player/8323/mouz"
-	},
-	{
-		"id": "arT",
-		"link": "https://www.hltv.org/player/12521/art"
-	},
-	{
-		"id": "drop",
-		"link": "https://www.hltv.org/player/19750/drop"
-	},
-	{
-		"id": "dimasick",
-		"link": "https://www.hltv.org/player/13780/dimasick"
-	},
-	{
-		"id": "SLOWLY",
-		"link": "https://www.hltv.org/player/15683/slowly"
-	},
-	{
-		"id": "FaNg",
-		"link": "https://www.hltv.org/player/17372/fang"
-	},
-	{
-		"id": "LOVEYY",
-		"link": "https://www.hltv.org/player/8957/loveyy"
-	},
-	{
-		"id": "svyat",
-		"link": "https://www.hltv.org/player/12016/svyat"
-	},
-	{
-		"id": "pronax",
-		"link": "https://www.hltv.org/player/41/pronax"
-	},
-	{
-		"id": "starix",
-		"link": "https://www.hltv.org/player/303/starix"
-	},
-	{
-		"id": "cype",
-		"link": "https://www.hltv.org/player/7445/cype"
-	},
-	{
-		"id": "peet",
-		"link": "https://www.hltv.org/player/7369/peet"
-	},
-	{
-		"id": "Summer",
-		"link": "https://www.hltv.org/player/7028/summer"
-	},
-	{
-		"id": "gob b",
-		"link": "https://www.hltv.org/player/136/gob-b"
-	},
-	{
-		"id": "Westmelon",
-		"link": "https://www.hltv.org/player/16551/westmelon"
-	},
-	{
-		"id": "ableJ",
-		"link": "https://www.hltv.org/player/16770/ablej"
-	},
-	{
-		"id": "smF",
-		"link": "https://www.hltv.org/player/7414/smf"
-	},
-	{
-		"id": "r3salt",
-		"link": "https://www.hltv.org/player/20709/r3salt"
-	},
-	{
-		"id": "Devilwalk",
-		"link": "https://www.hltv.org/player/7378/devilwalk"
-	},
-	{
-		"id": "F1KU",
-		"link": "https://www.hltv.org/player/19044/f1ku"
-	},
-	{
-		"id": "Snappi",
-		"link": "https://www.hltv.org/player/922/snappi"
-	},
-	{
-		"id": "nukkye",
-		"link": "https://www.hltv.org/player/13679/nukkye"
-	},
-	{
-		"id": "roman",
-		"link": "https://www.hltv.org/player/2241/roman"
-	},
-	{
-		"id": "freakazoid",
-		"link": "https://www.hltv.org/player/7808/freakazoid"
-	},
-	{
-		"id": "fitch",
-		"link": "https://www.hltv.org/player/10052/fitch"
-	},
-	{
-		"id": "Zellsis",
-		"link": "https://www.hltv.org/player/13188/zellsis"
-	},
-	{
-		"id": "TRAVIS",
-		"link": "https://www.hltv.org/player/16948/travis"
-	},
-	{
-		"id": "sense",
-		"link": "https://www.hltv.org/player/17450/sense"
-	},
-	{
-		"id": "try",
-		"link": "https://www.hltv.org/player/19869/try"
-	},
-	{
-		"id": "Zero",
-		"link": "https://www.hltv.org/player/8413/zero"
-	},
-	{
-		"id": "tonyblack",
-		"link": "https://www.hltv.org/player/1950/tonyblack"
-	},
-	{
-		"id": "floppy",
-		"link": "https://www.hltv.org/player/12713/floppy"
-	},
-	{
-		"id": "hooch",
-		"link": "https://www.hltv.org/player/499/hooch"
-	},
-	{
-		"id": "Golden",
-		"link": "https://www.hltv.org/player/11110/golden"
-	},
-	{
-		"id": "tiziaN",
-		"link": "https://www.hltv.org/player/5796/tizian"
-	},
-	{
-		"id": "FugLy",
-		"link": "https://www.hltv.org/player/8522/fugly"
-	},
-	{
-		"id": "Havoc",
-		"link": "https://www.hltv.org/player/8083/havoc"
-	},
-	{
-		"id": "Vexite",
-		"link": "https://www.hltv.org/player/17384/vexite"
-	},
-	{
-		"id": "Kyojin",
-		"link": "https://www.hltv.org/player/19672/kyojin"
-	},
-	{
-		"id": "disco doplan",
-		"link": "https://www.hltv.org/player/9256/disco-doplan"
-	},
-	{
-		"id": "Plopski",
-		"link": "https://www.hltv.org/player/14218/plopski"
-	},
-	{
-		"id": "seang@res",
-		"link": "https://www.hltv.org/player/1916/seangres"
-	},
-	{
-		"id": "topguN",
-		"link": "https://www.hltv.org/player/8086/topgun"
-	},
-	{
-		"id": "ANGE1",
-		"link": "https://www.hltv.org/player/339/ange1"
-	},
-	{
-		"id": "reltuC",
-		"link": "https://www.hltv.org/player/8137/reltuc"
-	},
-	{
-		"id": "KHRN",
-		"link": "https://www.hltv.org/player/971/khrn"
-	},
-	{
-		"id": "Thomas",
-		"link": "https://www.hltv.org/player/13018/thomas"
-	},
-	{
-		"id": "ceh9",
-		"link": "https://www.hltv.org/player/301/ceh9"
-	},
-	{
-		"id": "niko",
-		"link": "https://www.hltv.org/player/10264/niko"
-	},
-	{
-		"id": "KrizzeN",
-		"link": "https://www.hltv.org/player/12161/krizzen"
-	},
-	{
-		"id": "Farlig",
-		"link": "https://www.hltv.org/player/13300/farlig"
-	},
-	{
-		"id": "balblna",
-		"link": "https://www.hltv.org/player/8294/balblna"
-	},
-	{
-		"id": "CacaNito",
-		"link": "https://www.hltv.org/player/18790/cacanito"
-	},
-	{
-		"id": "ewjerkz",
-		"link": "https://www.hltv.org/player/20464/ewjerkz"
-	},
-	{
-		"id": "dav1deuS",
-		"link": "https://www.hltv.org/player/18865/dav1deus"
-	},
-	{
-		"id": "anger",
-		"link": "https://www.hltv.org/player/7438/anger"
-	},
-	{
-		"id": "Ex6TenZ",
-		"link": "https://www.hltv.org/player/7166/ex6tenz"
-	},
-	{
-		"id": "zeRRoFIX",
-		"link": "https://www.hltv.org/player/23415/zerrofix"
-	},
-	{
-		"id": "MUTiRiS",
-		"link": "https://www.hltv.org/player/630/mutiris"
-	},
-	{
-		"id": "HooXi",
-		"link": "https://www.hltv.org/player/10096/hooxi"
-	},
-	{
-		"id": "ngiN",
-		"link": "https://www.hltv.org/player/9857/ngin"
-	},
-	{
-		"id": "imoRR",
-		"link": "https://www.hltv.org/player/15835/imorr"
-	},
-	{
-		"id": "fel1x",
-		"link": "https://www.hltv.org/player/7323/fel1x"
-	},
-	{
-		"id": "SENER1",
-		"link": "https://www.hltv.org/player/15778/sener1"
-	},
-	{
-		"id": "lauNX",
-		"link": "https://www.hltv.org/player/20761/launx"
-	},
-	{
-		"id": "ptr",
-		"link": "https://www.hltv.org/player/8707/ptr"
-	},
-	{
-		"id": "Sico",
-		"link": "https://www.hltv.org/player/9102/sico"
-	},
-	{
-		"id": "pancc",
-		"link": "https://www.hltv.org/player/16314/pancc"
-	},
-	{
-		"id": "Jerry",
-		"link": "https://www.hltv.org/player/13157/jerry"
-	},
-	{
-		"id": "hutji",
-		"link": "https://www.hltv.org/player/8790/hutji"
-	},
-	{
-		"id": "Friis",
-		"link": "https://www.hltv.org/player/7/friis"
-	},
-	{
-		"id": "Maka",
-		"link": "https://www.hltv.org/player/13138/maka"
-	},
-	{
-		"id": "Uzzziii",
-		"link": "https://www.hltv.org/player/7391/uzzziii"
-	},
-	{
-		"id": "JT",
-		"link": "https://www.hltv.org/player/11630/jt"
-	},
-	{
-		"id": "emagine",
-		"link": "https://www.hltv.org/player/8744/emagine"
-	},
-	{
-		"id": "dav1g",
-		"link": "https://www.hltv.org/player/19509/dav1g"
-	},
-	{
-		"id": "AZK",
-		"link": "https://www.hltv.org/player/7434/azk"
-	},
-	{
-		"id": "S0tF1k",
-		"link": "https://www.hltv.org/player/9081/s0tf1k"
-	},
-	{
-		"id": "realz1n",
-		"link": "https://www.hltv.org/player/16769/realz1n"
-	},
-	{
-		"id": "Hatz",
-		"link": "https://www.hltv.org/player/11162/hatz"
-	},
-	{
-		"id": "DeadFox",
-		"link": "https://www.hltv.org/player/8716/deadfox"
-	},
-	{
-		"id": "Furlan",
-		"link": "https://www.hltv.org/player/8327/furlan"
-	},
-	{
-		"id": "hasteka",
-		"link": "https://www.hltv.org/player/12956/hasteka"
-	},
-	{
-		"id": "yel",
-		"link": "https://www.hltv.org/player/10560/yel"
-	},
-	{
-		"id": "TENZKI",
-		"link": "https://www.hltv.org/player/5287/tenzki"
-	},
-	{
-		"id": "centeks",
-		"link": "https://www.hltv.org/player/7262/centeks"
-	},
-	{
-		"id": "pita",
-		"link": "https://www.hltv.org/player/434/pita"
-	},
-	{
-		"id": "SIXER",
-		"link": "https://www.hltv.org/player/147/sixer"
-	},
-	{
-		"id": "xms",
-		"link": "https://www.hltv.org/player/9545/xms"
-	},
-	{
-		"id": "daps",
-		"link": "https://www.hltv.org/player/8521/daps"
-	},
-	{
-		"id": "strux1",
-		"link": "https://www.hltv.org/player/7214/strux1"
-	},
-	{
-		"id": "LNZ",
-		"link": "https://www.hltv.org/player/19310/lnz"
-	},
-	{
-		"id": "koosta",
-		"link": "https://www.hltv.org/player/9056/koosta"
-	},
-	{
-		"id": "ztr",
-		"link": "https://www.hltv.org/player/16486/ztr"
-	},
-	{
-		"id": "keshandr",
-		"link": "https://www.hltv.org/player/8788/keshandr"
-	},
-	{
-		"id": "advent",
-		"link": "https://www.hltv.org/player/8600/advent"
-	},
-	{
-		"id": "B1ad3",
-		"link": "https://www.hltv.org/player/472/b1ad3"
-	},
-	{
-		"id": "LETN1",
-		"link": "https://www.hltv.org/player/4216/letn1"
-	},
-	{
-		"id": "MSL",
-		"link": "https://www.hltv.org/player/7156/msl"
-	},
-	{
-		"id": "xartE",
-		"link": "https://www.hltv.org/player/7537/xarte"
-	},
-	{
-		"id": "captainMo",
-		"link": "https://www.hltv.org/player/5187/captainmo"
-	},
-	{
-		"id": "LOMME",
-		"link": "https://www.hltv.org/player/1889/lomme"
-	},
-	{
-		"id": "THREAT",
-		"link": "https://www.hltv.org/player/37/threat"
-	},
-	{
-		"id": "MINISE",
-		"link": "https://www.hltv.org/player/2826/minise"
-	},
-	{
-		"id": "buda",
-		"link": "https://www.hltv.org/player/20607/buda"
-	},
-	{
-		"id": "Ace",
-		"link": "https://www.hltv.org/player/7816/ace"
-	},
-	{
-		"id": "yam",
-		"link": "https://www.hltv.org/player/2555/yam"
-	},
-	{
-		"id": "DEVIL",
-		"link": "https://www.hltv.org/player/8569/devil"
-	},
-	{
-		"id": "Luken",
-		"link": "https://www.hltv.org/player/15914/luken"
-	},
-	{
-		"id": "JUST",
-		"link": "https://www.hltv.org/player/8998/just"
-	},
-	{
-		"id": "SnypeR",
-		"link": "https://www.hltv.org/player/8084/snyper"
-	},
-	{
-		"id": "HexT",
-		"link": "https://www.hltv.org/player/18838/hext"
-	},
-	{
-		"id": "npl",
-		"link": "https://www.hltv.org/player/21708/npl"
-	},
-	{
-		"id": "SPUNJ",
-		"link": "https://www.hltv.org/player/8085/spunj"
-	},
-	{
-		"id": "RiTz",
-		"link": "https://www.hltv.org/player/2570/ritz"
-	},
-	{
-		"id": "junior",
-		"link": "https://www.hltv.org/player/14494/junior"
-	},
-	{
-		"id": "WOOD7",
-		"link": "https://www.hltv.org/player/14390/wood7"
-	},
-	{
-		"id": "xand",
-		"link": "https://www.hltv.org/player/9218/xand"
-	},
-	{
-		"id": "slaxz-",
-		"link": "https://www.hltv.org/player/15370/slaxz"
-	},
-	{
-		"id": "zqkS",
-		"link": "https://www.hltv.org/player/7383/zqks"
-	},
-	{
-		"id": "rox",
-		"link": "https://www.hltv.org/player/16067/rox"
-	},
-	{
-		"id": "HaRts",
-		"link": "https://www.hltv.org/player/156/harts"
-	},
-	{
-		"id": "mynio",
-		"link": "https://www.hltv.org/player/4829/mynio"
-	},
-	{
-		"id": "Bart4k",
-		"link": "https://www.hltv.org/player/19957/bart4k"
-	},
-	{
-		"id": "Polly",
-		"link": "https://www.hltv.org/player/3631/polly"
-	},
-	{
-		"id": "Karsa",
-		"link": "https://www.hltv.org/player/8599/karsa"
-	},
-	{
-		"id": "blackpoisoN",
-		"link": "https://www.hltv.org/player/7992/blackpoison"
-	},
-	{
-		"id": "zews",
-		"link": "https://www.hltv.org/player/6608/zews"
-	},
-	{
-		"id": "HUNDEN",
-		"link": "https://www.hltv.org/player/7415/hunden"
-	},
-	{
-		"id": "ultra",
-		"link": "https://www.hltv.org/player/3919/ultra"
-	},
-	{
-		"id": "arya",
-		"link": "https://www.hltv.org/player/6453/arya"
-	},
-	{
-		"id": "KEi",
-		"link": "https://www.hltv.org/player/17504/kei"
-	},
-	{
-		"id": "stonde",
-		"link": "https://www.hltv.org/player/7238/stonde"
-	},
-	{
-		"id": "dumz",
-		"link": "https://www.hltv.org/player/7958/dumz"
-	},
-	{
-		"id": "zonic",
-		"link": "https://www.hltv.org/player/21/zonic"
-	},
-	{
-		"id": "James",
-		"link": "https://www.hltv.org/player/8746/james"
-	},
-	{
-		"id": "stavros",
-		"link": "https://www.hltv.org/player/7246/stavros"
-	},
-	{
-		"id": "alexRr",
-		"link": "https://www.hltv.org/player/7508/alexrr"
-	},
-	{
-		"id": "ioRek",
-		"link": "https://www.hltv.org/player/157/iorek"
-	},
-	{
-		"id": "destiny",
-		"link": "https://www.hltv.org/player/9483/destiny"
-	},
-	{
-		"id": "r0bs3n",
-		"link": "https://www.hltv.org/player/7232/r0bs3n"
-	},
-	{
-		"id": "astaRR",
-		"link": "https://www.hltv.org/player/7815/astarr"
-	},
-	{
-		"id": "RiX",
-		"link": "https://www.hltv.org/player/2054/rix"
-	},
-	{
-		"id": "natu",
-		"link": "https://www.hltv.org/player/713/natu"
-	},
-	{
-		"id": "Professor_Chaos",
-		"link": "https://www.hltv.org/player/8912/professor-chaos"
-	},
-	{
-		"id": "xelos",
-		"link": "https://www.hltv.org/player/5373/xelos"
-	},
-	{
-		"id": "ub1que",
-		"link": "https://www.hltv.org/player/7405/ub1que"
-	},
-	{
-		"id": "MODDII",
-		"link": "https://www.hltv.org/player/545/moddii"
-	},
-	{
-		"id": "MithilF",
-		"link": "https://www.hltv.org/player/7817/mithilf"
-	},
-	{
-		"id": "racno",
-		"link": "https://www.hltv.org/player/7995/racno"
-	},
-	{
-		"id": "jasonR",
-		"link": "https://www.hltv.org/player/8794/jasonr"
-	},
-	{
-		"id": "hardstyle",
-		"link": "https://www.hltv.org/player/3021/hardstyle"
-	},
-	{
-		"id": "robiin",
-		"link": "https://www.hltv.org/player/7700/robiin"
-	},
-	{
-		"id": "Detrony",
-		"link": "https://www.hltv.org/player/7993/detrony"
-	},
-	{
-		"id": "abE",
-		"link": "https://www.hltv.org/player/8502/abe"
-	},
-	{
-		"id": "cent",
-		"link": "https://www.hltv.org/player/7991/cent"
-	},
-	{
-		"id": "Skurk",
-		"link": "https://www.hltv.org/player/5042/skurk"
-	},
-	{
-		"id": "maLeK",
-		"link": "https://www.hltv.org/player/15186/malek"
-	},
-	{
-		"id": "prb",
-		"link": "https://www.hltv.org/player/1040/prb"
-	},
-	{
-		"id": "deviaNt",
-		"link": "https://www.hltv.org/player/7994/deviant"
-	},
-	{
-		"id": "r1nkle",
-		"link": "https://www.hltv.org/player/20425/r1nkle"
-	},
-	{
-		"id": "sjuush",
-		"link": "https://www.hltv.org/player/14148/sjuush"
-	},
-	{
-		"id": "kyousuke",
-		"link": "https://www.hltv.org/player/24177/kyousuke"
-	},
-	{
-		"id": "molodoy",
-		"link": "https://www.hltv.org/player/24144/molodoy"
-	},
-	{
-		"id": "jcobbb",
-		"link": "https://www.hltv.org/player/22383/jcobbb"
-	},
-	{
-		"id": "JamYoung",
-		"link": "https://www.hltv.org/player/19645/jamyoung"
-	},
-	{
-		"id": "Moseyuh",
-		"link": "https://www.hltv.org/player/21621/moseyuh"
-	},
-	{
-		"id": "Mercury",
-		"link": "https://www.hltv.org/player/20895/mercury"
-	},
-	{
-		"id": "yxngstxr",
-		"link": "https://www.hltv.org/player/22047/yxngstxr"
-	},
-	{
-		"id": "Alkaren",
-		"link": "https://www.hltv.org/player/23600/alkaren"
-	},
-  {"id": "jottAAA", "link": "https://www.hltv.org/player/22361/jottaaa"},
-  {"id": "Swisher", "link": "https://www.hltv.org/player/16599/swisher"},
-  {"id": "Lake", "link": "https://www.hltv.org/player/22921/lake"},
-  {"id": "reck", "link": "https://www.hltv.org/player/17378/reck"},
-  {"id": "molodoy", "link": "https://www.hltv.org/player/24144/molodoy"},
-  {"id": "brnz4n", "link": "https://www.hltv.org/player/20987/brnz4n"},
-  {"id": "tN1R", "link": "https://www.hltv.org/player/19808/tn1r"},
-  {"id": "yxngstxr", "link": "https://www.hltv.org/player/22047/yxngstxr"},
-  {"id": "1eeR", "link": "https://www.hltv.org/player/21266/1eer"},
-  {"id": "khaN", "link": "https://www.hltv.org/player/23317/khan"},
-  {"id": "riskyb0b", "link": "https://www.hltv.org/player/22460/riskyb0b"},
-  {"id": "zweih", "link": "https://www.hltv.org/player/23685/zweih"},
-  {"id": "Xant3r", "link": "https://www.hltv.org/player/20387/xant3r"},
-  {"id": "Chr1zN", "link": "https://www.hltv.org/player/21983/chr1zn"},
-  {"id": "Buzz", "link": "https://www.hltv.org/player/20941/buzz"},
-  {"id": "spooke", "link": "https://www.hltv.org/player/19064/spooke"},
-  {"id": "regali", "link": "https://www.hltv.org/player/20123/regali"},
-  {"id": "nettik", "link": "https://www.hltv.org/player/18214/nettik"},
-  {"id": "alex666", "link": "https://www.hltv.org/player/20112/alex666"},
-  {"id": "esenthial", "link": "https://www.hltv.org/player/23643/esenthial"},
-  {"id": "kensizor", "link": "https://www.hltv.org/player/22842/kensizor"},
-  {"id": "Cxzi", "link": "https://www.hltv.org/player/17353/cxzi"},
-  {"id": "nicx", "link": "https://www.hltv.org/player/21620/nicx"},
-  {"id": "Jeorge", "link": "https://www.hltv.org/player/20333/jeorge"},
-  {"id": "br0", "link": "https://www.hltv.org/player/16717/br0"},
-  {"id": "adamb", "link": "https://www.hltv.org/player/20878/adamb"},
-  {"id": "L00m1", "link": "https://www.hltv.org/player/21164/l00m1"},
-  {"id": "chayJESUS", "link": "https://www.hltv.org/player/20026/chayjesus"},
-  {"id": "kye", "link": "https://www.hltv.org/player/20385/kye"},
-  {"id": "piriajr", "link": "https://www.hltv.org/player/18714/piriajr"},
-  {"id": "mlhzin", "link": "https://www.hltv.org/player/21286/mlhzin"},
-  {"id": "JamYoung", "link": "https://www.hltv.org/player/19645/jamyoung"},
-  {"id": "Mercury", "link": "https://www.hltv.org/player/20895/mercury"},
-  {"id": "Moseyuh", "link": "https://www.hltv.org/player/21621/moseyuh"},
-  {"id": "ROUX", "link": "https://www.hltv.org/player/19229/roux"},
-  {"id": "cool4st", "link": "https://www.hltv.org/player/19537/cool4st"},
-  {"id": "ariucle", "link": "https://www.hltv.org/player/21396/ariucle"},
-  {"id": "controlez", "link": "https://www.hltv.org/player/21398/controlez"},
-  {"id": "Efire", "link": "https://www.hltv.org/player/22414/efire"},
-  {"id": "kyousuke", "link": "https://www.hltv.org/player/24177/kyousuke"},
-  {"id": "makazze", "link": "https://www.hltv.org/player/22673/makazze"},
-  {"id": "kl1m", "link": "https://www.hltv.org/player/23192/kl1m"},
-  {"id": "Kvem", "link": "https://www.hltv.org/player/21452/kvem"},
-  {"id": "jcobbb", "link": "https://www.hltv.org/player/22383/jcobbb"},
-  {"id": "hypex", "link": "https://www.hltv.org/player/23766/hypex"},
-  {"id": "PR", "link": "https://www.hltv.org/player/22279/pr"},
-  {"id": "r1nkle", "link": "https://www.hltv.org/player/20425/r1nkle"},
-  {"id": "xKacpersky", "link": "https://www.hltv.org/player/23372/xkacpersky"},
-  {"id": "xerolte", "link": "https://www.hltv.org/player/20703/xerolte"},
-  {"id": "cobrazera", "link": "https://www.hltv.org/player/23402/cobrazera"},
-  {"id": "XotiC", "link": "https://www.hltv.org/player/14109/xotic"},
-  {"id": "venomzera", "link": "https://www.hltv.org/player/21288/venomzera"},
-  {"id": "BELCHONOKK", "link": "https://www.hltv.org/player/19235/belchonokk"},
-  {"id": "AW", "link": "https://www.hltv.org/player/22076/aw"},
-  {"id": "xiELO", "link": "https://www.hltv.org/player/22471/xielo"},
-  {"id": "nota", "link": "https://www.hltv.org/player/22929/nota"},
-  {"id": "Marek", "link": "https://www.hltv.org/player/8598/marek"},
-  {"id": "TiGeR", "link": "https://www.hltv.org/player/20808/tiger"}
+  {
+    "id": "910",
+    "link": "https://www.hltv.org/player/21809/910"
+  },
+  {
+    "id": "donk",
+    "link": "https://www.hltv.org/player/21167/donk"
+  },
+  {
+    "id": "blameF",
+    "link": "https://www.hltv.org/player/15165/blamef"
+  },
+  {
+    "id": "COLON",
+    "link": "https://www.hltv.org/player/515/colon"
+  },
+  {
+    "id": "ZywOo",
+    "link": "https://www.hltv.org/player/11893/zywoo"
+  },
+  {
+    "id": "coldzera",
+    "link": "https://www.hltv.org/player/9216/coldzera"
+  },
+  {
+    "id": "m0NESY",
+    "link": "https://www.hltv.org/player/19230/m0nesy"
+  },
+  {
+    "id": "smooya",
+    "link": "https://www.hltv.org/player/11271/smooya"
+  },
+  {
+    "id": "s1mple",
+    "link": "https://www.hltv.org/player/7998/s1mple"
+  },
+  {
+    "id": "sh1ro",
+    "link": "https://www.hltv.org/player/16920/sh1ro"
+  },
+  {
+    "id": "ICY",
+    "link": "https://www.hltv.org/player/21439/icy"
+  },
+  {
+    "id": "headtr1ck",
+    "link": "https://www.hltv.org/player/19592/headtr1ck"
+  },
+  {
+    "id": "znajder",
+    "link": "https://www.hltv.org/player/3847/znajder"
+  },
+  {
+    "id": "device",
+    "link": "https://www.hltv.org/player/7592/device"
+  },
+  {
+    "id": "degster",
+    "link": "https://www.hltv.org/player/17306/degster"
+  },
+  {
+    "id": "ultimate",
+    "link": "https://www.hltv.org/player/21763/ultimate"
+  },
+  {
+    "id": "fear",
+    "link": "https://www.hltv.org/player/17803/fear"
+  },
+  {
+    "id": "fame",
+    "link": "https://www.hltv.org/player/20101/fame"
+  },
+  {
+    "id": "zorte",
+    "link": "https://www.hltv.org/player/15662/zorte"
+  },
+  {
+    "id": "KENSI",
+    "link": "https://www.hltv.org/player/19236/kensi"
+  },
+  {
+    "id": "NiKo",
+    "link": "https://www.hltv.org/player/3741/niko"
+  },
+  {
+    "id": "kNgV-",
+    "link": "https://www.hltv.org/player/5736/kngv"
+  },
+  {
+    "id": "KSCERATO",
+    "link": "https://www.hltv.org/player/15631/kscerato"
+  },
+  {
+    "id": "w0nderful",
+    "link": "https://www.hltv.org/player/20127/w0nderful"
+  },
+  {
+    "id": "autimatic",
+    "link": "https://www.hltv.org/player/8735/autimatic"
+  },
+  {
+    "id": "flusha",
+    "link": "https://www.hltv.org/player/3055/flusha"
+  },
+  {
+    "id": "ropz",
+    "link": "https://www.hltv.org/player/11816/ropz"
+  },
+  {
+    "id": "BOROS",
+    "link": "https://www.hltv.org/player/19763/boros"
+  },
+  {
+    "id": "ottoNd",
+    "link": "https://www.hltv.org/player/11283/ottond"
+  },
+  {
+    "id": "Snax",
+    "link": "https://www.hltv.org/player/2553/snax"
+  },
+  {
+    "id": "Brehze",
+    "link": "https://www.hltv.org/player/9136/brehze"
+  },
+  {
+    "id": "stavn",
+    "link": "https://www.hltv.org/player/10994/stavn"
+  },
+  {
+    "id": "flamie",
+    "link": "https://www.hltv.org/player/7594/flamie"
+  },
+  {
+    "id": "El1an",
+    "link": "https://www.hltv.org/player/13281/el1an"
+  },
+  {
+    "id": "xsepower",
+    "link": "https://www.hltv.org/player/12733/xsepower"
+  },
+  {
+    "id": "suNny",
+    "link": "https://www.hltv.org/player/5479/sunny"
+  },
+  {
+    "id": "facecrack",
+    "link": "https://www.hltv.org/player/8726/facecrack"
+  },
+  {
+    "id": "Spinx",
+    "link": "https://www.hltv.org/player/18221/spinx"
+  },
+  {
+    "id": "CRUC1AL",
+    "link": "https://www.hltv.org/player/7996/cruc1al"
+  },
+  {
+    "id": "swag",
+    "link": "https://www.hltv.org/player/5021/swag"
+  },
+  {
+    "id": "XANTARES",
+    "link": "https://www.hltv.org/player/7938/xantares"
+  },
+  {
+    "id": "electroNic",
+    "link": "https://www.hltv.org/player/8918/electronic"
+  },
+  {
+    "id": "broky",
+    "link": "https://www.hltv.org/player/18053/broky"
+  },
+  {
+    "id": "insani",
+    "link": "https://www.hltv.org/player/21037/insani"
+  },
+  {
+    "id": "JOTA",
+    "link": "https://www.hltv.org/player/17861/jota"
+  },
+  {
+    "id": "syrsoN",
+    "link": "https://www.hltv.org/player/7266/syrson"
+  },
+  {
+    "id": "ISSAA",
+    "link": "https://www.hltv.org/player/10449/issaa"
+  },
+  {
+    "id": "Jimpphat",
+    "link": "https://www.hltv.org/player/18850/jimpphat"
+  },
+  {
+    "id": "Tuurtle",
+    "link": "https://www.hltv.org/player/14394/tuurtle"
+  },
+  {
+    "id": "paz",
+    "link": "https://www.hltv.org/player/9353/paz"
+  },
+  {
+    "id": "sl3nd",
+    "link": "https://www.hltv.org/player/20870/sl3nd"
+  },
+  {
+    "id": "jambo",
+    "link": "https://www.hltv.org/player/23046/jambo"
+  },
+  {
+    "id": "Kjaerbye",
+    "link": "https://www.hltv.org/player/8394/kjaerbye"
+  },
+  {
+    "id": "frozen",
+    "link": "https://www.hltv.org/player/9960/frozen"
+  },
+  {
+    "id": "olofmeister",
+    "link": "https://www.hltv.org/player/885/olofmeister"
+  },
+  {
+    "id": "faveN",
+    "link": "https://www.hltv.org/player/14932/faven"
+  },
+  {
+    "id": "f0rest",
+    "link": "https://www.hltv.org/player/29/f0rest"
+  },
+  {
+    "id": "Jame",
+    "link": "https://www.hltv.org/player/13776/jame"
+  },
+  {
+    "id": "Nico",
+    "link": "https://www.hltv.org/player/7413/nico"
+  },
+  {
+    "id": "Djoko",
+    "link": "https://www.hltv.org/player/19738/djoko"
+  },
+  {
+    "id": "Magisk",
+    "link": "https://www.hltv.org/player/9032/magisk"
+  },
+  {
+    "id": "Twistzz",
+    "link": "https://www.hltv.org/player/10394/twistzz"
+  },
+  {
+    "id": "Ethan",
+    "link": "https://www.hltv.org/player/10671/ethan"
+  },
+  {
+    "id": "NertZ",
+    "link": "https://www.hltv.org/player/9436/nertz"
+  },
+  {
+    "id": "Bymas",
+    "link": "https://www.hltv.org/player/19015/bymas"
+  },
+  {
+    "id": "Patsi",
+    "link": "https://www.hltv.org/player/19673/patsi"
+  },
+  {
+    "id": "huNter-",
+    "link": "https://www.hltv.org/player/3972/hunter"
+  },
+  {
+    "id": "Ex3rcice",
+    "link": "https://www.hltv.org/player/19739/ex3rcice"
+  },
+  {
+    "id": "Happy",
+    "link": "https://www.hltv.org/player/7429/happy"
+  },
+  {
+    "id": "GuardiaN",
+    "link": "https://www.hltv.org/player/2757/guardian"
+  },
+  {
+    "id": "DemQQ",
+    "link": "https://www.hltv.org/player/19733/demqq"
+  },
+  {
+    "id": "oskar",
+    "link": "https://www.hltv.org/player/798/oskar"
+  },
+  {
+    "id": "COLDYY1",
+    "link": "https://www.hltv.org/player/9083/coldyy1"
+  },
+  {
+    "id": "cajunb",
+    "link": "https://www.hltv.org/player/2469/cajunb"
+  },
+  {
+    "id": "nawwk",
+    "link": "https://www.hltv.org/player/13670/nawwk"
+  },
+  {
+    "id": "GeT_RiGhT",
+    "link": "https://www.hltv.org/player/39/get-right"
+  },
+  {
+    "id": "b1t",
+    "link": "https://www.hltv.org/player/18987/b1t"
+  },
+  {
+    "id": "KRIMZ",
+    "link": "https://www.hltv.org/player/7528/krimz"
+  },
+  {
+    "id": "kennyS",
+    "link": "https://www.hltv.org/player/7167/kennys"
+  },
+  {
+    "id": "decenty",
+    "link": "https://www.hltv.org/player/20183/decenty"
+  },
+  {
+    "id": "NAF",
+    "link": "https://www.hltv.org/player/8520/naf"
+  },
+  {
+    "id": "susp",
+    "link": "https://www.hltv.org/player/21163/susp"
+  },
+  {
+    "id": "biguzera",
+    "link": "https://www.hltv.org/player/18141/biguzera"
+  },
+  {
+    "id": "oSee",
+    "link": "https://www.hltv.org/player/13249/osee"
+  },
+  {
+    "id": "jackasmo",
+    "link": "https://www.hltv.org/player/23414/jackasmo"
+  },
+  {
+    "id": "Zyphon",
+    "link": "https://www.hltv.org/player/20090/zyphon"
+  },
+  {
+    "id": "jks",
+    "link": "https://www.hltv.org/player/4679/jks"
+  },
+  {
+    "id": "nicoodoz",
+    "link": "https://www.hltv.org/player/13602/nicoodoz"
+  },
+  {
+    "id": "Perfecto",
+    "link": "https://www.hltv.org/player/16947/perfecto"
+  },
+  {
+    "id": "pashaBiceps",
+    "link": "https://www.hltv.org/player/317/pashabiceps"
+  },
+  {
+    "id": "dupreeh",
+    "link": "https://www.hltv.org/player/7398/dupreeh"
+  },
+  {
+    "id": "tarik",
+    "link": "https://www.hltv.org/player/8523/tarik"
+  },
+  {
+    "id": "snatchie",
+    "link": "https://www.hltv.org/player/9574/snatchie"
+  },
+  {
+    "id": "hardzao",
+    "link": "https://www.hltv.org/player/16817/hardzao"
+  },
+  {
+    "id": "nexa",
+    "link": "https://www.hltv.org/player/9618/nexa"
+  },
+  {
+    "id": "Kvik",
+    "link": "https://www.hltv.org/player/8459/kvik"
+  },
+  {
+    "id": "saffee",
+    "link": "https://www.hltv.org/player/18835/saffee"
+  },
+  {
+    "id": "hallzerk",
+    "link": "https://www.hltv.org/player/12840/hallzerk"
+  },
+  {
+    "id": "Woro2k",
+    "link": "https://www.hltv.org/player/16885/woro2k"
+  },
+  {
+    "id": "EliGE",
+    "link": "https://www.hltv.org/player/8738/elige"
+  },
+  {
+    "id": "torzsi",
+    "link": "https://www.hltv.org/player/18072/torzsi"
+  },
+  {
+    "id": "allu",
+    "link": "https://www.hltv.org/player/695/allu"
+  },
+  {
+    "id": "Lekr0",
+    "link": "https://www.hltv.org/player/9261/lekr0"
+  },
+  {
+    "id": "DAVEY",
+    "link": "https://www.hltv.org/player/8508/davey"
+  },
+  {
+    "id": "shox",
+    "link": "https://www.hltv.org/player/1225/shox"
+  },
+  {
+    "id": "Wicadia",
+    "link": "https://www.hltv.org/player/21243/wicadia"
+  },
+  {
+    "id": "woxic",
+    "link": "https://www.hltv.org/player/8574/woxic"
+  },
+  {
+    "id": "HEN1",
+    "link": "https://www.hltv.org/player/8565/hen1"
+  },
+  {
+    "id": "bLitz",
+    "link": "https://www.hltv.org/player/20194/blitz"
+  },
+  {
+    "id": "byali",
+    "link": "https://www.hltv.org/player/5386/byali"
+  },
+  {
+    "id": "yuurih",
+    "link": "https://www.hltv.org/player/12553/yuurih"
+  },
+  {
+    "id": "magixx",
+    "link": "https://www.hltv.org/player/18317/magixx"
+  },
+  {
+    "id": "CeRq",
+    "link": "https://www.hltv.org/player/11219/cerq"
+  },
+  {
+    "id": "mou",
+    "link": "https://www.hltv.org/player/964/mou"
+  },
+  {
+    "id": "Edward",
+    "link": "https://www.hltv.org/player/483/edward"
+  },
+  {
+    "id": "Starry",
+    "link": "https://www.hltv.org/player/20254/starry"
+  },
+  {
+    "id": "cadiaN",
+    "link": "https://www.hltv.org/player/7964/cadian"
+  },
+  {
+    "id": "Xyp9x",
+    "link": "https://www.hltv.org/player/4954/xyp9x"
+  },
+  {
+    "id": "mzinho",
+    "link": "https://www.hltv.org/player/21001/mzinho"
+  },
+  {
+    "id": "SKYTTEN",
+    "link": "https://www.hltv.org/player/2398/skytten"
+  },
+  {
+    "id": "HObbit",
+    "link": "https://www.hltv.org/player/8528/hobbit"
+  },
+  {
+    "id": "EXR",
+    "link": "https://www.hltv.org/player/2881/exr"
+  },
+  {
+    "id": "acoR",
+    "link": "https://www.hltv.org/player/10330/acor"
+  },
+  {
+    "id": "fer",
+    "link": "https://www.hltv.org/player/8564/fer"
+  },
+  {
+    "id": "xccurate",
+    "link": "https://www.hltv.org/player/10263/xccurate"
+  },
+  {
+    "id": "YEKINDAR",
+    "link": "https://www.hltv.org/player/13915/yekindar"
+  },
+  {
+    "id": "skullz",
+    "link": "https://www.hltv.org/player/18676/skullz"
+  },
+  {
+    "id": "n1ssim",
+    "link": "https://www.hltv.org/player/19686/n1ssim"
+  },
+  {
+    "id": "hampus",
+    "link": "https://www.hltv.org/player/9766/hampus"
+  },
+  {
+    "id": "vice",
+    "link": "https://www.hltv.org/player/9260/vice"
+  },
+  {
+    "id": "Ax1Le",
+    "link": "https://www.hltv.org/player/16555/ax1le"
+  },
+  {
+    "id": "kaze",
+    "link": "https://www.hltv.org/player/8950/kaze"
+  },
+  {
+    "id": "JW",
+    "link": "https://www.hltv.org/player/3849/jw"
+  },
+  {
+    "id": "nqz",
+    "link": "https://www.hltv.org/player/19694/nqz"
+  },
+  {
+    "id": "jL",
+    "link": "https://www.hltv.org/player/19206/jl"
+  },
+  {
+    "id": "dgt",
+    "link": "https://www.hltv.org/player/14736/dgt"
+  },
+  {
+    "id": "DANK1NG",
+    "link": "https://www.hltv.org/player/16207/dank1ng"
+  },
+  {
+    "id": "iM",
+    "link": "https://www.hltv.org/player/14759/im"
+  },
+  {
+    "id": "SunPayus",
+    "link": "https://www.hltv.org/player/19164/sunpayus"
+  },
+  {
+    "id": "friberg",
+    "link": "https://www.hltv.org/player/7148/friberg"
+  },
+  {
+    "id": "jkaem",
+    "link": "https://www.hltv.org/player/8248/jkaem"
+  },
+  {
+    "id": "buster",
+    "link": "https://www.hltv.org/player/11942/buster"
+  },
+  {
+    "id": "Senzu",
+    "link": "https://www.hltv.org/player/20903/senzu"
+  },
+  {
+    "id": "seized",
+    "link": "https://www.hltv.org/player/3347/seized"
+  },
+  {
+    "id": "Brollan",
+    "link": "https://www.hltv.org/player/13666/brollan"
+  },
+  {
+    "id": "FalleN",
+    "link": "https://www.hltv.org/player/2023/fallen"
+  },
+  {
+    "id": "k0nfig",
+    "link": "https://www.hltv.org/player/9078/k0nfig"
+  },
+  {
+    "id": "BnTeT",
+    "link": "https://www.hltv.org/player/7131/bntet"
+  },
+  {
+    "id": "Calyx",
+    "link": "https://www.hltv.org/player/8575/calyx"
+  },
+  {
+    "id": "REZ",
+    "link": "https://www.hltv.org/player/9278/rez"
+  },
+  {
+    "id": "Ramz1kBO$$",
+    "link": "https://www.hltv.org/player/11842/ramz1kbo"
+  },
+  {
+    "id": "SEMPHIS",
+    "link": "https://www.hltv.org/player/1915/semphis"
+  },
+  {
+    "id": "ANDROID",
+    "link": "https://www.hltv.org/player/9043/android"
+  },
+  {
+    "id": "TaZ",
+    "link": "https://www.hltv.org/player/161/taz"
+  },
+  {
+    "id": "jabbi",
+    "link": "https://www.hltv.org/player/17956/jabbi"
+  },
+  {
+    "id": "Freeman",
+    "link": "https://www.hltv.org/player/10774/freeman"
+  },
+  {
+    "id": "nin9",
+    "link": "https://www.hltv.org/player/15072/nin9"
+  },
+  {
+    "id": "n0rb3r7",
+    "link": "https://www.hltv.org/player/16612/n0rb3r7"
+  },
+  {
+    "id": "mezii",
+    "link": "https://www.hltv.org/player/18462/mezii"
+  },
+  {
+    "id": "flameZ",
+    "link": "https://www.hltv.org/player/16693/flamez"
+  },
+  {
+    "id": "NBK-",
+    "link": "https://www.hltv.org/player/7168/nbk"
+  },
+  {
+    "id": "S1ren",
+    "link": "https://www.hltv.org/player/18506/s1ren"
+  },
+  {
+    "id": "kioShiMa",
+    "link": "https://www.hltv.org/player/4959/kioshima"
+  },
+  {
+    "id": "es3tag",
+    "link": "https://www.hltv.org/player/8611/es3tag"
+  },
+  {
+    "id": "CYPHER",
+    "link": "https://www.hltv.org/player/18571/cypher"
+  },
+  {
+    "id": "tabseN",
+    "link": "https://www.hltv.org/player/5794/tabsen"
+  },
+  {
+    "id": "sdy",
+    "link": "https://www.hltv.org/player/12731/sdy"
+  },
+  {
+    "id": "amanek",
+    "link": "https://www.hltv.org/player/9616/amanek"
+  },
+  {
+    "id": "exit",
+    "link": "https://www.hltv.org/player/11154/exit"
+  },
+  {
+    "id": "apEX",
+    "link": "https://www.hltv.org/player/7322/apex"
+  },
+  {
+    "id": "AdreN",
+    "link": "https://www.hltv.org/player/334/adren"
+  },
+  {
+    "id": "kraghen",
+    "link": "https://www.hltv.org/player/20300/kraghen"
+  },
+  {
+    "id": "NEOFRAG",
+    "link": "https://www.hltv.org/player/15821/neofrag"
+  },
+  {
+    "id": "jdm64",
+    "link": "https://www.hltv.org/player/8346/jdm64"
+  },
+  {
+    "id": "xfl0ud",
+    "link": "https://www.hltv.org/player/19187/xfl0ud"
+  },
+  {
+    "id": "kauez",
+    "link": "https://www.hltv.org/player/20085/kauez"
+  },
+  {
+    "id": "RUBINO",
+    "link": "https://www.hltv.org/player/1485/rubino"
+  },
+  {
+    "id": "Lucky",
+    "link": "https://www.hltv.org/player/13843/lucky"
+  },
+  {
+    "id": "Queenix",
+    "link": "https://www.hltv.org/player/13749/queenix"
+  },
+  {
+    "id": "Skadoodle",
+    "link": "https://www.hltv.org/player/7440/skadoodle"
+  },
+  {
+    "id": "gade",
+    "link": "https://www.hltv.org/player/8875/gade"
+  },
+  {
+    "id": "boltz",
+    "link": "https://www.hltv.org/player/8568/boltz"
+  },
+  {
+    "id": "Gratisfaction",
+    "link": "https://www.hltv.org/player/9686/gratisfaction"
+  },
+  {
+    "id": "dycha",
+    "link": "https://www.hltv.org/player/16080/dycha"
+  },
+  {
+    "id": "RUSH",
+    "link": "https://www.hltv.org/player/7805/rush"
+  },
+  {
+    "id": "berg",
+    "link": "https://www.hltv.org/player/7442/berg"
+  },
+  {
+    "id": "b4rtiN",
+    "link": "https://www.hltv.org/player/17585/b4rtin"
+  },
+  {
+    "id": "Maikelele",
+    "link": "https://www.hltv.org/player/1045/maikelele"
+  },
+  {
+    "id": "pyth",
+    "link": "https://www.hltv.org/player/7527/pyth"
+  },
+  {
+    "id": "sergej",
+    "link": "https://www.hltv.org/player/11916/sergej"
+  },
+  {
+    "id": "LUCAS1",
+    "link": "https://www.hltv.org/player/8566/lucas1"
+  },
+  {
+    "id": "k1to",
+    "link": "https://www.hltv.org/player/12781/k1to"
+  },
+  {
+    "id": "Attacker",
+    "link": "https://www.hltv.org/player/8552/attacker"
+  },
+  {
+    "id": "Dosia",
+    "link": "https://www.hltv.org/player/735/dosia"
+  },
+  {
+    "id": "isak",
+    "link": "https://www.hltv.org/player/17937/isak"
+  },
+  {
+    "id": "Hiko",
+    "link": "https://www.hltv.org/player/2644/hiko"
+  },
+  {
+    "id": "rain",
+    "link": "https://www.hltv.org/player/8183/rain"
+  },
+  {
+    "id": "Xizt",
+    "link": "https://www.hltv.org/player/884/xizt"
+  },
+  {
+    "id": "juanflatroo",
+    "link": "https://www.hltv.org/player/17147/juanflatroo"
+  },
+  {
+    "id": "dennis",
+    "link": "https://www.hltv.org/player/1146/dennis"
+  },
+  {
+    "id": "NEO",
+    "link": "https://www.hltv.org/player/165/neo"
+  },
+  {
+    "id": "Lucaozy",
+    "link": "https://www.hltv.org/player/18717/lucaozy"
+  },
+  {
+    "id": "xertioN",
+    "link": "https://www.hltv.org/player/20312/xertion"
+  },
+  {
+    "id": "aumaN",
+    "link": "https://www.hltv.org/player/8604/auman"
+  },
+  {
+    "id": "aizy",
+    "link": "https://www.hltv.org/player/8095/aizy"
+  },
+  {
+    "id": "raalz",
+    "link": "https://www.hltv.org/player/2898/raalz"
+  },
+  {
+    "id": "Maniac",
+    "link": "https://www.hltv.org/player/823/maniac"
+  },
+  {
+    "id": "fnx",
+    "link": "https://www.hltv.org/player/557/fnx"
+  },
+  {
+    "id": "shalfey",
+    "link": "https://www.hltv.org/player/17011/shalfey"
+  },
+  {
+    "id": "MATYS",
+    "link": "https://www.hltv.org/player/21062/matys"
+  },
+  {
+    "id": "Boombl4",
+    "link": "https://www.hltv.org/player/11840/boombl4"
+  },
+  {
+    "id": "FL1T",
+    "link": "https://www.hltv.org/player/12732/fl1t"
+  },
+  {
+    "id": "Krimbo",
+    "link": "https://www.hltv.org/player/19899/krimbo"
+  },
+  {
+    "id": "crush",
+    "link": "https://www.hltv.org/player/9348/crush"
+  },
+  {
+    "id": "rigoN",
+    "link": "https://www.hltv.org/player/12708/rigon"
+  },
+  {
+    "id": "xseveN",
+    "link": "https://www.hltv.org/player/7248/xseven"
+  },
+  {
+    "id": "snow",
+    "link": "https://www.hltv.org/player/20171/snow"
+  },
+  {
+    "id": "AZR",
+    "link": "https://www.hltv.org/player/8082/azr"
+  },
+  {
+    "id": "volt",
+    "link": "https://www.hltv.org/player/20358/volt"
+  },
+  {
+    "id": "ShahZaM",
+    "link": "https://www.hltv.org/player/7810/shahzam"
+  },
+  {
+    "id": "Hyper",
+    "link": "https://www.hltv.org/player/7368/hyper"
+  },
+  {
+    "id": "EspiranTo",
+    "link": "https://www.hltv.org/player/12030/espiranto"
+  },
+  {
+    "id": "neaLaN",
+    "link": "https://www.hltv.org/player/11940/nealan"
+  },
+  {
+    "id": "JBa",
+    "link": "https://www.hltv.org/player/21665/jba"
+  },
+  {
+    "id": "markeloff",
+    "link": "https://www.hltv.org/player/338/markeloff"
+  },
+  {
+    "id": "nafany",
+    "link": "https://www.hltv.org/player/16921/nafany"
+  },
+  {
+    "id": "chrisJ",
+    "link": "https://www.hltv.org/player/2730/chrisj"
+  },
+  {
+    "id": "gxx-",
+    "link": "https://www.hltv.org/player/19725/gxx"
+  },
+  {
+    "id": "malbsMd",
+    "link": "https://www.hltv.org/player/11617/malbsmd"
+  },
+  {
+    "id": "adreN",
+    "link": "https://www.hltv.org/player/7433/adren"
+  },
+  {
+    "id": "Techno",
+    "link": "https://www.hltv.org/player/20275/techno"
+  },
+  {
+    "id": "jnt",
+    "link": "https://www.hltv.org/player/11747/jnt"
+  },
+  {
+    "id": "Shara",
+    "link": "https://www.hltv.org/player/1866/shara"
+  },
+  {
+    "id": "roeJ",
+    "link": "https://www.hltv.org/player/14419/roej"
+  },
+  {
+    "id": "mir",
+    "link": "https://www.hltv.org/player/8789/mir"
+  },
+  {
+    "id": "devoduvek",
+    "link": "https://www.hltv.org/player/10569/devoduvek"
+  },
+  {
+    "id": "gla1ve",
+    "link": "https://www.hltv.org/player/7412/gla1ve"
+  },
+  {
+    "id": "Qikert",
+    "link": "https://www.hltv.org/player/13239/qikert"
+  },
+  {
+    "id": "FL4MUS",
+    "link": "https://www.hltv.org/player/20994/fl4mus"
+  },
+  {
+    "id": "Goofy",
+    "link": "https://www.hltv.org/player/15428/goofy"
+  },
+  {
+    "id": "RpK",
+    "link": "https://www.hltv.org/player/7169/rpk"
+  },
+  {
+    "id": "twist",
+    "link": "https://www.hltv.org/player/7443/twist"
+  },
+  {
+    "id": "Stewie2K",
+    "link": "https://www.hltv.org/player/8797/stewie2k"
+  },
+  {
+    "id": "Nodios",
+    "link": "https://www.hltv.org/player/8891/nodios"
+  },
+  {
+    "id": "fxy0",
+    "link": "https://www.hltv.org/player/7708/fxy0"
+  },
+  {
+    "id": "zehN",
+    "link": "https://www.hltv.org/player/1378/zehn"
+  },
+  {
+    "id": "nex",
+    "link": "https://www.hltv.org/player/7256/nex"
+  },
+  {
+    "id": "alex",
+    "link": "https://www.hltv.org/player/8371/alex"
+  },
+  {
+    "id": "fox",
+    "link": "https://www.hltv.org/player/629/fox"
+  },
+  {
+    "id": "HS",
+    "link": "https://www.hltv.org/player/8994/hs"
+  },
+  {
+    "id": "Maden",
+    "link": "https://www.hltv.org/player/11777/maden"
+  },
+  {
+    "id": "KQLY",
+    "link": "https://www.hltv.org/player/7833/kqly"
+  },
+  {
+    "id": "jR",
+    "link": "https://www.hltv.org/player/8786/jr"
+  },
+  {
+    "id": "t0rick",
+    "link": "https://www.hltv.org/player/9382/t0rick"
+  },
+  {
+    "id": "sjuush",
+    "link": "https://www.hltv.org/player/14148/sjuush"
+  },
+  {
+    "id": "ScreaM",
+    "link": "https://www.hltv.org/player/7390/scream"
+  },
+  {
+    "id": "Troubley",
+    "link": "https://www.hltv.org/player/128/troubley"
+  },
+  {
+    "id": "zont1x",
+    "link": "https://www.hltv.org/player/20423/zont1x"
+  },
+  {
+    "id": "phzy",
+    "link": "https://www.hltv.org/player/16726/phzy"
+  },
+  {
+    "id": "kinqie",
+    "link": "https://www.hltv.org/player/3459/kinqie"
+  },
+  {
+    "id": "misutaaa",
+    "link": "https://www.hltv.org/player/14176/misutaaa"
+  },
+  {
+    "id": "stanislaw",
+    "link": "https://www.hltv.org/player/8507/stanislaw"
+  },
+  {
+    "id": "kyxsan",
+    "link": "https://www.hltv.org/player/19677/kyxsan"
+  },
+  {
+    "id": "Forester",
+    "link": "https://www.hltv.org/player/13982/forester"
+  },
+  {
+    "id": "max",
+    "link": "https://www.hltv.org/player/12092/max"
+  },
+  {
+    "id": "TeSeS",
+    "link": "https://www.hltv.org/player/12018/teses"
+  },
+  {
+    "id": "Kylar",
+    "link": "https://www.hltv.org/player/19114/kylar"
+  },
+  {
+    "id": "valde",
+    "link": "https://www.hltv.org/player/9031/valde"
+  },
+  {
+    "id": "SicK",
+    "link": "https://www.hltv.org/player/9258/sick"
+  },
+  {
+    "id": "ChildKing",
+    "link": "https://www.hltv.org/player/19681/childking"
+  },
+  {
+    "id": "yay",
+    "link": "https://www.hltv.org/player/8513/yay"
+  },
+  {
+    "id": "bondik",
+    "link": "https://www.hltv.org/player/2131/bondik"
+  },
+  {
+    "id": "Aerial",
+    "link": "https://www.hltv.org/player/4076/aerial"
+  },
+  {
+    "id": "ALEX",
+    "link": "https://www.hltv.org/player/8184/alex"
+  },
+  {
+    "id": "MICHU",
+    "link": "https://www.hltv.org/player/7356/michu"
+  },
+  {
+    "id": "Norwi",
+    "link": "https://www.hltv.org/player/19882/norwi"
+  },
+  {
+    "id": "rallen",
+    "link": "https://www.hltv.org/player/5388/rallen"
+  },
+  {
+    "id": "Zeus",
+    "link": "https://www.hltv.org/player/484/zeus"
+  },
+  {
+    "id": "WorldEdit",
+    "link": "https://www.hltv.org/player/7403/worldedit"
+  },
+  {
+    "id": "DD",
+    "link": "https://www.hltv.org/player/7026/dd"
+  },
+  {
+    "id": "erkaSt",
+    "link": "https://www.hltv.org/player/11141/erkast"
+  },
+  {
+    "id": "draken",
+    "link": "https://www.hltv.org/player/9255/draken"
+  },
+  {
+    "id": "chelo",
+    "link": "https://www.hltv.org/player/10566/chelo"
+  },
+  {
+    "id": "EmiliaQAQ",
+    "link": "https://www.hltv.org/player/22922/emiliaqaq"
+  },
+  {
+    "id": "nitr0",
+    "link": "https://www.hltv.org/player/7687/nitr0"
+  },
+  {
+    "id": "s1n",
+    "link": "https://www.hltv.org/player/20104/s1n"
+  },
+  {
+    "id": "JUGi",
+    "link": "https://www.hltv.org/player/8783/jugi"
+  },
+  {
+    "id": "Rickeh",
+    "link": "https://www.hltv.org/player/8745/rickeh"
+  },
+  {
+    "id": "LEGIJA",
+    "link": "https://www.hltv.org/player/3252/legija"
+  },
+  {
+    "id": "JACKZ",
+    "link": "https://www.hltv.org/player/284/jackz"
+  },
+  {
+    "id": "latto",
+    "link": "https://www.hltv.org/player/19045/latto"
+  },
+  {
+    "id": "chopper",
+    "link": "https://www.hltv.org/player/7716/chopper"
+  },
+  {
+    "id": "sk0R",
+    "link": "https://www.hltv.org/player/18638/sk0r"
+  },
+  {
+    "id": "disturbed",
+    "link": "https://www.hltv.org/player/7235/disturbed"
+  },
+  {
+    "id": "kUcheR",
+    "link": "https://www.hltv.org/player/302/kucher"
+  },
+  {
+    "id": "MAJ3R",
+    "link": "https://www.hltv.org/player/150/maj3r"
+  },
+  {
+    "id": "doto",
+    "link": "https://www.hltv.org/player/9819/doto"
+  },
+  {
+    "id": "FeTiSh",
+    "link": "https://www.hltv.org/player/7582/fetish"
+  },
+  {
+    "id": "SANJI",
+    "link": "https://www.hltv.org/player/11716/sanji"
+  },
+  {
+    "id": "DeathZz",
+    "link": "https://www.hltv.org/player/13093/deathzz"
+  },
+  {
+    "id": "arrozdoce",
+    "link": "https://www.hltv.org/player/20465/arrozdoce"
+  },
+  {
+    "id": "SmithZz",
+    "link": "https://www.hltv.org/player/7170/smithzz"
+  },
+  {
+    "id": "kRaSnaL",
+    "link": "https://www.hltv.org/player/20282/krasnal"
+  },
+  {
+    "id": "hades",
+    "link": "https://www.hltv.org/player/16848/hades"
+  },
+  {
+    "id": "desi",
+    "link": "https://www.hltv.org/player/8350/desi"
+  },
+  {
+    "id": "PKL",
+    "link": "https://www.hltv.org/player/6593/pkl"
+  },
+  {
+    "id": "story",
+    "link": "https://www.hltv.org/player/20462/story"
+  },
+  {
+    "id": "Liazz",
+    "link": "https://www.hltv.org/player/10588/liazz"
+  },
+  {
+    "id": "almazer",
+    "link": "https://www.hltv.org/player/11654/almazer"
+  },
+  {
+    "id": "history",
+    "link": "https://www.hltv.org/player/20939/history"
+  },
+  {
+    "id": "siuhy",
+    "link": "https://www.hltv.org/player/16820/siuhy"
+  },
+  {
+    "id": "TACO",
+    "link": "https://www.hltv.org/player/9217/taco"
+  },
+  {
+    "id": "STYKO",
+    "link": "https://www.hltv.org/player/6904/styko"
+  },
+  {
+    "id": "VINI",
+    "link": "https://www.hltv.org/player/12822/vini"
+  },
+  {
+    "id": "mopoz",
+    "link": "https://www.hltv.org/player/9254/mopoz"
+  },
+  {
+    "id": "lux",
+    "link": "https://www.hltv.org/player/20563/lux"
+  },
+  {
+    "id": "Staehr",
+    "link": "https://www.hltv.org/player/20304/staehr"
+  },
+  {
+    "id": "steel",
+    "link": "https://www.hltv.org/player/7253/steel"
+  },
+  {
+    "id": "Dimaoneshot",
+    "link": "https://www.hltv.org/player/8125/dimaoneshot"
+  },
+  {
+    "id": "aliStair",
+    "link": "https://www.hltv.org/player/11139/alistair"
+  },
+  {
+    "id": "NickelBack",
+    "link": "https://www.hltv.org/player/11498/nickelback"
+  },
+  {
+    "id": "HeavyGod",
+    "link": "https://www.hltv.org/player/20447/heavygod"
+  },
+  {
+    "id": "Krad",
+    "link": "https://www.hltv.org/player/12027/krad"
+  },
+  {
+    "id": "sinnopsyy",
+    "link": "https://www.hltv.org/player/18120/sinnopsyy"
+  },
+  {
+    "id": "L1haNg",
+    "link": "https://www.hltv.org/player/21825/l1hang"
+  },
+  {
+    "id": "vsm",
+    "link": "https://www.hltv.org/player/16816/vsm"
+  },
+  {
+    "id": "Aleksib",
+    "link": "https://www.hltv.org/player/9816/aleksib"
+  },
+  {
+    "id": "salazar",
+    "link": "https://www.hltv.org/player/21379/salazar"
+  },
+  {
+    "id": "BENDJI",
+    "link": "https://www.hltv.org/player/8396/bendji"
+  },
+  {
+    "id": "zende",
+    "link": "https://www.hltv.org/player/5045/zende"
+  },
+  {
+    "id": "bodyy",
+    "link": "https://www.hltv.org/player/8374/bodyy"
+  },
+  {
+    "id": "wayLander",
+    "link": "https://www.hltv.org/player/7796/waylander"
+  },
+  {
+    "id": "s-chilla",
+    "link": "https://www.hltv.org/player/23413/s-chilla"
+  },
+  {
+    "id": "innocent",
+    "link": "https://www.hltv.org/player/3669/innocent"
+  },
+  {
+    "id": "mixwell",
+    "link": "https://www.hltv.org/player/8370/mixwell"
+  },
+  {
+    "id": "dumau",
+    "link": "https://www.hltv.org/player/15698/dumau"
+  },
+  {
+    "id": "n0thing",
+    "link": "https://www.hltv.org/player/203/n0thing"
+  },
+  {
+    "id": "Jee",
+    "link": "https://www.hltv.org/player/20702/jee"
+  },
+  {
+    "id": "dexter",
+    "link": "https://www.hltv.org/player/9115/dexter"
+  },
+  {
+    "id": "FASHR",
+    "link": "https://www.hltv.org/player/11954/fashr"
+  },
+  {
+    "id": "kRYSTAL",
+    "link": "https://www.hltv.org/player/7218/krystal"
+  },
+  {
+    "id": "adamS",
+    "link": "https://www.hltv.org/player/19698/adams"
+  },
+  {
+    "id": "Graviti",
+    "link": "https://www.hltv.org/player/21969/graviti"
+  },
+  {
+    "id": "sterling",
+    "link": "https://www.hltv.org/player/12591/sterling"
+  },
+  {
+    "id": "zhokiNg",
+    "link": "https://www.hltv.org/player/8601/zhoking"
+  },
+  {
+    "id": "hazed",
+    "link": "https://www.hltv.org/player/8347/hazed"
+  },
+  {
+    "id": "USTILO",
+    "link": "https://www.hltv.org/player/8771/ustilo"
+  },
+  {
+    "id": "Nifty",
+    "link": "https://www.hltv.org/player/9069/nifty"
+  },
+  {
+    "id": "kabal",
+    "link": "https://www.hltv.org/player/10870/kabal"
+  },
+  {
+    "id": "JDC",
+    "link": "https://www.hltv.org/player/14929/jdc"
+  },
+  {
+    "id": "denis",
+    "link": "https://www.hltv.org/player/7511/denis"
+  },
+  {
+    "id": "oBo",
+    "link": "https://www.hltv.org/player/14614/obo"
+  },
+  {
+    "id": "zEVES",
+    "link": "https://www.hltv.org/player/3018/zeves"
+  },
+  {
+    "id": "shroud",
+    "link": "https://www.hltv.org/player/8349/shroud"
+  },
+  {
+    "id": "noway",
+    "link": "https://www.hltv.org/player/22564/noway"
+  },
+  {
+    "id": "Delpan",
+    "link": "https://www.hltv.org/player/438/delpan"
+  },
+  {
+    "id": "felps",
+    "link": "https://www.hltv.org/player/9219/felps"
+  },
+  {
+    "id": "GMX",
+    "link": "https://www.hltv.org/player/7565/gmx"
+  },
+  {
+    "id": "z4kr",
+    "link": "https://www.hltv.org/player/18744/z4kr"
+  },
+  {
+    "id": "Spiidi",
+    "link": "https://www.hltv.org/player/7499/spiidi"
+  },
+  {
+    "id": "GruBy",
+    "link": "https://www.hltv.org/player/8570/gruby"
+  },
+  {
+    "id": "waterfaLLZ",
+    "link": "https://www.hltv.org/player/8727/waterfallz"
+  },
+  {
+    "id": "keev",
+    "link": "https://www.hltv.org/player/5799/keev"
+  },
+  {
+    "id": "spaze",
+    "link": "https://www.hltv.org/player/8345/spaze"
+  },
+  {
+    "id": "malta",
+    "link": "https://www.hltv.org/player/11485/malta"
+  },
+  {
+    "id": "stadodo",
+    "link": "https://www.hltv.org/player/11205/stadodo"
+  },
+  {
+    "id": "Sf",
+    "link": "https://www.hltv.org/player/7591/sf"
+  },
+  {
+    "id": "Lack1",
+    "link": "https://www.hltv.org/player/13240/lack1"
+  },
+  {
+    "id": "Grim",
+    "link": "https://www.hltv.org/player/13578/grim"
+  },
+  {
+    "id": "SZPERO",
+    "link": "https://www.hltv.org/player/973/szpero"
+  },
+  {
+    "id": "Keoz",
+    "link": "https://www.hltv.org/player/15117/keoz"
+  },
+  {
+    "id": "loWel",
+    "link": "https://www.hltv.org/player/3997/lowel"
+  },
+  {
+    "id": "FNS",
+    "link": "https://www.hltv.org/player/6451/fns"
+  },
+  {
+    "id": "karrigan",
+    "link": "https://www.hltv.org/player/429/karrigan"
+  },
+  {
+    "id": "DavCost",
+    "link": "https://www.hltv.org/player/8124/davcost"
+  },
+  {
+    "id": "somebody",
+    "link": "https://www.hltv.org/player/8605/somebody"
+  },
+  {
+    "id": "jmqa",
+    "link": "https://www.hltv.org/player/8368/jmqa"
+  },
+  {
+    "id": "Sonic",
+    "link": "https://www.hltv.org/player/8711/sonic"
+  },
+  {
+    "id": "refrezh",
+    "link": "https://www.hltv.org/player/10610/refrezh"
+  },
+  {
+    "id": "dephh",
+    "link": "https://www.hltv.org/player/7873/dephh"
+  },
+  {
+    "id": "Patti",
+    "link": "https://www.hltv.org/player/13077/patti"
+  },
+  {
+    "id": "DickStacy",
+    "link": "https://www.hltv.org/player/12876/dickstacy"
+  },
+  {
+    "id": "NEKIZ",
+    "link": "https://www.hltv.org/player/9482/nekiz"
+  },
+  {
+    "id": "zevy",
+    "link": "https://www.hltv.org/player/19692/zevy"
+  },
+  {
+    "id": "speed4k",
+    "link": "https://www.hltv.org/player/13155/speed4k"
+  },
+  {
+    "id": "Pimp",
+    "link": "https://www.hltv.org/player/7154/pimp"
+  },
+  {
+    "id": "Fifflaren",
+    "link": "https://www.hltv.org/player/7147/fifflaren"
+  },
+  {
+    "id": "interz",
+    "link": "https://www.hltv.org/player/15071/interz"
+  },
+  {
+    "id": "INS",
+    "link": "https://www.hltv.org/player/11140/ins"
+  },
+  {
+    "id": "Annihilation",
+    "link": "https://www.hltv.org/player/18689/annihilation"
+  },
+  {
+    "id": "AcilioN",
+    "link": "https://www.hltv.org/player/8151/acilion"
+  },
+  {
+    "id": "Tauson",
+    "link": "https://www.hltv.org/player/20301/tauson"
+  },
+  {
+    "id": "DaZeD",
+    "link": "https://www.hltv.org/player/7347/dazed"
+  },
+  {
+    "id": "mouz",
+    "link": "https://www.hltv.org/player/8323/mouz"
+  },
+  {
+    "id": "arT",
+    "link": "https://www.hltv.org/player/12521/art"
+  },
+  {
+    "id": "drop",
+    "link": "https://www.hltv.org/player/19750/drop"
+  },
+  {
+    "id": "dimasick",
+    "link": "https://www.hltv.org/player/13780/dimasick"
+  },
+  {
+    "id": "SLOWLY",
+    "link": "https://www.hltv.org/player/15683/slowly"
+  },
+  {
+    "id": "FaNg",
+    "link": "https://www.hltv.org/player/17372/fang"
+  },
+  {
+    "id": "LOVEYY",
+    "link": "https://www.hltv.org/player/8957/loveyy"
+  },
+  {
+    "id": "svyat",
+    "link": "https://www.hltv.org/player/12016/svyat"
+  },
+  {
+    "id": "pronax",
+    "link": "https://www.hltv.org/player/41/pronax"
+  },
+  {
+    "id": "starix",
+    "link": "https://www.hltv.org/player/303/starix"
+  },
+  {
+    "id": "cype",
+    "link": "https://www.hltv.org/player/7445/cype"
+  },
+  {
+    "id": "peet",
+    "link": "https://www.hltv.org/player/7369/peet"
+  },
+  {
+    "id": "Summer",
+    "link": "https://www.hltv.org/player/7028/summer"
+  },
+  {
+    "id": "gob b",
+    "link": "https://www.hltv.org/player/136/gob-b"
+  },
+  {
+    "id": "Westmelon",
+    "link": "https://www.hltv.org/player/16551/westmelon"
+  },
+  {
+    "id": "ableJ",
+    "link": "https://www.hltv.org/player/16770/ablej"
+  },
+  {
+    "id": "smF",
+    "link": "https://www.hltv.org/player/7414/smf"
+  },
+  {
+    "id": "r3salt",
+    "link": "https://www.hltv.org/player/20709/r3salt"
+  },
+  {
+    "id": "Devilwalk",
+    "link": "https://www.hltv.org/player/7378/devilwalk"
+  },
+  {
+    "id": "F1KU",
+    "link": "https://www.hltv.org/player/19044/f1ku"
+  },
+  {
+    "id": "Snappi",
+    "link": "https://www.hltv.org/player/922/snappi"
+  },
+  {
+    "id": "nukkye",
+    "link": "https://www.hltv.org/player/13679/nukkye"
+  },
+  {
+    "id": "roman",
+    "link": "https://www.hltv.org/player/2241/roman"
+  },
+  {
+    "id": "freakazoid",
+    "link": "https://www.hltv.org/player/7808/freakazoid"
+  },
+  {
+    "id": "fitch",
+    "link": "https://www.hltv.org/player/10052/fitch"
+  },
+  {
+    "id": "Zellsis",
+    "link": "https://www.hltv.org/player/13188/zellsis"
+  },
+  {
+    "id": "TRAVIS",
+    "link": "https://www.hltv.org/player/16948/travis"
+  },
+  {
+    "id": "sense",
+    "link": "https://www.hltv.org/player/17450/sense"
+  },
+  {
+    "id": "try",
+    "link": "https://www.hltv.org/player/19869/try"
+  },
+  {
+    "id": "Zero",
+    "link": "https://www.hltv.org/player/8413/zero"
+  },
+  {
+    "id": "tonyblack",
+    "link": "https://www.hltv.org/player/1950/tonyblack"
+  },
+  {
+    "id": "floppy",
+    "link": "https://www.hltv.org/player/12713/floppy"
+  },
+  {
+    "id": "hooch",
+    "link": "https://www.hltv.org/player/499/hooch"
+  },
+  {
+    "id": "Golden",
+    "link": "https://www.hltv.org/player/11110/golden"
+  },
+  {
+    "id": "tiziaN",
+    "link": "https://www.hltv.org/player/5796/tizian"
+  },
+  {
+    "id": "FugLy",
+    "link": "https://www.hltv.org/player/8522/fugly"
+  },
+  {
+    "id": "Havoc",
+    "link": "https://www.hltv.org/player/8083/havoc"
+  },
+  {
+    "id": "Vexite",
+    "link": "https://www.hltv.org/player/17384/vexite"
+  },
+  {
+    "id": "Kyojin",
+    "link": "https://www.hltv.org/player/19672/kyojin"
+  },
+  {
+    "id": "disco doplan",
+    "link": "https://www.hltv.org/player/9256/disco-doplan"
+  },
+  {
+    "id": "Plopski",
+    "link": "https://www.hltv.org/player/14218/plopski"
+  },
+  {
+    "id": "seang@res",
+    "link": "https://www.hltv.org/player/1916/seangres"
+  },
+  {
+    "id": "topguN",
+    "link": "https://www.hltv.org/player/8086/topgun"
+  },
+  {
+    "id": "ANGE1",
+    "link": "https://www.hltv.org/player/339/ange1"
+  },
+  {
+    "id": "reltuC",
+    "link": "https://www.hltv.org/player/8137/reltuc"
+  },
+  {
+    "id": "KHRN",
+    "link": "https://www.hltv.org/player/971/khrn"
+  },
+  {
+    "id": "Thomas",
+    "link": "https://www.hltv.org/player/13018/thomas"
+  },
+  {
+    "id": "ceh9",
+    "link": "https://www.hltv.org/player/301/ceh9"
+  },
+  {
+    "id": "niko",
+    "link": "https://www.hltv.org/player/10264/niko"
+  },
+  {
+    "id": "KrizzeN",
+    "link": "https://www.hltv.org/player/12161/krizzen"
+  },
+  {
+    "id": "Farlig",
+    "link": "https://www.hltv.org/player/13300/farlig"
+  },
+  {
+    "id": "balblna",
+    "link": "https://www.hltv.org/player/8294/balblna"
+  },
+  {
+    "id": "CacaNito",
+    "link": "https://www.hltv.org/player/18790/cacanito"
+  },
+  {
+    "id": "ewjerkz",
+    "link": "https://www.hltv.org/player/20464/ewjerkz"
+  },
+  {
+    "id": "dav1deuS",
+    "link": "https://www.hltv.org/player/18865/dav1deus"
+  },
+  {
+    "id": "anger",
+    "link": "https://www.hltv.org/player/7438/anger"
+  },
+  {
+    "id": "Ex6TenZ",
+    "link": "https://www.hltv.org/player/7166/ex6tenz"
+  },
+  {
+    "id": "zeRRoFIX",
+    "link": "https://www.hltv.org/player/23415/zerrofix"
+  },
+  {
+    "id": "MUTiRiS",
+    "link": "https://www.hltv.org/player/630/mutiris"
+  },
+  {
+    "id": "HooXi",
+    "link": "https://www.hltv.org/player/10096/hooxi"
+  },
+  {
+    "id": "ngiN",
+    "link": "https://www.hltv.org/player/9857/ngin"
+  },
+  {
+    "id": "imoRR",
+    "link": "https://www.hltv.org/player/15835/imorr"
+  },
+  {
+    "id": "fel1x",
+    "link": "https://www.hltv.org/player/7323/fel1x"
+  },
+  {
+    "id": "SENER1",
+    "link": "https://www.hltv.org/player/15778/sener1"
+  },
+  {
+    "id": "lauNX",
+    "link": "https://www.hltv.org/player/20761/launx"
+  },
+  {
+    "id": "ptr",
+    "link": "https://www.hltv.org/player/8707/ptr"
+  },
+  {
+    "id": "Sico",
+    "link": "https://www.hltv.org/player/9102/sico"
+  },
+  {
+    "id": "pancc",
+    "link": "https://www.hltv.org/player/16314/pancc"
+  },
+  {
+    "id": "Jerry",
+    "link": "https://www.hltv.org/player/13157/jerry"
+  },
+  {
+    "id": "hutji",
+    "link": "https://www.hltv.org/player/8790/hutji"
+  },
+  {
+    "id": "Friis",
+    "link": "https://www.hltv.org/player/7/friis"
+  },
+  {
+    "id": "Maka",
+    "link": "https://www.hltv.org/player/13138/maka"
+  },
+  {
+    "id": "Uzzziii",
+    "link": "https://www.hltv.org/player/7391/uzzziii"
+  },
+  {
+    "id": "JT",
+    "link": "https://www.hltv.org/player/11630/jt"
+  },
+  {
+    "id": "emagine",
+    "link": "https://www.hltv.org/player/8744/emagine"
+  },
+  {
+    "id": "dav1g",
+    "link": "https://www.hltv.org/player/19509/dav1g"
+  },
+  {
+    "id": "AZK",
+    "link": "https://www.hltv.org/player/7434/azk"
+  },
+  {
+    "id": "S0tF1k",
+    "link": "https://www.hltv.org/player/9081/s0tf1k"
+  },
+  {
+    "id": "realz1n",
+    "link": "https://www.hltv.org/player/16769/realz1n"
+  },
+  {
+    "id": "Hatz",
+    "link": "https://www.hltv.org/player/11162/hatz"
+  },
+  {
+    "id": "DeadFox",
+    "link": "https://www.hltv.org/player/8716/deadfox"
+  },
+  {
+    "id": "Furlan",
+    "link": "https://www.hltv.org/player/8327/furlan"
+  },
+  {
+    "id": "hasteka",
+    "link": "https://www.hltv.org/player/12956/hasteka"
+  },
+  {
+    "id": "yel",
+    "link": "https://www.hltv.org/player/10560/yel"
+  },
+  {
+    "id": "TENZKI",
+    "link": "https://www.hltv.org/player/5287/tenzki"
+  },
+  {
+    "id": "centeks",
+    "link": "https://www.hltv.org/player/7262/centeks"
+  },
+  {
+    "id": "pita",
+    "link": "https://www.hltv.org/player/434/pita"
+  },
+  {
+    "id": "SIXER",
+    "link": "https://www.hltv.org/player/147/sixer"
+  },
+  {
+    "id": "xms",
+    "link": "https://www.hltv.org/player/9545/xms"
+  },
+  {
+    "id": "daps",
+    "link": "https://www.hltv.org/player/8521/daps"
+  },
+  {
+    "id": "strux1",
+    "link": "https://www.hltv.org/player/7214/strux1"
+  },
+  {
+    "id": "LNZ",
+    "link": "https://www.hltv.org/player/19310/lnz"
+  },
+  {
+    "id": "koosta",
+    "link": "https://www.hltv.org/player/9056/koosta"
+  },
+  {
+    "id": "ztr",
+    "link": "https://www.hltv.org/player/16486/ztr"
+  },
+  {
+    "id": "keshandr",
+    "link": "https://www.hltv.org/player/8788/keshandr"
+  },
+  {
+    "id": "advent",
+    "link": "https://www.hltv.org/player/8600/advent"
+  },
+  {
+    "id": "B1ad3",
+    "link": "https://www.hltv.org/player/472/b1ad3"
+  },
+  {
+    "id": "LETN1",
+    "link": "https://www.hltv.org/player/4216/letn1"
+  },
+  {
+    "id": "MSL",
+    "link": "https://www.hltv.org/player/7156/msl"
+  },
+  {
+    "id": "xartE",
+    "link": "https://www.hltv.org/player/7537/xarte"
+  },
+  {
+    "id": "captainMo",
+    "link": "https://www.hltv.org/player/5187/captainmo"
+  },
+  {
+    "id": "LOMME",
+    "link": "https://www.hltv.org/player/1889/lomme"
+  },
+  {
+    "id": "THREAT",
+    "link": "https://www.hltv.org/player/37/threat"
+  },
+  {
+    "id": "MINISE",
+    "link": "https://www.hltv.org/player/2826/minise"
+  },
+  {
+    "id": "buda",
+    "link": "https://www.hltv.org/player/20607/buda"
+  },
+  {
+    "id": "Ace",
+    "link": "https://www.hltv.org/player/7816/ace"
+  },
+  {
+    "id": "yam",
+    "link": "https://www.hltv.org/player/2555/yam"
+  },
+  {
+    "id": "DEVIL",
+    "link": "https://www.hltv.org/player/8569/devil"
+  },
+  {
+    "id": "Luken",
+    "link": "https://www.hltv.org/player/15914/luken"
+  },
+  {
+    "id": "JUST",
+    "link": "https://www.hltv.org/player/8998/just"
+  },
+  {
+    "id": "SnypeR",
+    "link": "https://www.hltv.org/player/8084/snyper"
+  },
+  {
+    "id": "HexT",
+    "link": "https://www.hltv.org/player/18838/hext"
+  },
+  {
+    "id": "npl",
+    "link": "https://www.hltv.org/player/21708/npl"
+  },
+  {
+    "id": "SPUNJ",
+    "link": "https://www.hltv.org/player/8085/spunj"
+  },
+  {
+    "id": "RiTz",
+    "link": "https://www.hltv.org/player/2570/ritz"
+  },
+  {
+    "id": "junior",
+    "link": "https://www.hltv.org/player/14494/junior"
+  },
+  {
+    "id": "WOOD7",
+    "link": "https://www.hltv.org/player/14390/wood7"
+  },
+  {
+    "id": "xand",
+    "link": "https://www.hltv.org/player/9218/xand"
+  },
+  {
+    "id": "slaxz-",
+    "link": "https://www.hltv.org/player/15370/slaxz"
+  },
+  {
+    "id": "zqkS",
+    "link": "https://www.hltv.org/player/7383/zqks"
+  },
+  {
+    "id": "rox",
+    "link": "https://www.hltv.org/player/16067/rox"
+  },
+  {
+    "id": "HaRts",
+    "link": "https://www.hltv.org/player/156/harts"
+  },
+  {
+    "id": "mynio",
+    "link": "https://www.hltv.org/player/4829/mynio"
+  },
+  {
+    "id": "Bart4k",
+    "link": "https://www.hltv.org/player/19957/bart4k"
+  },
+  {
+    "id": "Polly",
+    "link": "https://www.hltv.org/player/3631/polly"
+  },
+  {
+    "id": "Karsa",
+    "link": "https://www.hltv.org/player/8599/karsa"
+  },
+  {
+    "id": "blackpoisoN",
+    "link": "https://www.hltv.org/player/7992/blackpoison"
+  },
+  {
+    "id": "zews",
+    "link": "https://www.hltv.org/player/6608/zews"
+  },
+  {
+    "id": "HUNDEN",
+    "link": "https://www.hltv.org/player/7415/hunden"
+  },
+  {
+    "id": "ultra",
+    "link": "https://www.hltv.org/player/3919/ultra"
+  },
+  {
+    "id": "arya",
+    "link": "https://www.hltv.org/player/6453/arya"
+  },
+  {
+    "id": "KEi",
+    "link": "https://www.hltv.org/player/17504/kei"
+  },
+  {
+    "id": "stonde",
+    "link": "https://www.hltv.org/player/7238/stonde"
+  },
+  {
+    "id": "dumz",
+    "link": "https://www.hltv.org/player/7958/dumz"
+  },
+  {
+    "id": "zonic",
+    "link": "https://www.hltv.org/player/21/zonic"
+  },
+  {
+    "id": "James",
+    "link": "https://www.hltv.org/player/8746/james"
+  },
+  {
+    "id": "stavros",
+    "link": "https://www.hltv.org/player/7246/stavros"
+  },
+  {
+    "id": "alexRr",
+    "link": "https://www.hltv.org/player/7508/alexrr"
+  },
+  {
+    "id": "ioRek",
+    "link": "https://www.hltv.org/player/157/iorek"
+  },
+  {
+    "id": "destiny",
+    "link": "https://www.hltv.org/player/9483/destiny"
+  },
+  {
+    "id": "r0bs3n",
+    "link": "https://www.hltv.org/player/7232/r0bs3n"
+  },
+  {
+    "id": "astaRR",
+    "link": "https://www.hltv.org/player/7815/astarr"
+  },
+  {
+    "id": "RiX",
+    "link": "https://www.hltv.org/player/2054/rix"
+  },
+  {
+    "id": "natu",
+    "link": "https://www.hltv.org/player/713/natu"
+  },
+  {
+    "id": "Professor_Chaos",
+    "link": "https://www.hltv.org/player/8912/professor-chaos"
+  },
+  {
+    "id": "xelos",
+    "link": "https://www.hltv.org/player/5373/xelos"
+  },
+  {
+    "id": "ub1que",
+    "link": "https://www.hltv.org/player/7405/ub1que"
+  },
+  {
+    "id": "MODDII",
+    "link": "https://www.hltv.org/player/545/moddii"
+  },
+  {
+    "id": "MithilF",
+    "link": "https://www.hltv.org/player/7817/mithilf"
+  },
+  {
+    "id": "racno",
+    "link": "https://www.hltv.org/player/7995/racno"
+  },
+  {
+    "id": "jasonR",
+    "link": "https://www.hltv.org/player/8794/jasonr"
+  },
+  {
+    "id": "hardstyle",
+    "link": "https://www.hltv.org/player/3021/hardstyle"
+  },
+  {
+    "id": "robiin",
+    "link": "https://www.hltv.org/player/7700/robiin"
+  },
+  {
+    "id": "Detrony",
+    "link": "https://www.hltv.org/player/7993/detrony"
+  },
+  {
+    "id": "abE",
+    "link": "https://www.hltv.org/player/8502/abe"
+  },
+  {
+    "id": "cent",
+    "link": "https://www.hltv.org/player/7991/cent"
+  },
+  {
+    "id": "Skurk",
+    "link": "https://www.hltv.org/player/5042/skurk"
+  },
+  {
+    "id": "maLeK",
+    "link": "https://www.hltv.org/player/15186/malek"
+  },
+  {
+    "id": "prb",
+    "link": "https://www.hltv.org/player/1040/prb"
+  },
+  {
+    "id": "deviaNt",
+    "link": "https://www.hltv.org/player/7994/deviant"
+  },
+  {
+    "id": "r1nkle",
+    "link": "https://www.hltv.org/player/20425/r1nkle"
+  },
+  {
+    "id": "kyousuke",
+    "link": "https://www.hltv.org/player/24177/kyousuke"
+  },
+  {
+    "id": "molodoy",
+    "link": "https://www.hltv.org/player/24144/molodoy"
+  },
+  {
+    "id": "jcobbb",
+    "link": "https://www.hltv.org/player/22383/jcobbb"
+  },
+  {
+    "id": "JamYoung",
+    "link": "https://www.hltv.org/player/19645/jamyoung"
+  },
+  {
+    "id": "Moseyuh",
+    "link": "https://www.hltv.org/player/21621/moseyuh"
+  },
+  {
+    "id": "Mercury",
+    "link": "https://www.hltv.org/player/20895/mercury"
+  },
+  {
+    "id": "yxngstxr",
+    "link": "https://www.hltv.org/player/22047/yxngstxr"
+  },
+  {
+    "id": "Alkaren",
+    "link": "https://www.hltv.org/player/23600/alkaren"
+  },
+  {
+    "id": "jottAAA",
+    "link": "https://www.hltv.org/player/22361/jottaaa"
+  },
+  {
+    "id": "Swisher",
+    "link": "https://www.hltv.org/player/16599/swisher"
+  },
+  {
+    "id": "Lake",
+    "link": "https://www.hltv.org/player/22921/lake"
+  },
+  {
+    "id": "reck",
+    "link": "https://www.hltv.org/player/17378/reck"
+  },
+  {
+    "id": "brnz4n",
+    "link": "https://www.hltv.org/player/20987/brnz4n"
+  },
+  {
+    "id": "tN1R",
+    "link": "https://www.hltv.org/player/19808/tn1r"
+  },
+  {
+    "id": "1eeR",
+    "link": "https://www.hltv.org/player/21266/1eer"
+  },
+  {
+    "id": "khaN",
+    "link": "https://www.hltv.org/player/23317/khan"
+  },
+  {
+    "id": "riskyb0b",
+    "link": "https://www.hltv.org/player/22460/riskyb0b"
+  },
+  {
+    "id": "zweih",
+    "link": "https://www.hltv.org/player/23685/zweih"
+  },
+  {
+    "id": "Xant3r",
+    "link": "https://www.hltv.org/player/20387/xant3r"
+  },
+  {
+    "id": "Chr1zN",
+    "link": "https://www.hltv.org/player/21983/chr1zn"
+  },
+  {
+    "id": "Buzz",
+    "link": "https://www.hltv.org/player/20941/buzz"
+  },
+  {
+    "id": "spooke",
+    "link": "https://www.hltv.org/player/19064/spooke"
+  },
+  {
+    "id": "regali",
+    "link": "https://www.hltv.org/player/20123/regali"
+  },
+  {
+    "id": "nettik",
+    "link": "https://www.hltv.org/player/18214/nettik"
+  },
+  {
+    "id": "alex666",
+    "link": "https://www.hltv.org/player/20112/alex666"
+  },
+  {
+    "id": "esenthial",
+    "link": "https://www.hltv.org/player/23643/esenthial"
+  },
+  {
+    "id": "kensizor",
+    "link": "https://www.hltv.org/player/22842/kensizor"
+  },
+  {
+    "id": "Cxzi",
+    "link": "https://www.hltv.org/player/17353/cxzi"
+  },
+  {
+    "id": "nicx",
+    "link": "https://www.hltv.org/player/21620/nicx"
+  },
+  {
+    "id": "Jeorge",
+    "link": "https://www.hltv.org/player/20333/jeorge"
+  },
+  {
+    "id": "br0",
+    "link": "https://www.hltv.org/player/16717/br0"
+  },
+  {
+    "id": "adamb",
+    "link": "https://www.hltv.org/player/20878/adamb"
+  },
+  {
+    "id": "L00m1",
+    "link": "https://www.hltv.org/player/21164/l00m1"
+  },
+  {
+    "id": "chayJESUS",
+    "link": "https://www.hltv.org/player/20026/chayjesus"
+  },
+  {
+    "id": "kye",
+    "link": "https://www.hltv.org/player/20385/kye"
+  },
+  {
+    "id": "piriajr",
+    "link": "https://www.hltv.org/player/18714/piriajr"
+  },
+  {
+    "id": "mlhzin",
+    "link": "https://www.hltv.org/player/21286/mlhzin"
+  },
+  {
+    "id": "ROUX",
+    "link": "https://www.hltv.org/player/19229/roux"
+  },
+  {
+    "id": "cool4st",
+    "link": "https://www.hltv.org/player/19537/cool4st"
+  },
+  {
+    "id": "ariucle",
+    "link": "https://www.hltv.org/player/21396/ariucle"
+  },
+  {
+    "id": "controlez",
+    "link": "https://www.hltv.org/player/21398/controlez"
+  },
+  {
+    "id": "Efire",
+    "link": "https://www.hltv.org/player/22414/efire"
+  },
+  {
+    "id": "makazze",
+    "link": "https://www.hltv.org/player/22673/makazze"
+  },
+  {
+    "id": "kl1m",
+    "link": "https://www.hltv.org/player/23192/kl1m"
+  },
+  {
+    "id": "Kvem",
+    "link": "https://www.hltv.org/player/21452/kvem"
+  },
+  {
+    "id": "hypex",
+    "link": "https://www.hltv.org/player/23766/hypex"
+  },
+  {
+    "id": "PR",
+    "link": "https://www.hltv.org/player/22279/pr"
+  },
+  {
+    "id": "xKacpersky",
+    "link": "https://www.hltv.org/player/23372/xkacpersky"
+  },
+  {
+    "id": "xerolte",
+    "link": "https://www.hltv.org/player/20703/xerolte"
+  },
+  {
+    "id": "cobrazera",
+    "link": "https://www.hltv.org/player/23402/cobrazera"
+  },
+  {
+    "id": "XotiC",
+    "link": "https://www.hltv.org/player/14109/xotic"
+  },
+  {
+    "id": "venomzera",
+    "link": "https://www.hltv.org/player/21288/venomzera"
+  },
+  {
+    "id": "BELCHONOKK",
+    "link": "https://www.hltv.org/player/19235/belchonokk"
+  },
+  {
+    "id": "AW",
+    "link": "https://www.hltv.org/player/22076/aw"
+  },
+  {
+    "id": "xiELO",
+    "link": "https://www.hltv.org/player/22471/xielo"
+  },
+  {
+    "id": "nota",
+    "link": "https://www.hltv.org/player/22929/nota"
+  },
+  {
+    "id": "Marek",
+    "link": "https://www.hltv.org/player/8598/marek"
+  },
+  {
+    "id": "TiGeR",
+    "link": "https://www.hltv.org/player/20808/tiger"
+  }
 ]
