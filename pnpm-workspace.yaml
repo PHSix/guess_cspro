@@ -1,4 +1,5 @@
 packages:
-  - 'app'
-  - 'hltv_data_scraper'
-  - 'shared'
+  - "app"
+  - "hltv_data_scraper"
+  - "shared"
+  - "service"

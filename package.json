@@ -21,16 +21,25 @@
   },
   "scripts": {
     "dev": "pnpm --filter @guess-cspro/app dev",
+    "dev:service": "pnpm --filter @guess-cspro/service dev",
+    "dev:all": "pnpm run --parallel dev dev:service",
     "build": "pnpm -r build",
     "build:app": "pnpm --filter @guess-cspro/app build",
+    "build:service": "pnpm --filter @guess-cspro/service build",
     "build:scraper": "pnpm --filter @guess-cspro/hltv_data_scraper build",
     "preview": "pnpm --filter @guess-cspro/app preview",
+    "sync-player-data": "cp app/public/all_players_data.json service/src/data/all_players_data.json",
     "check": "pnpm -r check",
     "format": "prettier --write \"**/*.{ts,tsx,md,json}\"",
     "clean": "pnpm -r clean || true",
     "type-check": "pnpm -r type-check"
   },
+  "dependencies": {
+    "zod": "^3.0.0"
+  },
   "devDependencies": {
+    "typescript": "5.9.3",
+    "tsx": "^4.0.0",
     "prettier": "^3.6.2"
   },
   "engines": {

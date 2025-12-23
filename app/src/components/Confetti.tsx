@@ -5,16 +5,21 @@ interface ConfettiProps {
   duration?: number;
 }
 
-export default function Confetti({ isVisible, duration = 3000 }: ConfettiProps) {
-  const [particles, setParticles] = useState<Array<{
-    id: number;
-    delay: number;
-    angle: number;
-    distance: number;
-    color: string;
-    offsetX: number;
-    offsetY: number;
-  }>>([]);
+export default function Confetti({
+  isVisible,
+  duration = 3000,
+}: ConfettiProps) {
+  const [particles, setParticles] = useState<
+    Array<{
+      id: number;
+      delay: number;
+      angle: number;
+      distance: number;
+      color: string;
+      offsetX: number;
+      offsetY: number;
+    }>
+  >([]);
 
   useEffect(() => {
     if (isVisible) {
@@ -29,9 +34,18 @@ export default function Confetti({ isVisible, duration = 3000 }: ConfettiProps) 
           delay: Math.random() * 500, // 随机延迟
           angle,
           distance,
-          color: ['#ff00ff', '#00ffff', '#ffff00', '#00ff00', '#ff0000', '#ff6b00', '#9400ff', '#00ffaa'][Math.floor(Math.random() * 8)],
+          color: [
+            "#ff00ff",
+            "#00ffff",
+            "#ffff00",
+            "#00ff00",
+            "#ff0000",
+            "#ff6b00",
+            "#9400ff",
+            "#00ffaa",
+          ][Math.floor(Math.random() * 8)],
           offsetX,
-          offsetY
+          offsetY,
         };
       });
       setParticles(newParticles);
@@ -49,21 +63,23 @@ export default function Confetti({ isVisible, duration = 3000 }: ConfettiProps) 
 
   return (
     <div className="fixed inset-0 pointer-events-none z-50 overflow-hidden">
-      {particles.map((particle) => {
+      {particles.map(particle => {
         const finalOffsetX = Math.cos(particle.angle) * particle.distance;
         const finalOffsetY = Math.sin(particle.angle) * particle.distance;
         return (
           <div
             key={particle.id}
             className="confetti-particle"
-            style={{
-              left: `50%`,
-              top: `50%`,
-              animationDelay: `${particle.delay}ms`,
-              backgroundColor: particle.color,
-              '--offset-x': `${finalOffsetX + particle.offsetX}px`,
-              '--offset-y': `${finalOffsetY + particle.offsetY}px`,
-            } as React.CSSProperties}
+            style={
+              {
+                left: `50%`,
+                top: `50%`,
+                animationDelay: `${particle.delay}ms`,
+                backgroundColor: particle.color,
+                "--offset-x": `${finalOffsetX + particle.offsetX}px`,
+                "--offset-y": `${finalOffsetY + particle.offsetY}px`,
+              } as React.CSSProperties
+            }
           />
         );
       })}

@@ -177,7 +177,9 @@ export default function GamePage() {
     if (fribergAutoGuess) {
       const players = searchPlayers("friberg");
       if (players.length > 0) {
-        const friberg = players.find(p => p.playerName.toLowerCase().includes("friberg"));
+        const friberg = players.find(p =>
+          p.playerName.toLowerCase().includes("friberg")
+        );
         if (friberg) {
           const result = comparePlayerAttributes(friberg, player);
           const guessRecord = createGuessRecord(friberg, result);

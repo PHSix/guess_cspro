@@ -1,5 +1,5 @@
-import { create } from 'zustand';
-import { Player } from '@/lib/gameEngine';
+import { create } from "zustand";
+import { Player } from "@/lib/gameEngine";
 
 interface ModePlayerList {
   ylg: string[];
@@ -16,7 +16,7 @@ interface PlayerStore {
 
   // 操作
   initializeData: () => Promise<void>;
-  getPlayersByMode: (mode: 'all' | 'normal' | 'ylg') => Player[];
+  getPlayersByMode: (mode: "all" | "normal" | "ylg") => Player[];
   clearError: () => void;
 }
 
@@ -42,15 +42,15 @@ export const usePlayerStore = create<PlayerStore>((set, get) => ({
     try {
       // 并行加载两个文件
       const [playersResponse, modeListResponse] = await Promise.all([
-        fetch('/all_players_data.json'),
-        fetch('/mode_player_list.json'),
+        fetch("/all_players_data.json"),
+        fetch("/mode_player_list.json"),
       ]);
 
       if (!playersResponse.ok) {
-        throw new Error('Failed to load players data');
+        throw new Error("Failed to load players data");
       }
       if (!modeListResponse.ok) {
-        throw new Error('Failed to load mode player list');
+        throw new Error("Failed to load mode player list");
       }
 
       const [playersData, modeListData] = await Promise.all([
@@ -63,18 +63,18 @@ export const usePlayerStore = create<PlayerStore>((set, get) => ({
         ([key, data]: [string, any], index) => ({
           id: index + 1,
           playerName: key,
-          team: data.team || 'Unknown',
-          country: data.country || 'Unknown',
+          team: data.team || "Unknown",
+          country: data.country || "Unknown",
           birthYear: data.birth_year || 2000,
           majorsPlayed: data.majorsPlayed || 0,
-          role: data.role || 'Unknown',
-          avatar: data.avatar || '',
+          role: data.role || "Unknown",
+          avatar: data.avatar || "",
           lowerPlayerName: key.toLowerCase(),
           filterPlayerName: key
             .toLowerCase()
-            .replace('1', 'i')
-            .replace('0', 'o')
-            .replace('3', 'e'),
+            .replace("1", "i")
+            .replace("0", "o")
+            .replace("3", "e"),
         })
       );
 
@@ -86,24 +86,24 @@ export const usePlayerStore = create<PlayerStore>((set, get) => ({
         error: null,
       });
     } catch (error) {
-      console.error('Failed to initialize player data:', error);
+      console.error("Failed to initialize player data:", error);
       set({
-        error: error instanceof Error ? error.message : 'Unknown error',
+        error: error instanceof Error ? error.message : "Unknown error",
         isLoading: false,
       });
     }
   },
 
   // 根据模式获取玩家
-  getPlayersByMode: (mode: 'all' | 'normal' | 'ylg') => {
+  getPlayersByMode: (mode: "all" | "normal" | "ylg") => {
     const { allPlayers, modePlayerList } = get();
 
-    if (mode === 'all') {
+    if (mode === "all") {
       return allPlayers;
     }
 
     const allowedPlayerNames = modePlayerList[mode] || [];
-    return allPlayers.filter((player) =>
+    return allPlayers.filter(player =>
       allowedPlayerNames.includes(player.playerName)
     );
   },

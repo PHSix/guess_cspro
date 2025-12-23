@@ -73,6 +73,7 @@ This project is organized as a pnpm monorepo with the following workspaces:
 #### Global State (Zustand)
 
 **usePlayerStore** (`client/src/store/usePlayerStore.ts`)
+
 - Manages all player data and mode configuration
 - Loads data on app initialization: `/all_players_data.json` and `/mode_player_list.json`
 - Provides filtered player lists based on difficulty mode
@@ -80,6 +81,7 @@ This project is organized as a pnpm monorepo with the following workspaces:
 - Handles loading and error states
 
 **useSettingsStore** (`client/src/store/useSettingsStore.ts`)
+
 - Manages game settings (difficulty, total guesses)
 - Auto-syncs to localStorage
 - Initializes from localStorage on app start
@@ -88,6 +90,7 @@ This project is organized as a pnpm monorepo with the following workspaces:
 #### Game Modes
 
 The game supports three difficulty modes:
+
 - **ALL mode**: All players (hardest)
 - **Normal mode**: Curated selection of players
 - **YLG mode**: Coming soon (easiest)
@@ -95,10 +98,12 @@ The game supports three difficulty modes:
 Mode configuration is managed via `mode_player_list.json` which contains player name arrays for each mode.
 
 **Data Files:**
+
 - `all_players_data.json` - Complete player database
 - `mode_player_list.json` - Mode-specific player lists (ylg: [], normal: [player names])
 
 Settings stored in localStorage:
+
 - `game-difficulty` - Current difficulty mode
 - `game-total-guesses` - Number of allowed guesses (1-20, default 8)
 
@@ -107,6 +112,7 @@ Settings stored in localStorage:
 #### `gameEngine.ts` (client/src/lib/gameEngine.ts)
 
 Core game logic including:
+
 - `getAllPlayers()` - Get players for current mode (sync, from global state)
 - `searchPlayers(query)` - Fuzzy search players by name (sync)
 - `getRandomPlayer()` - Select random player for current mode (sync)
@@ -115,6 +121,7 @@ Core game logic including:
 - `createGuessRecord()` - Format guess with comparison results
 
 **Match types:**
+
 - `Exact` - Perfect match (✓, green)
 - `Near` - Close match (≈, yellow)
 - `Different` - Wrong value (✗, red)
@@ -124,6 +131,7 @@ Core game logic including:
 #### `usePlayerStore.ts` (client/src/store/usePlayerStore.ts)
 
 Global player data management:
+
 - `initializeData()` - Loads player on app start
 - `getPlayersByMode(mode)` data and mode config - Returns filtered players for difficulty
 - `isLoading`, `error`, `isInitialized` - Loading state management
@@ -131,6 +139,7 @@ Global player data management:
 #### `useSettingsStore.ts` (client/src/store/useSettingsStore.ts)
 
 Settings management:
+
 - `difficulty`, `totalGuesses` - Current settings state
 - `setDifficulty()`, `setTotalGuesses()` - Auto-persist to localStorage
 - `reset()` - Reset to defaults
@@ -147,8 +156,8 @@ interface Player {
   birthYear: number;
   majorsPlayed: number;
   role: "AWPer" | "Rifler" | "Unknown";
-  lowerPlayerName: string;      // Lowercase for search
-  filterPlayerName: string;     // Normalized for search
+  lowerPlayerName: string; // Lowercase for search
+  filterPlayerName: string; // Normalized for search
 }
 ```
 
@@ -229,6 +238,7 @@ node scripts/load-players.mjs
 ### Tailwind Config
 
 Custom cyberpunk/neon theme with:
+
 - Dark default theme
 - Neon border effects (`neon-border` class)
 - Glitch text effects (`glitch-text` class)
@@ -240,6 +250,7 @@ Custom cyberpunk/neon theme with:
 ### Data Loading Strategy
 
 **App Initialization Flow:**
+
 1. App component mounts
 2. `useEffect` triggers `initializeData()` and `initializeSettings()`
 3. Both stores load data concurrently:
@@ -249,15 +260,18 @@ Custom cyberpunk/neon theme with:
 5. App renders normally once initialized
 
 **Data Sources:**
+
 - Public directory: `client/public/*.json`
 - Scraper output: `hltv_data_scraper/out/*.json`
 
 **Mode Filtering:**
+
 - All modes use the same `all_players_data.json`
 - `mode_player_list.json` defines which players belong to each mode
 - Filtering happens in `getPlayersByMode()` based on player names
 
 **Database Integration:**
+
 - Optional MySQL integration via `scripts/load-players.mjs`
 - Uses environment variable `DATABASE_URL`
 - Drizzle ORM schema referenced in types
@@ -327,12 +341,14 @@ Custom cyberpunk/neon theme with:
 ### Working with Zustand Stores
 
 **Player Store:**
+
 - Located in `client/src/store/usePlayerStore.ts`
 - Data initialization happens in App.tsx
 - Use `getPlayersByMode()` to get filtered player list
 - Check `isInitialized` before accessing data
 
 **Settings Store:**
+
 - Located in `client/src/store/useSettingsStore.ts`
 - Auto-syncs to localStorage via setter methods
 - Use `initialize()` in App.tsx to load saved settings
@@ -361,6 +377,7 @@ The `hltv_data_scraper/` subproject fetches player data from HLTV using Puppetee
 The scraper requires a JSON input file with player links, then fetches detailed data for each player and outputs structured JSON files.
 
 **Data Sync Process:**
+
 1. Scrapes player data from HLTV
 2. Outputs to `all_players_data.json`
 3. Manually curate `mode_player_list.json` for Normal/YLG modes
@@ -369,6 +386,7 @@ The scraper requires a JSON input file with player links, then fetches detailed 
 ## Dependencies
 
 ### Main Application
+
 - React ecosystem (React, React DOM)
 - UI libraries (Radix UI, shadcn/ui, Lucide React icons)
 - Routing (Wouter)
@@ -378,6 +396,7 @@ The scraper requires a JSON input file with player links, then fetches detailed 
 - Utilities (date-fns, nanoid)
 
 ### Scraper
+
 - Puppeteer + puppeteer-extra for web scraping
 - Stealth plugin to avoid detection
 
