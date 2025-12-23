@@ -1,17 +1,14 @@
 import { useEffect, useRef, useState } from "react";
 import { Card } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { toast } from "sonner";
 import { useLocation } from "wouter";
-import type { Mask, MatchType, Guess } from "@/types/multiplayer.js";
-import type { Player } from "@/lib/gameEngine.js";
-import { searchPlayers } from "@/lib/gameEngine.js";
-import { useSSEConnection } from "@/hooks/useSSEConnection.js";
-import { useMultiplayerStore } from "@/store/useMultiplayerStore.js";
-import type { GamerInfo } from "@/types/multiplayer.js";
-import { getCountryFlag, getCountryChinese } from "@shared/countryUtils.js";
+import type { MatchType, Guess } from "@/types";
+import type { Player } from "@/lib/gameEngine";
+import { useSSEConnection } from "@/hooks/useSSEConnection";
+import { useOnlineStore } from "@/store/useOnlineStore";
+import { getCountryChinese } from "@shared/countryUtils";
 
 function getMatchClass(match: MatchType): string {
   switch (match) {
@@ -40,13 +37,12 @@ function getMatchSymbol(match: MatchType): string {
 }
 
 export default function OnlineGamePage() {
-  const [, setLocation] = useLocation();
+  const [, navigate] = useLocation();
 
-  const { initializeGamerId } = useMultiplayerStore(state => state);
-  const myGamerId = useMultiplayerStore(state => state.gamerId);
+  const { initializeGamerId } = useOnlineStore(state => state);
+  const myGamerId = useOnlineStore(state => state.gamerId);
 
   const {
-    gamers,
     guesses,
     roomStatus,
     mysteryPlayer,
@@ -127,8 +123,8 @@ export default function OnlineGamePage() {
   const handleLeaveRoom = async () => {
     try {
       await sendAction("/room/leave", {});
-      useMultiplayerStore.getState().reset();
-      setLocation("/multiplayer");
+      useOnlineStore.getState().reset();
+      navigate("/online");
       toast.success("Left room");
     } catch (error) {
       console.error("Failed to leave room:", error);
@@ -149,9 +145,6 @@ export default function OnlineGamePage() {
     );
   }
 
-  const isAllReady =
-    roomStatus === "ready" || (roomStatus === "waiting" && gamers.length >= 2);
-
   return (
     <div className="bg-background min-h-screen py-8 px-4">
       <div className="container max-w-6xl mx-auto">
@@ -166,7 +159,7 @@ export default function OnlineGamePage() {
             variant="outline"
             className="neon-border border-border text-foreground hover:bg-accent/10"
           >
-            Leave Room
+            离开房间
           </Button>
         </div>
 
@@ -389,7 +382,7 @@ export default function OnlineGamePage() {
 
               <div className="mt-8 space-y-4">
                 <Button
-                  onClick={() => setLocation("/room")}
+                  onClick={() => navigate("/room")}
                   className="bg-accent text-accent-foreground hover:bg-accent/90 neon-border w-full"
                   size="lg"
                 >

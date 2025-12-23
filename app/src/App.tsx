@@ -23,7 +23,7 @@ function Router() {
       <Route path={"/game"} component={GamePage} />
       <Route path={"/finished"} component={FinishedPage} />
       <Route path={"/settings"} component={SettingsPage} />
-      <Route path={"/multiplayer"} component={OnlineHomePage} />
+      <Route path={"/online"} component={OnlineHomePage} />
       <Route path={"/room"} component={OnlineRoomPage} />
       <Route path={"/404"} component={NotFound} />
       <Route component={NotFound} />

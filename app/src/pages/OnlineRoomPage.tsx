@@ -1,17 +1,17 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { toast } from "sonner";
 import { useLocation } from "wouter";
-import type { MatchType, Guess } from "@/types/multiplayer.js";
-import type { Player } from "@/lib/gameEngine.js";
-import { searchPlayers } from "@/lib/gameEngine.js";
-import { useSSEConnection } from "@/hooks/useSSEConnection.js";
-import { useMultiplayerStore } from "@/store/useMultiplayerStore.js";
-import type { GamerInfo } from "@/types/multiplayer.js";
-import { getCountryChinese } from "@shared/countryUtils.js";
+import type { MatchType, Guess, RoomStatus, GamerInfo } from "@/types";
+import type { Player } from "@/lib/gameEngine";
+import { searchPlayers } from "@/lib/gameEngine";
+import { useSSEConnection } from "@/hooks/useSSEConnection";
+import { useOnlineStore } from "@/store/useOnlineStore";
+import { getCountryChinese } from "@shared/countryUtils";
+import { Copy } from "lucide-react";
 
 function getMatchClass(match: MatchType): string {
   switch (match) {
@@ -40,14 +40,14 @@ function getMatchSymbol(match: MatchType): string {
 }
 
 export default function OnlineRoomPage() {
-  const [, setLocation] = useLocation();
+  const [, navigate] = useLocation();
 
   const {
     gamerId: myGamerId,
     isHost,
     roomId,
     initializeGamerId,
-  } = useMultiplayerStore(state => state);
+  } = useOnlineStore(state => state);
 
   const {
     gamers,
@@ -64,8 +64,19 @@ export default function OnlineRoomPage() {
   const [showDropdown, setShowDropdown] = useState(false);
   const [highlightedIndex, setHighlightedIndex] = useState(0);
   const inputRef = useRef<HTMLInputElement>(null);
+  const isReady = useMemo(
+    () => gamers.find(g => g.gamerId === myGamerId)?.ready,
+    [gamers, myGamerId]
+  );
 
   const myGuesses = myGamerId ? guesses.get(myGamerId) || [] : [];
+
+  useLayoutEffect(() => {
+    if (!roomId) {
+      toast.error("未找到房间，返回大厅");
+      navigate("/online");
+    }
+  }, [roomId]);
 
   useEffect(() => {
     if (roomStatus === "inProgress" && mysteryPlayer) {
@@ -146,7 +157,7 @@ export default function OnlineRoomPage() {
   const handleLeaveRoom = async () => {
     try {
       await sendAction("/room/leave", {});
-      setLocation("/multiplayer");
+      navigate("/online");
       toast.success("Left room");
     } catch (error) {
       console.error("Failed to leave room:", error);
@@ -167,21 +178,33 @@ export default function OnlineRoomPage() {
     );
   }
 
-  const isAllReady =
-    roomStatus === "ready" || (roomStatus === "waiting" && gamers.length >= 3);
-  const canStartGame = isHost && isAllReady;
+  // Host can start the game at any time (even alone)
+  // Store roomStatus in a local variable to avoid type narrowing issues
+  const currentRoomStatus: RoomStatus = roomStatus;
+  const canStartGame =
+    isHost &&
+    (currentRoomStatus === "waiting" ||
+      currentRoomStatus === "ready" ||
+      currentRoomStatus === "pending");
 
   return (
     <div className="bg-background min-h-screen py-8 px-4">
-      <div className="container max-w-6xl mx-auto">
+      <div className="container max-w-2xl mx-auto">
         <div className="mb-6 text-center">
           <h1 className="text-4xl font-bold text-foreground mb-2">
             <span className="glitch-text" data-text="Room">
               Room
             </span>
           </h1>
-          <p className="text-sm text-muted-foreground">
+          <p className="text-sm text-muted-foreground/50 flex gap-2 justify-center">
             Room ID: {roomId || "Connecting..."}
+            <Copy
+              className="w-4 h-4 hover:text-foreground cursor-pointer"
+              onClick={() => {
+                navigator.clipboard.writeText(roomId || "");
+                toast.success("Copied to clipboard");
+              }}
+            />
           </p>
         </div>
 
@@ -192,11 +215,7 @@ export default function OnlineRoomPage() {
           <Card className="p-6 neon-border">
             <div className="mb-6">
               <div className="flex items-center justify-between">
-                <h2 className="text-2xl font-bold text-foreground">
-                  <span className="glitch-text" data-text="Waiting">
-                    Waiting
-                  </span>
-                </h2>
+                <h2 className="text-2xl font-bold text-foreground"></h2>
                 <Badge className="ml-2">{gamers.length}/3</Badge>
               </div>
 
@@ -224,7 +243,7 @@ export default function OnlineRoomPage() {
                       }`}
                     >
                       <div className="flex items-center gap-3 flex-1">
-                        <div className="flex-shrink-0">
+                        <div className="shrink-0">
                           <div className="text-sm font-semibold text-foreground">
                             {gamer.gamerName}
                           </div>
@@ -244,7 +263,7 @@ export default function OnlineRoomPage() {
                           {isReady ? "Ready" : "Waiting"}
                         </Badge>
 
-                        {isHost && gamer.gamerId === myGamerId && (
+                        {isHost && gamer.gamerId !== myGamerId && (
                           <Button
                             variant="ghost"
                             size="sm"
@@ -254,7 +273,7 @@ export default function OnlineRoomPage() {
                             }}
                             className="text-destructive hover:text-destructive/80"
                           >
-                            Kick
+                            踢出去
                           </Button>
                         )}
                       </div>
@@ -264,26 +283,47 @@ export default function OnlineRoomPage() {
               </div>
 
               {/* 开始游戏按钮（仅房主） */}
-              {isHost && isAllReady && (
-                <div className="flex justify-center mt-6">
-                  <Button
-                    onClick={async () => {
-                      try {
-                        await sendAction("/room/start", {});
-                        toast.success("Game starting...");
-                      } catch (error) {
-                        console.error("Failed to start game:", error);
-                        toast.error("Failed to start game");
-                      }
-                    }}
-                    disabled={!canStartGame}
-                    className="bg-accent text-accent-foreground hover:bg-accent/90 neon-border w-full"
-                    size="lg"
-                  >
-                    Start Game
-                  </Button>
-                </div>
-              )}
+              {currentRoomStatus !== "inProgress" &&
+                currentRoomStatus !== "ended" && (
+                  <div className="flex justify-center mt-6">
+                    {isHost ? (
+                      // 房主
+                      <Button
+                        onClick={async () => {
+                          try {
+                            await sendAction("/room/start", {});
+                            toast.success("Game starting...");
+                          } catch (error) {
+                            console.error("Failed to start game:", error);
+                            toast.error("Failed to start game");
+                          }
+                        }}
+                        disabled={!canStartGame}
+                        className="bg-accent text-accent-foreground hover:bg-accent/90 neon-border w-full"
+                        size="lg"
+                      >
+                        开始游戏
+                      </Button>
+                    ) : (
+                      // 准备按钮，非房主
+                      <Button
+                        onClick={async () => {
+                          sendAction("/room/ready", {
+                            ready: !isReady,
+                          });
+                        }}
+                        className={
+                          isReady
+                            ? "bg-red-700 text-muted-foreground hover:bg-muted/90 w-full"
+                            : "bg-accent text-accent-foreground hover:bg-accent/90 neon-border w-full"
+                        }
+                        size={"lg"}
+                      >
+                        {isReady ? "取消准备" : "准备"}
+                      </Button>
+                    )}
+                  </div>
+                )}
 
               {/* 离开房间按钮 */}
               <Button
@@ -291,7 +331,7 @@ export default function OnlineRoomPage() {
                 variant="outline"
                 className="w-full neon-border border-border text-foreground hover:bg-accent/10 mt-4"
               >
-                Leave Room
+                离开房间
               </Button>
             </div>
           </Card>
@@ -517,7 +557,7 @@ export default function OnlineRoomPage() {
 
                   <div className="mt-8 space-y-4">
                     <Button
-                      onClick={() => setLocation("/multiplayer")}
+                      onClick={() => navigate("/online")}
                       className="bg-accent text-accent-foreground hover:bg-accent/90 neon-border w-full"
                       size="lg"
                     >
@@ -527,19 +567,6 @@ export default function OnlineRoomPage() {
                 </>
               )}
             </Card>
-          </div>
-        )}
-
-        {/* 离开房间按钮 */}
-        {roomStatus !== "ended" && roomStatus !== "inProgress" && (
-          <div className="mt-6">
-            <Button
-              onClick={handleLeaveRoom}
-              variant="outline"
-              className="w-full neon-border border-border text-foreground hover:bg-accent/10"
-            >
-              Leave Room
-            </Button>
           </div>
         )}
       </div>

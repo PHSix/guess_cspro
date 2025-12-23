@@ -1,5 +1,5 @@
 import { serve } from "@hono/node-server";
-import { app } from "./routes/index.js";
+import { app } from "./routes/index";
 
 const port = Number(process.env.PORT) || 3001;
 

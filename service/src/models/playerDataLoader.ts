@@ -35,7 +35,7 @@ let cachedModeList: ModePlayerList | null = null;
  */
 function getDataFilePath(filename: string): string {
   // 从 shared/data 目录读取
-  return path.resolve(__dirname, "../../../shared/data", filename);
+  return path.resolve(import.meta.dirname, "../../../shared/data", filename);
 }
 
 /**
@@ -143,9 +143,7 @@ export function findPlayerByName(
     ? getPlayersByDifficulty(difficulty)
     : getMysteryPlayers();
 
-  return players.find(
-    p => p.playerName.toLowerCase() === name.toLowerCase()
-  );
+  return players.find(p => p.playerName.toLowerCase() === name.toLowerCase());
 }
 
 /**

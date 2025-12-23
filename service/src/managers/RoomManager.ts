@@ -15,9 +15,10 @@ import {
   MAX_GAMERS_PER_ROOM,
   PENDING_TIMEOUT_MS,
 } from "../constants";
+import { logger } from "../utils/logger";
 
 /** 待确认会话信息 */
-interface PendingSessionInfo {
+export interface PendingSessionInfo {
   roomId: string;
   gamerId: string;
   gamerName: string;
@@ -72,9 +73,22 @@ export class RoomManager {
     const roomId = uuidv4();
     const sessionId = uuidv4();
 
+    logger.info({
+      msg: "Creating room",
+      roomId,
+      sessionId,
+      gamerId,
+      gamerName,
+      difficulty,
+    });
+
     // 设置待确认会话超时
     const timeout = setTimeout(() => {
-      console.log(`Room ${roomId} pending session timeout, deleting`);
+      logger.warn({
+        msg: "Room pending session timeout, deleting room",
+        roomId,
+        sessionId,
+      });
       this.pendingSessions.delete(sessionId);
       this.rooms.delete(roomId);
     }, PENDING_TIMEOUT_MS);
@@ -97,6 +111,13 @@ export class RoomManager {
     };
 
     this.rooms.set(roomId, room);
+
+    logger.info({
+      msg: "Room created successfully",
+      roomId,
+      sessionId,
+      roomCount: this.rooms.size,
+    });
 
     return { roomId, sessionId };
   }
@@ -125,26 +146,57 @@ export class RoomManager {
   ): JoinRoomResult | { success: false; message: string } {
     const room = this.rooms.get(roomId);
     if (!room) {
+      logger.warn({ msg: "Join room failed: room not found", roomId, gamerId });
       return { success: false, message: "Room not found" };
     }
 
     if (room.status !== "waiting" && room.status !== "pending") {
+      logger.warn({
+        msg: "Join room failed: room not available",
+        roomId,
+        gamerId,
+        roomStatus: room.status,
+      });
       return { success: false, message: "Room is not available" };
     }
 
     if (room.gamers.size >= MAX_GAMERS_PER_ROOM) {
+      logger.warn({
+        msg: "Join room failed: room is full",
+        roomId,
+        gamerId,
+        currentPlayers: room.gamers.size,
+        maxPlayers: MAX_GAMERS_PER_ROOM,
+      });
       return { success: false, message: "Room is full" };
     }
 
     if (room.gamers.has(gamerId)) {
+      logger.warn({
+        msg: "Join room failed: already in room",
+        roomId,
+        gamerId,
+      });
       return { success: false, message: "Already in room" };
     }
 
     const sessionId = uuidv4();
 
+    logger.info({
+      msg: "Gamer joining room",
+      roomId,
+      sessionId,
+      gamerId,
+      gamerName,
+    });
+
     // 设置待确认会话超时
     const timeout = setTimeout(() => {
-      console.log(`Pending session ${sessionId} timeout, cleaning up`);
+      logger.warn({
+        msg: "Join pending session timeout, cleaning up",
+        sessionId,
+        roomId,
+      });
       this.pendingSessions.delete(sessionId);
     }, PENDING_TIMEOUT_MS);
 
@@ -164,9 +216,13 @@ export class RoomManager {
    * @param sessionId - 会话ID
    * @throws Error 如果会话无效或过期
    */
-  confirmJoin(sessionId: string): void {
+  confirmJoin(sessionId: string): PendingSessionInfo {
     const pending = this.pendingSessions.get(sessionId);
     if (!pending) {
+      logger.error({
+        msg: "Confirm join failed: invalid or expired session",
+        sessionId,
+      });
       throw new Error("Invalid or expired session");
     }
 
@@ -175,6 +231,11 @@ export class RoomManager {
 
     const room = this.rooms.get(pending.roomId);
     if (!room) {
+      logger.error({
+        msg: "Confirm join failed: room not found",
+        sessionId,
+        roomId: pending.roomId,
+      });
       throw new Error("Room not found");
     }
 
@@ -189,10 +250,25 @@ export class RoomManager {
 
     room.gamers.set(pending.gamerId, gamer);
 
+    logger.info({
+      msg: "Gamer confirmed join",
+      roomId: pending.roomId,
+      gamerId: pending.gamerId,
+      gamerName: pending.gamerName,
+      playerCount: room.gamers.size,
+    });
+
     // 第一个玩家确认后，房间状态变为 waiting
     if (room.status === "pending") {
       room.status = "waiting";
+      logger.info({
+        msg: "Room status changed to waiting",
+        roomId: pending.roomId,
+      });
     }
+
+    // 因为上面删除了pendingSessions中的对应值，所以这里返回pendingSessions中的值
+    return pending;
   }
 
   /**
@@ -216,14 +292,34 @@ export class RoomManager {
    */
   removeGamer(roomId: string, gamerId: string): void {
     const room = this.rooms.get(roomId);
-    if (!room) return;
+    if (!room) {
+      logger.warn({
+        msg: "Remove gamer failed: room not found",
+        roomId,
+        gamerId,
+      });
+      return;
+    }
 
     room.gamers.delete(gamerId);
 
+    logger.info({
+      msg: "Gamer removed from room",
+      roomId,
+      gamerId,
+      remainingPlayers: room.gamers.size,
+    });
+
     // 如果房间空了或房主离开，删除房间
     if (room.gamers.size === 0) {
+      logger.info({ msg: "Room empty, deleting", roomId });
       this.deleteRoom(roomId);
     } else if (gamerId === room.hostGamerId) {
+      logger.info({
+        msg: "Host left, deleting room",
+        roomId,
+        hostGamerId: gamerId,
+      });
       this.deleteRoom(roomId);
     }
   }
@@ -238,16 +334,37 @@ export class RoomManager {
    */
   setReady(roomId: string, gamerId: string, ready: boolean): boolean {
     const room = this.rooms.get(roomId);
-    if (!room) return false;
+    if (!room) {
+      logger.warn({ msg: "Set ready failed: room not found", roomId, gamerId });
+      return false;
+    }
 
     const gamer = room.gamers.get(gamerId);
-    if (!gamer) return false;
+    if (!gamer) {
+      logger.warn({
+        msg: "Set ready failed: gamer not found",
+        roomId,
+        gamerId,
+      });
+      return false;
+    }
 
     gamer.ready = ready;
+
+    logger.info({
+      msg: "Gamer ready status updated",
+      roomId,
+      gamerId,
+      ready,
+    });
 
     const allReady = Array.from(room.gamers.values()).every(g => g.ready);
     if (allReady) {
       room.status = "ready";
+      logger.info({
+        msg: "All gamers ready, room status changed to ready",
+        roomId,
+      });
       return true;
     }
 
@@ -263,7 +380,19 @@ export class RoomManager {
    */
   startGame(roomId: string): Player {
     const room = this.rooms.get(roomId);
-    if (!room || room.status !== "ready") {
+    if (
+      !room ||
+      (room.status !== "ready" &&
+        // 如果存在既不是房主也不是准备好的人，则不能开始游戏
+        Array.from(room.gamers.values()).some(
+          it => it.gamerId !== room.hostGamerId && !it.ready
+        ))
+    ) {
+      logger.error({
+        msg: "Start game failed: invalid room state",
+        roomId,
+        roomStatus: room?.status,
+      });
       throw new Error("Cannot start game");
     }
 
@@ -274,6 +403,14 @@ export class RoomManager {
     room.mysteryPlayer = mysteryPlayer;
     room.status = "inProgress";
     room.startedAt = new Date();
+
+    logger.info({
+      msg: "Game started",
+      roomId,
+      difficulty,
+      mysteryPlayer: mysteryPlayer.playerName,
+      playerCount: room.gamers.size,
+    });
 
     return mysteryPlayer;
   }
@@ -290,15 +427,31 @@ export class RoomManager {
   processGuess(roomId: string, gamerId: string, guessId: string) {
     const room = this.rooms.get(roomId);
     if (!room || room.status !== "inProgress") {
+      logger.error({
+        msg: "Process guess failed: game not in progress",
+        roomId,
+        gamerId,
+        guessId,
+      });
       throw new Error("Game not in progress");
     }
 
     if (!room.mysteryPlayer) {
+      logger.error({
+        msg: "Process guess failed: mystery player not set",
+        roomId,
+      });
       throw new Error("Mystery player not set");
     }
 
     const gamer = room.gamers.get(gamerId);
     if (!gamer || gamer.guessesLeft <= 0) {
+      logger.error({
+        msg: "Process guess failed: no guesses left",
+        roomId,
+        gamerId,
+        guessesLeft: gamer?.guessesLeft,
+      });
       throw new Error("No guesses left");
     }
 
@@ -307,6 +460,12 @@ export class RoomManager {
       room.difficulty as Difficulty
     );
     if (!guessedPlayer) {
+      logger.error({
+        msg: "Process guess failed: player not found",
+        roomId,
+        gamerId,
+        guessId,
+      });
       throw new Error("Player not found");
     }
 
@@ -320,8 +479,22 @@ export class RoomManager {
 
     const isCorrect = guessedPlayer.id === room.mysteryPlayer.id;
 
+    logger.info({
+      msg: "Guess processed",
+      roomId,
+      gamerId,
+      guessId,
+      isCorrect,
+      guessesLeft: gamer.guessesLeft,
+    });
+
     if (isCorrect) {
       room.status = "ended";
+      logger.info({
+        msg: "Game ended - correct guess",
+        roomId,
+        winner: gamerId,
+      });
     }
 
     const allGuessesExhausted = Array.from(room.gamers.values()).every(
@@ -330,6 +503,10 @@ export class RoomManager {
 
     if (allGuessesExhausted && !isCorrect) {
       room.status = "ended";
+      logger.info({
+        msg: "Game ended - all guesses exhausted",
+        roomId,
+      });
     }
 
     return {
@@ -348,6 +525,12 @@ export class RoomManager {
   deleteRoom(roomId: string): void {
     const room = this.rooms.get(roomId);
     if (room) {
+      logger.info({
+        msg: "Deleting room",
+        roomId,
+        playerCount: room.gamers.size,
+      });
+
       // 清理所有相关待确认会话
       room.gamers.forEach((_, gamerId) => {
         const pendingKeys = Array.from(this.pendingSessions.entries());
@@ -358,6 +541,8 @@ export class RoomManager {
           }
         });
       });
+    } else {
+      logger.warn({ msg: "Delete room failed: room not found", roomId });
     }
     this.rooms.delete(roomId);
   }
@@ -371,15 +556,25 @@ export class RoomManager {
    */
   broadcastToRoom(roomId: string, event: string, data: unknown): void {
     const room = this.rooms.get(roomId);
-    if (!room) return;
+    if (!room) {
+      logger.warn({
+        msg: "Broadcast failed: room not found",
+        roomId,
+        event,
+      });
+      return;
+    }
 
     if (!this.sessionManager) {
-      console.error("SessionManager not set in RoomManager");
+      logger.error("SessionManager not set in RoomManager");
       return;
     }
 
     const eventString = `event: ${event}\ndata: ${JSON.stringify(data)}\n\n`;
     const allSessions = this.sessionManager.getAllSessions();
+
+    let successCount = 0;
+    let failCount = 0;
 
     room.gamers.forEach(gamer => {
       for (const [sessionId, session] of allSessions) {
@@ -391,12 +586,28 @@ export class RoomManager {
           if (!res.writableEnded) {
             try {
               res.write(eventString);
+              successCount++;
             } catch (e) {
-              console.error(`Failed to send SSE to ${sessionId}:`, e);
+              failCount++;
+              logger.error({
+                msg: "Failed to send SSE event",
+                sessionId,
+                roomId,
+                event,
+                error: e instanceof Error ? e.message : String(e),
+              });
             }
           }
         }
       }
+    });
+
+    logger.debug({
+      msg: "Broadcast event to room",
+      roomId,
+      event,
+      successCount,
+      failCount,
     });
   }
 

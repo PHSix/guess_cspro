@@ -6,18 +6,18 @@ import { useLocation } from "wouter";
 import { useSettingsStore } from "@/store/useSettingsStore";
 
 export default function HomePage() {
-  const [, setLocation] = useLocation();
+  const [, navigate] = useLocation();
   const [isLoading, setIsLoading] = useState(false);
   const { isOnlineModeAvailable } = useSettingsStore();
 
   const handleStartGame = () => {
     setIsLoading(true);
     // 直接导航到游戏页面
-    setLocation("/game");
+    navigate("/game");
   };
 
   const handleGoToSettings = () => {
-    setLocation("/settings");
+    navigate("/settings");
   };
 
   return (
@@ -47,7 +47,7 @@ export default function HomePage() {
 
         <Button
           variant="ghost"
-          onClick={() => setLocation("/multiplayer")}
+          onClick={() => navigate("/online")}
           disabled={!isOnlineModeAvailable}
           className="w-full text-muted-foreground hover:text-foreground disabled:opacity-50 disabled:cursor-not-allowed"
           size="sm"

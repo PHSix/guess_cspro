@@ -1,5 +1,5 @@
-import { create } from "zustand";
 import { Player } from "@/lib/gameEngine";
+import { customCreate } from "./util";
 
 interface ModePlayerList {
   ylg: string[];
@@ -20,7 +20,7 @@ interface PlayerStore {
   clearError: () => void;
 }
 
-export const usePlayerStore = create<PlayerStore>((set, get) => ({
+export const usePlayerStore = customCreate<PlayerStore>((set, get) => ({
   // 初始状态
   allPlayers: [],
   modePlayerList: { ylg: [], normal: [] },

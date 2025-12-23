@@ -8,4 +8,4 @@ export {
   findPlayerByName,
   getRandomPlayer,
   getPlayersByDifficulty,
-} from "../models/playerDataLoader.js";
+} from "../models/playerDataLoader";

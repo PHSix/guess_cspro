@@ -4,15 +4,15 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { toast } from "sonner";
 import { useLocation } from "wouter";
-import { useMultiplayerStore } from "@/store/useMultiplayerStore.js";
-import { useSettingsStore } from "@/store/useSettingsStore.js";
+import { useOnlineStore } from "@/store/useOnlineStore";
+import { useSettingsStore } from "@/store/useSettingsStore";
 import type {
   CreateRoomRequest,
   JoinRoomRequest,
   CreateRoomResponse,
   JoinRoomResponse,
   ErrorResponse,
-} from "@/types/multiplayer.js";
+} from "@/types";
 
 type Difficulty = "all" | "normal" | "ylg";
 
@@ -27,13 +27,15 @@ const DIFFICULTY_CONFIG: Record<
 };
 
 export default function OnlineHomePage() {
-  const [, setLocation] = useLocation();
+  const [, navigate] = useLocation();
+  const { difficulty: _difficulty } = useSettingsStore();
+  // 优先使用本地存储的难度
+  const [difficulty, setDifficulty] = useState<Difficulty>(_difficulty);
   const { setGamerInfo, setSessionInfo, reset, initializeGamerId, gamerId } =
-    useMultiplayerStore();
+    useOnlineStore();
   const { username } = useSettingsStore();
 
   const [roomIdInput, setRoomIdInput] = useState<string>("");
-  const [difficulty, setDifficulty] = useState<Difficulty>("all");
   const [isCreating, setIsCreating] = useState(false);
   const [isJoining, setIsJoining] = useState(false);
 
@@ -44,7 +46,7 @@ export default function OnlineHomePage() {
   const handleCreateRoom = async () => {
     if (!gamerId || !username.trim()) {
       toast.error("Please enter your name in settings");
-      setLocation("/settings");
+      navigate("/settings");
       return;
     }
 
@@ -74,7 +76,7 @@ export default function OnlineHomePage() {
       const createResponse = data as CreateRoomResponse;
       setSessionInfo(createResponse.sessionId, createResponse.roomId, true);
       setGamerInfo(gamerId, username);
-      setLocation("/room");
+      navigate("/room");
     } catch (error) {
       console.error("Failed to create room:", error);
       toast.error("Failed to create room");
@@ -112,7 +114,7 @@ export default function OnlineHomePage() {
       const joinResponse = data as JoinRoomResponse;
       setSessionInfo(joinResponse.sessionId, roomIdInput, false);
       setGamerInfo(gamerId, username);
-      setLocation("/room");
+      navigate("/room");
     } catch (error) {
       console.error("Failed to join room:", error);
       toast.error("Failed to join room");
@@ -129,18 +131,18 @@ export default function OnlineHomePage() {
       <Card className="p-8 max-w-2xl neon-border">
         <h1 className="text-3xl font-bold text-foreground mb-2 text-center">
           <span className="glitch-text" data-text="多人对战">
-            Multiplayer
+            多人对战
           </span>
         </h1>
         <p className="text-sm text-muted-foreground text-center mb-8">
-          Create or join a room with up to 3 players
+          创建一个房间，最多支持3人参与
         </p>
 
         {/* Display current username */}
         <div className="mb-6 p-4 border border-border rounded-lg bg-card">
           <div className="flex items-center justify-between">
             <div>
-              <p className="text-xs text-muted-foreground">Your Username</p>
+              <p className="text-xs text-muted-foreground">您的用户名</p>
               <p className="text-lg font-semibold text-foreground">
                 {username}
               </p>
@@ -148,9 +150,9 @@ export default function OnlineHomePage() {
             <Button
               variant="outline"
               size="sm"
-              onClick={() => setLocation("/settings")}
+              onClick={() => navigate("/settings")}
             >
-              Change
+              修改
             </Button>
           </div>
         </div>
@@ -159,29 +161,27 @@ export default function OnlineHomePage() {
           {/* Difficulty selector */}
           <div>
             <label className="text-sm font-medium text-foreground mb-2 block">
-              Difficulty (for creating room)
+              困难等级（创建房间时）
             </label>
             <div className="grid grid-cols-3 gap-2">
-              {(Object.keys(DIFFICULTY_CONFIG) as Difficulty[]).map(
-                (diff) => (
-                  <button
-                    key={diff}
-                    onClick={() => setDifficulty(diff)}
-                    className={`p-3 rounded-lg border transition-all ${
-                      difficulty === diff
-                        ? "bg-accent text-accent-foreground border-accent neon-border"
-                        : "bg-card text-muted-foreground border-border hover:border-accent/50"
-                    }`}
-                  >
-                    <div className="font-semibold text-sm">
-                      {DIFFICULTY_CONFIG[diff].label}
-                    </div>
-                    <div className="text-xs opacity-70">
-                      {DIFFICULTY_CONFIG[diff].description}
-                    </div>
-                  </button>
-                )
-              )}
+              {(Object.keys(DIFFICULTY_CONFIG) as Difficulty[]).map(diff => (
+                <button
+                  key={diff}
+                  onClick={() => setDifficulty(diff)}
+                  className={`p-3 rounded-lg border transition-all ${
+                    difficulty === diff
+                      ? "bg-accent text-accent-foreground border-accent neon-border"
+                      : "bg-card text-muted-foreground border-border hover:border-accent/50"
+                  }`}
+                >
+                  <div className="font-semibold text-sm">
+                    {DIFFICULTY_CONFIG[diff].label}
+                  </div>
+                  <div className="text-xs opacity-70">
+                    {DIFFICULTY_CONFIG[diff].description}
+                  </div>
+                </button>
+              ))}
             </div>
           </div>
 
@@ -190,12 +190,12 @@ export default function OnlineHomePage() {
               className="text-sm font-medium text-foreground mb-2 block"
               htmlFor="room-id-input"
             >
-              Room ID (to join)
+              房间ID（加入房间时）
             </label>
             <Input
               id="room-id-input"
               type="text"
-              placeholder="Enter room ID..."
+              placeholder="输入房间ID..."
               value={roomIdInput}
               onChange={handleRoomIdChange}
               className="bg-input text-foreground border-border"
@@ -208,7 +208,7 @@ export default function OnlineHomePage() {
               disabled={isCreating || !username.trim()}
               className="flex-1 bg-accent text-accent-foreground hover:bg-accent/90 neon-border"
             >
-              {isCreating ? "Creating..." : "Create Room"}
+              {isCreating ? "创建中..." : "创建房间"}
             </Button>
 
             <Button
@@ -216,7 +216,7 @@ export default function OnlineHomePage() {
               disabled={isJoining || !roomIdInput.trim() || !username.trim()}
               className="flex-1 bg-secondary text-secondary-foreground hover:bg-secondary/80"
             >
-              {isJoining ? "Joining..." : "Join Room"}
+              {isJoining ? "加入中..." : "加入房间"}
             </Button>
           </div>
 
@@ -224,11 +224,11 @@ export default function OnlineHomePage() {
             variant="outline"
             onClick={() => {
               reset();
-              setLocation("/");
+              navigate("/");
             }}
             className="w-full"
           >
-            Back to Home
+            返回首页
           </Button>
         </div>
       </Card>

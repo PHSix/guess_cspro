@@ -1,13 +1,7 @@
-import { create } from "zustand";
-import type {
-  GamerInfo,
-  Guess,
-  Mask,
-  MysteryPlayer,
-  RoomStatus,
-} from "@/types/multiplayer.js";
+import type { GamerInfo, Guess, MysteryPlayer, RoomStatus } from "@/types";
+import { customCreate } from "./util";
 
-interface MultiplayerState {
+interface OnlineState {
   gamerId: string | null;
   gamerName: string | null;
   sessionId: string | null;
@@ -28,6 +22,7 @@ interface MultiplayerState {
   initializeGamerId: () => void;
   setGamerInfo: (gamerId: string, gamerName: string) => void;
   setSessionInfo: (sessionId: string, roomId: string, isHost: boolean) => void;
+  setRoomId: (roomId: string) => void;
   updateGamerList: (gamers: GamerInfo[]) => void;
   updateRoomStatus: (status: RoomStatus) => void;
   setMysteryPlayer: (player: MysteryPlayer) => void;
@@ -38,7 +33,7 @@ interface MultiplayerState {
   reset: () => void;
 }
 
-export const useMultiplayerStore = create<MultiplayerState>((set, get) => ({
+export const useOnlineStore = customCreate<OnlineState>(set => ({
   gamerId: null,
   gamerName: null,
   sessionId: null,
@@ -69,6 +64,10 @@ export const useMultiplayerStore = create<MultiplayerState>((set, get) => ({
 
   setSessionInfo: (sessionId: string, roomId: string, isHost: boolean) => {
     set({ sessionId, roomId, isHost });
+  },
+
+  setRoomId: (roomId: string) => {
+    set({ roomId, roomStatus: "waiting" });
   },
 
   updateGamerList: (gamers: GamerInfo[]) => {

@@ -1,4 +1,4 @@
-import { create } from "zustand";
+import { customCreate } from "./util";
 
 export type Difficulty = "all" | "normal" | "ylg";
 
@@ -50,7 +50,7 @@ const DEFAULT_TOTAL_GUESSES = 8;
 const DEFAULT_FRIBERG_AUTO_GUESS = true;
 const DEFAULT_USERNAME = generateRandomUsername();
 
-export const useSettingsStore = create<SettingsState>((set, get) => ({
+export const useSettingsStore = customCreate<SettingsState>((set, get) => ({
   difficulty: DEFAULT_DIFFICULTY,
   totalGuesses: DEFAULT_TOTAL_GUESSES,
   fribergAutoGuess: DEFAULT_FRIBERG_AUTO_GUESS,
@@ -134,6 +134,8 @@ export const useSettingsStore = create<SettingsState>((set, get) => ({
 
       if (savedUsername && savedUsername.trim().length > 0) {
         newUsername = savedUsername.trim().slice(0, 20);
+      } else {
+        localStorage.setItem("game-username", newUsername);
       }
 
       set({
