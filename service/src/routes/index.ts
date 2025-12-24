@@ -346,24 +346,12 @@ app.post("/room/ready", async c => {
       ready: parsed.ready,
     });
 
-    const allReady = roomManager.setReady(
-      session.roomId,
-      session.gamerId,
-      parsed.ready
-    );
+    roomManager.setReady(session.roomId, session.gamerId, parsed.ready);
 
     roomManager.broadcastToRoom(session.roomId, "readyUpdate", {
       gamerId: session.gamerId,
       ready: parsed.ready,
     });
-
-    if (allReady) {
-      logger.info({
-        msg: "All gamers ready",
-        roomId: session.roomId,
-      });
-      roomManager.broadcastToRoom(session.roomId, "allReady", {});
-    }
 
     return c.json({ success: true });
   } catch (error) {
@@ -463,6 +451,12 @@ app.post("/room/action", async c => {
 
     if (result.isEnded) {
       const room = roomManager.getRoom(session.roomId);
+      console.log(
+        "isCorrect",
+        result.isCorrect,
+        result.isEnded,
+        room?.mysteryPlayer
+      );
       if (room && room.mysteryPlayer) {
         logger.info({
           msg: "Game ended",
@@ -470,7 +464,6 @@ app.post("/room/action", async c => {
           winner: result.isCorrect ? session.gamerId : undefined,
         });
         roomManager.broadcastToRoom(session.roomId, "gameEnded", {
-          status: "ended",
           winner: result.isCorrect ? session.gamerId : undefined,
           mysteryPlayer: {
             ...room.mysteryPlayer,

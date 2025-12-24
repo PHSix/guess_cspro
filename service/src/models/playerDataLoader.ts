@@ -112,9 +112,9 @@ export function getPlayersByDifficulty(difficulty: Difficulty): Player[] {
   }
 
   const modeList = loadModePlayerList();
-  const allowedPlayerNames = modeList[difficulty] || [];
+  const allowedProIds = modeList[difficulty] || [];
 
-  return allPlayers.filter(player => allowedPlayerNames.includes(player.proId));
+  return allPlayers.filter(player => allowedProIds.includes(player.proId));
 }
 
 /**

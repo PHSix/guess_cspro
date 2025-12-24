@@ -3,25 +3,31 @@ import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Loader2, Settings } from "lucide-react";
 import {
-  searchPlayers,
-  getRandomPlayer,
-  isCorrectGuess,
   createGuessRecord,
+  getCurrentDiffcultyPlayers,
 } from "@/lib/gameEngine";
 import { useLocation } from "wouter";
 import { cn } from "@/lib/utils";
 import { useSettingsStore } from "@/store/useSettingsStore";
 import { PlayerSearchInput } from "@/components/PlayerSearchInput";
-import { compareGuess, Guess, Player } from "@shared/gameEngine";
+import {
+  compareGuess,
+  getRandomPlayer,
+  Guess,
+  isCorrectGuess,
+  Player,
+} from "@shared/gameEngine";
 import { GuessHistory } from "@/components/GuessHistory";
+import { usePlayerStore } from "@/store/usePlayerStore";
 
 export default function GamePage() {
   const [, navigate] = useLocation();
-  const { totalGuesses, fribergAutoGuess } = useSettingsStore();
+  const { totalGuesses, fribergAutoGuess, difficulty } = useSettingsStore();
   const [answerPlayer, setAnswerPlayer] = useState<Player | null>(null);
   const [guesses, setGuesses] = useState<Guess[]>([]);
   const [searchQuery, setSearchQuery] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const currentPlayers = usePlayerStore(s => s.getPlayersByMode(difficulty));
   const inputRef = useRef<HTMLInputElement>(null);
 
   const [guessesRemaining, setGuessesRemaining] = useState(totalGuesses);
@@ -35,9 +41,8 @@ export default function GamePage() {
    */
   useEffect(() => {
     setIsLoading(true);
-    const player = getRandomPlayer();
+    const player = getRandomPlayer(currentPlayers);
     setAnswerPlayer(player);
-    console.log(player);
     setGuesses([]);
     setGuessesRemaining(totalGuesses);
     setSearchQuery("");
@@ -46,7 +51,7 @@ export default function GamePage() {
 
     // 如果开启了 friberg 自动猜测，则自动添加 friberg 的猜测
     if (fribergAutoGuess) {
-      const players = searchPlayers("friberg");
+      const players = getCurrentDiffcultyPlayers();
       if (players.length > 0) {
         const friberg = players.find(p =>
           p.proId.toLowerCase().includes("friberg")
@@ -168,6 +173,7 @@ export default function GamePage() {
             </div>
 
             <PlayerSearchInput
+              difficulty={difficulty}
               value={searchQuery}
               onChange={setSearchQuery}
               onSelectPlayer={handleGuess}

@@ -7,13 +7,13 @@
 import type {
   Player,
   Mask,
-  MatchType,
+  MaskType,
   PlayerRole,
   Difficulty,
 } from "@guess-cspro/shared";
 
 // 重新导出共享类型
-export type { Player, Mask, MatchType, PlayerRole, Difficulty };
+export type { Player, Mask, MaskType as MatchType, PlayerRole, Difficulty };
 
 /**
  * 猜测记录

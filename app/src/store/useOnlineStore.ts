@@ -1,4 +1,4 @@
-import type { GamerInfo, MysteryPlayer, RoomStatus } from "@/types";
+import type { Difficulty, GamerInfo, MysteryPlayer, RoomStatus } from "@/types";
 import { customCreate } from "./util";
 import { Guess } from "@shared/gameEngine";
 
@@ -18,11 +18,17 @@ interface OnlineState {
   winner: string | null;
   isSSEConnected: boolean;
   sseError: string | null;
+  difficulty: Difficulty;
 
   // Actions
   initializeGamerId: () => void;
   setGamerInfo: (gamerId: string, gamerName: string) => void;
-  setSessionInfo: (sessionId: string, roomId: string, isHost: boolean) => void;
+  setSessionInfo: (
+    sessionId: string,
+    roomId: string,
+    isHost: boolean,
+    difficulty: Difficulty
+  ) => void;
   setRoomId: (roomId: string) => void;
   updateGamerList: (gamers: GamerInfo[]) => void;
   updateRoomStatus: (status: RoomStatus) => void;
@@ -49,6 +55,7 @@ export const useOnlineStore = customCreate<OnlineState>(set => ({
   winner: null,
   isSSEConnected: false,
   sseError: null,
+  difficulty: "all",
 
   initializeGamerId: () => {
     let storedId = localStorage.getItem("gamerId");
@@ -59,23 +66,23 @@ export const useOnlineStore = customCreate<OnlineState>(set => ({
     set({ gamerId: storedId });
   },
 
-  setGamerInfo: (gamerId: string, gamerName: string) => {
+  setGamerInfo: (gamerId, gamerName) => {
     set({ gamerId, gamerName });
   },
 
-  setSessionInfo: (sessionId: string, roomId: string, isHost: boolean) => {
-    set({ sessionId, roomId, isHost });
+  setSessionInfo: (sessionId, roomId, isHost, difficulty) => {
+    set({ sessionId, roomId, isHost, difficulty });
   },
 
-  setRoomId: (roomId: string) => {
+  setRoomId: roomId => {
     set({ roomId, roomStatus: "waiting" });
   },
 
-  updateGamerList: (gamers: GamerInfo[]) => {
+  updateGamerList: gamers => {
     set({ gamers });
   },
 
-  updateRoomStatus: (status: RoomStatus) => {
+  updateRoomStatus: status => {
     set({ roomStatus: status });
   },
 
@@ -118,6 +125,7 @@ export const useOnlineStore = customCreate<OnlineState>(set => ({
       winner: null,
       isSSEConnected: false,
       sseError: null,
+      difficulty: "all",
     });
   },
 }));

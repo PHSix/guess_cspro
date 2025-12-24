@@ -90,7 +90,6 @@ export interface GuessResultEventData {
  * Game ended event data
  */
 export interface GameEndedEventData {
-  status: "ended";
   winner?: string; // undefined if no winner (all guesses exhausted)
   mysteryPlayer: MysteryPlayer;
 }
@@ -116,7 +115,6 @@ export interface SSEEventDataSet {
   gamerJoined: GamerJoinedEventData;
   gamerLeft: GamerLeftEventData;
   readyUpdate: ReadyUpdateEventData;
-  allReady: AllReadyEventData;
   gameStarted: GameStartedEventData;
   guessResult: GuessResultEventData;
   gameEnded: GameEndedEventData;
@@ -142,7 +140,7 @@ export interface SSEEvent<T extends SSEEventName = SSEEventName> {
  * Zod schema for Mask (from gameEngine)
  */
 export const MaskSchema = z.object({
-  playerName: z.enum(["M", "N", "D"]),
+  guessId: z.enum(["M", "N", "D"]),
   team: z.enum(["M", "N", "D"]),
   country: z.enum(["M", "N", "D"]),
   age: z.enum(["M", "N", "D", "G", "L"]),
@@ -190,7 +188,7 @@ export const ConnectedEventSchema = z.object({
  */
 export const RoomStateEventSchema = z.object({
   gamers: z.array(ServerGamerInfoSchema),
-  roomStatus: z.enum(["pending", "waiting", "ready", "inProgress", "ended"]),
+  roomStatus: z.enum(["pending", "waiting", "inProgress", "ended"]),
 }) satisfies z.ZodType<RoomStateEventData>;
 
 /**
@@ -226,7 +224,9 @@ export const ReadyUpdateEventSchema = z.object({
 /**
  * Zod schema for AllReadyEventData
  */
-export const AllReadyEventSchema = z.object({}) satisfies z.ZodType<AllReadyEventData>;
+export const AllReadyEventSchema = z.object(
+  {}
+) satisfies z.ZodType<AllReadyEventData>;
 
 /**
  * Zod schema for GameStartedEventData
@@ -249,7 +249,6 @@ export const GuessResultEventSchema = z.object({
  * Zod schema for GameEndedEventData
  */
 export const GameEndedEventSchema = z.object({
-  status: z.literal("ended"),
   winner: z.string().optional(),
   mysteryPlayer: MysteryPlayerSchema,
 }) satisfies z.ZodType<GameEndedEventData>;
@@ -257,21 +256,29 @@ export const GameEndedEventSchema = z.object({
 /**
  * Zod schema for RoomEndedEventData
  */
-export const RoomEndedEventSchema = z.object({}) satisfies z.ZodType<RoomEndedEventData>;
+export const RoomEndedEventSchema = z.object(
+  {}
+) satisfies z.ZodType<RoomEndedEventData>;
+
+/**
+ * helper type for check
+ */
+type SSEEventSchemasType = {
+  [K in SSEEventName]: z.ZodType<SSEEventDataSet[K]>;
+};
 
 /**
  * Map of event name to its Zod schema
  */
-export const SSEEventSchemas = {
+export const SSEEventSchemas: SSEEventSchemasType = {
   connected: ConnectedEventSchema,
   roomState: RoomStateEventSchema,
   heartbeat: HeartbeatEventSchema,
   gamerJoined: GamerJoinedEventSchema,
   gamerLeft: GamerLeftEventSchema,
   readyUpdate: ReadyUpdateEventSchema,
-  allReady: AllReadyEventSchema,
   gameStarted: GameStartedEventSchema,
   guessResult: GuessResultEventSchema,
   gameEnded: GameEndedEventSchema,
   roomEnded: RoomEndedEventSchema,
-} as const satisfies Record<SSEEventName, z.ZodType<any>>;
+} as const;

@@ -1,10 +1,11 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { Input } from "@/components/ui/input";
 import { searchPlayers } from "@/lib/gameEngine";
 import { cn } from "@/lib/utils";
 import { useIsMobile } from "@/hooks/useMobile";
 import { getCountryFlag } from "@shared/countryUtils";
-import { Player } from "@shared/gameEngine";
+import { Difficulty, Player } from "@shared/gameEngine";
+import { usePlayerStore } from "@/store/usePlayerStore";
 
 interface PlayerSearchInputProps {
   /** 当前搜索值 */
@@ -21,6 +22,7 @@ interface PlayerSearchInputProps {
   className?: string;
   /** 自动聚焦 */
   autoFocus?: boolean;
+  difficulty?: Difficulty;
 }
 
 /**
@@ -31,16 +33,25 @@ export function PlayerSearchInput({
   value,
   onChange,
   onSelectPlayer,
+  difficulty = "all",
   disabled = false,
   placeholder = "输入选手名字... (↑↓ 或 Tab 切换, Enter 确认)",
   className = "bg-input text-foreground placeholder:text-muted-foreground border-border",
   autoFocus = true,
 }: PlayerSearchInputProps) {
-  const [searchResults, setSearchResults] = useState<Player[]>([]);
-  const [showDropdown, setShowDropdown] = useState(false);
   const [highlightedIndex, setHighlightedIndex] = useState(0);
   const inputRef = useRef<HTMLInputElement>(null);
   const isMobile = useIsMobile();
+  const getPlayersByMode = usePlayerStore(s => s.getPlayersByMode);
+  const [isFocused, setIsFocused] = useState(false);
+
+  const searchResults = useMemo(
+    () =>
+      value.trim() ? searchPlayers(getPlayersByMode(difficulty), value) : [],
+    [value]
+  );
+
+  const showDropdown = searchResults.length > 0 && isFocused;
 
   // 自动聚焦
   useEffect(() => {
@@ -52,27 +63,22 @@ export function PlayerSearchInput({
   // 搜索逻辑
   useEffect(() => {
     if (!value.trim()) {
-      setSearchResults([]);
-      setShowDropdown(false);
       setHighlightedIndex(0);
       return;
     }
 
-    const results = searchPlayers(value).slice(0, 20);
-    setSearchResults(results);
     setHighlightedIndex(0);
-    setShowDropdown(results.length > 0);
   }, [value]);
 
   const handleBlur = () => {
     setTimeout(() => {
-      setShowDropdown(false);
+      setIsFocused(false);
     }, 200);
   };
 
   const handleFocus = () => {
+    setIsFocused(true);
     if (value.trim() && searchResults.length > 0) {
-      setShowDropdown(true);
     }
   };
 
@@ -98,14 +104,11 @@ export function PlayerSearchInput({
       if (searchResults.length > 0 && searchResults[highlightedIndex]) {
         handleSelectPlayer(searchResults[highlightedIndex]);
       }
-    } else if (e.key === "Escape") {
-      setShowDropdown(false);
     }
   };
 
   const handleSelectPlayer = (player: Player) => {
     onSelectPlayer(player);
-    setShowDropdown(false);
   };
 
   return (

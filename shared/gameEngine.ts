@@ -16,9 +16,10 @@ export type Difficulty = "all" | "normal" | "ylg";
  * - M: Match - 完全匹配
  * - N: Near - 接近（同赛区或数值接近）
  * - D: Different - 不同
+ * - G: Greater - 大于
+ * - L: Less - 小于
  */
-// export type MatchType = "M" | "N" | "D";
-export enum MatchType {
+export enum MaskType {
   Exact = "M",
   Near = "N",
   Different = "D",
@@ -54,12 +55,12 @@ export interface Player {
  * 比较结果掩码
  */
 export interface Mask {
-  playerName: MatchType;
-  team: MatchType;
-  country: MatchType;
-  age: MatchType;
-  majorsPlayed: MatchType;
-  role: MatchType;
+  guessId: MaskType;
+  team: MaskType;
+  country: MaskType;
+  age: MaskType;
+  majorsPlayed: MaskType;
+  role: MaskType;
 }
 
 /**
@@ -292,46 +293,46 @@ export function compareGuess(
   const answerAge = calculateAge(answerPlayer.birthYear);
 
   return {
-    playerName:
+    guessId:
       guessedPlayer.proId === answerPlayer.proId
-        ? MatchType.Exact
-        : MatchType.Different,
+        ? MaskType.Exact
+        : MaskType.Different,
     team:
       guessedPlayer.team === answerPlayer.team
-        ? MatchType.Exact
-        : MatchType.Different,
+        ? MaskType.Exact
+        : MaskType.Different,
     // 赛区分组：同赛区显示 nearly，不同赛区显示 different
     country:
       guessedPlayer.country === answerPlayer.country
-        ? MatchType.Exact
+        ? MaskType.Exact
         : getCountryRegion(guessedPlayer.country) ===
             getCountryRegion(answerPlayer.country)
-          ? MatchType.Near
-          : MatchType.Different,
+          ? MaskType.Near
+          : MaskType.Different,
     age:
       guessedAge === answerAge
-        ? MatchType.Exact
+        ? MaskType.Exact
         : inRange(guessedAge - answerAge, 0, 2)
-          ? MatchType.Less
+          ? MaskType.Less
           : inRange(guessedAge - answerAge, -2, 0)
-            ? MatchType.Greater
-            : MatchType.Different,
+            ? MaskType.Greater
+            : MaskType.Different,
     majorsPlayed:
       guessedPlayer.majorsPlayed === answerPlayer.majorsPlayed
-        ? MatchType.Exact
+        ? MaskType.Exact
         : inRange(guessedPlayer.majorsPlayed - answerPlayer.majorsPlayed, 0, 3)
-          ? MatchType.Less
+          ? MaskType.Less
           : inRange(
                 guessedPlayer.majorsPlayed - answerPlayer.majorsPlayed,
                 -3,
                 0
               )
-            ? MatchType.Greater
-            : MatchType.Different,
+            ? MaskType.Greater
+            : MaskType.Different,
     role:
       guessedPlayer.role === answerPlayer.role
-        ? MatchType.Exact
-        : MatchType.Different,
+        ? MaskType.Exact
+        : MaskType.Different,
   };
 }
 
@@ -371,49 +372,4 @@ export function findPlayerByName(
  */
 export function getRandomPlayer(players: Player[]): Player {
   return players[Math.floor(Math.random() * players.length)];
-}
-
-/**
- * 搜索玩家（模糊搜索）
- *
- * @param players - 玩家列表
- * @param query - 搜索关键词
- * @param limit - 返回结果数量限制
- * @returns 匹配的玩家列表
- */
-export function searchPlayers(
-  players: Player[],
-  query: string,
-  limit: number = 20
-): Player[] {
-  if (!query.trim()) return [];
-
-  const lowerQuery = query.toLowerCase();
-
-  // 搜索匹配项并按匹配度排序
-  const matchedPlayers = players
-    .filter(p => {
-      const playerNameLower = p.proId.toLowerCase();
-      return playerNameLower.includes(lowerQuery);
-    })
-    .map(p => {
-      // 计算匹配分数：开头匹配分数更高
-      if (p.filterProId.startsWith(lowerQuery)) {
-        const index = p.filterProId.indexOf(lowerQuery);
-        return { player: p, score: 2, index };
-      } else {
-        const startsWithScore = p.lowerProId.startsWith(lowerQuery) ? 2 : 1;
-        const index = p.lowerProId.indexOf(lowerQuery);
-        return { player: p, score: startsWithScore, index };
-      }
-    })
-    // 按分数降序，然后按索引升序
-    .sort((a, b) => {
-      if (b.score !== a.score) return b.score - a.score;
-      return a.index - b.index;
-    })
-    .map(item => item.player)
-    .slice(0, limit);
-
-  return matchedPlayers;
 }

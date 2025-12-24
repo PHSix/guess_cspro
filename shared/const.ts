@@ -12,7 +12,6 @@ export enum EsCustomEvent {
   GAMER_JOINED = "gamerJoined",
   GAMER_LEFT = "gamerLeft",
   READY_UPDATE = "readyUpdate",
-  ALL_READY = "allReady",
   GAME_STARTED = "gameStarted",
   GUESS_RESULT = "guessResult",
   GAME_ENDED = "gameEnded",

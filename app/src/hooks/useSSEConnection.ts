@@ -3,7 +3,6 @@ import { useOnlineStore } from "@/store/useOnlineStore";
 import type { GamerInfo, RoomStatus } from "@/types";
 import { EsCustomEvent, EsCustomEventList } from "@shared/const";
 import type { SSEEventDataSet } from "@shared/sse";
-import type { ServerGamerInfo } from "@shared/api";
 import { SSEEventSchemas, type SSEEventName } from "@shared/sse";
 import { Guess } from "@shared/gameEngine";
 import { createGuessRecord } from "@/lib/gameEngine";
@@ -139,7 +138,6 @@ export function useSSEConnection() {
         const validStatusList: RoomStatus[] = [
           "pending",
           "waiting",
-          "ready",
           "inProgress",
           "ended",
         ];
@@ -196,11 +194,6 @@ export function useSSEConnection() {
         );
 
         updateGamerList(updatedGamers);
-      });
-
-      // 处理所有玩家准备就绪事件
-      es.addEventListener(EsCustomEvent.ALL_READY, () => {
-        updateRoomStatus("ready");
       });
 
       // 处理游戏开始事件

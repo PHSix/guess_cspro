@@ -7,7 +7,12 @@ import type { Room } from "../models/Room";
 import type { GamerState, Player } from "../models/PlayerData";
 import type { SessionManager } from "./SessionManager";
 import { v4 as uuidv4 } from "uuid";
-import type { Difficulty } from "@guess-cspro/shared";
+import type {
+  CreateRoomResponse,
+  Difficulty,
+  ErrorResponse,
+  JoinRoomResponse,
+} from "@guess-cspro/shared";
 import { compareGuess } from "@guess-cspro/shared";
 import type { SSEEventDataSet, SSEEventName } from "@guess-cspro/shared";
 import { getRandomPlayer, findPlayerByName } from "../models/playerDataLoader";
@@ -24,17 +29,6 @@ export interface PendingSessionInfo {
   gamerId: string;
   gamerName: string;
   timeout: NodeJS.Timeout;
-}
-
-/** 创建房间结果 */
-interface CreateRoomResult {
-  roomId: string;
-  sessionId: string;
-}
-
-/** 加入房间结果 */
-interface JoinRoomResult {
-  sessionId: string;
 }
 
 export class RoomManager {
@@ -69,8 +63,8 @@ export class RoomManager {
   createRoom(
     gamerId: string,
     gamerName: string,
-    difficulty: string = "all"
-  ): CreateRoomResult {
+    difficulty: Difficulty = "all"
+  ): CreateRoomResponse {
     const roomId = uuidv4();
     const sessionId = uuidv4();
 
@@ -144,7 +138,7 @@ export class RoomManager {
     roomId: string,
     gamerId: string,
     gamerName: string
-  ): JoinRoomResult | { success: false; message: string } {
+  ): JoinRoomResponse | ErrorResponse {
     const room = this.rooms.get(roomId);
     if (!room) {
       logger.warn({ msg: "Join room failed: room not found", roomId, gamerId });
@@ -208,7 +202,7 @@ export class RoomManager {
       timeout,
     });
 
-    return { sessionId };
+    return { sessionId, difficulty: room.difficulty };
   }
 
   /**
@@ -281,7 +275,6 @@ export class RoomManager {
   getRoom(roomId: string): Room | null {
     const room = this.rooms.get(roomId);
     if (!room) return null;
-    if (room.status === "ended") return null;
     return room;
   }
 
@@ -361,11 +354,6 @@ export class RoomManager {
 
     const allReady = Array.from(room.gamers.values()).every(g => g.ready);
     if (allReady) {
-      room.status = "ready";
-      logger.info({
-        msg: "All gamers ready, room status changed to ready",
-        roomId,
-      });
       return true;
     }
 
@@ -383,11 +371,10 @@ export class RoomManager {
     const room = this.rooms.get(roomId);
     if (
       !room ||
-      (room.status !== "ready" &&
-        // 如果存在既不是房主也不是准备好的人，则不能开始游戏
-        Array.from(room.gamers.values()).some(
-          it => it.gamerId !== room.hostGamerId && !it.ready
-        ))
+      // 如果存在既不是房主也不是准备好的人，则不能开始游戏
+      Array.from(room.gamers.values()).some(
+        it => it.gamerId !== room.hostGamerId && !it.ready
+      )
     ) {
       logger.error({
         msg: "Start game failed: invalid room state",
@@ -400,6 +387,7 @@ export class RoomManager {
     // 根据房间难度选择神秘玩家
     const difficulty = (room.difficulty || "all") as Difficulty;
     const mysteryPlayer = getRandomPlayer(difficulty);
+    logger.info(mysteryPlayer);
 
     room.mysteryPlayer = mysteryPlayer;
     room.status = "inProgress";
@@ -496,18 +484,18 @@ export class RoomManager {
         roomId,
         winner: gamerId,
       });
-    }
+    } else {
+      const allGuessesExhausted = Array.from(room.gamers.values()).every(
+        g => g.guessesLeft === 0
+      );
 
-    const allGuessesExhausted = Array.from(room.gamers.values()).every(
-      g => g.guessesLeft === 0
-    );
-
-    if (allGuessesExhausted && !isCorrect) {
-      room.status = "ended";
-      logger.info({
-        msg: "Game ended - all guesses exhausted",
-        roomId,
-      });
+      if (allGuessesExhausted && !isCorrect) {
+        room.status = "ended";
+        logger.info({
+          msg: "Game ended - all guesses exhausted",
+          roomId,
+        });
+      }
     }
 
     return {

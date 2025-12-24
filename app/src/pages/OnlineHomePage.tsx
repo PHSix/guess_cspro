@@ -74,7 +74,12 @@ export default function OnlineHomePage() {
 
       // Now data is CreateRoomResponse
       const createResponse = data as CreateRoomResponse;
-      setSessionInfo(createResponse.sessionId, createResponse.roomId, true);
+      setSessionInfo(
+        createResponse.sessionId,
+        createResponse.roomId,
+        true,
+        difficulty
+      );
       setGamerInfo(gamerId, username);
       navigate("/room");
     } catch (error) {
@@ -112,7 +117,12 @@ export default function OnlineHomePage() {
 
       // Now data is JoinRoomResponse
       const joinResponse = data as JoinRoomResponse;
-      setSessionInfo(joinResponse.sessionId, roomIdInput, false);
+      setSessionInfo(
+        joinResponse.sessionId,
+        roomIdInput,
+        false,
+        joinResponse.difficulty
+      );
       setGamerInfo(gamerId, username);
       navigate("/room");
     } catch (error) {

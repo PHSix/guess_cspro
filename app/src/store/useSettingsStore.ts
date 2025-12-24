@@ -1,6 +1,5 @@
+import { Difficulty } from "@shared/gameEngine";
 import { customCreate } from "./util";
-
-export type Difficulty = "all" | "normal" | "ylg";
 
 // Generate random username
 function generateRandomUsername(): string {

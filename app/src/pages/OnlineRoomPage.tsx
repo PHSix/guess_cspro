@@ -4,7 +4,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { toast } from "sonner";
 import { useLocation } from "wouter";
-import type { RoomStatus, GamerInfo } from "@/types";
+import type { GamerInfo } from "@/types";
 import { PlayerSearchInput } from "@/components/PlayerSearchInput";
 import { GuessHistory } from "@/components/GuessHistory";
 import { useSSEConnection } from "@/hooks/useSSEConnection";
@@ -28,6 +28,7 @@ export default function OnlineRoomPage() {
     winner,
     isSSEConnected,
     reset,
+    difficulty,
   } = useOnlineStore();
 
   const { sendAction } = useSSEConnection();
@@ -92,14 +93,10 @@ export default function OnlineRoomPage() {
     );
   }
 
-  // Host can start the game at any time (even alone)
-  // Store roomStatus in a local variable to avoid type narrowing issues
-  const currentRoomStatus: RoomStatus = roomStatus;
   const canStartGame =
     isHost &&
-    (currentRoomStatus === "waiting" ||
-      currentRoomStatus === "ready" ||
-      currentRoomStatus === "pending");
+    roomStatus === "waiting" &&
+    gamers.every(it => (it.gamerId === myGamerId ? true : it.ready));
 
   return (
     <div className="bg-background min-h-screen py-8 px-4">
@@ -110,7 +107,7 @@ export default function OnlineRoomPage() {
               Room
             </span>
           </h1>
-          {currentRoomStatus === "waiting" && (
+          {roomStatus === "waiting" && (
             <p className="text-sm text-muted-foreground/50 flex gap-2 justify-center">
               Room ID: {roomId || "Connecting..."}
               <Copy
@@ -132,17 +129,6 @@ export default function OnlineRoomPage() {
                 <h2 className="text-2xl font-bold text-foreground"></h2>
                 <Badge className="ml-2">{gamers.length}/3</Badge>
               </div>
-
-              {/* 显示神秘玩家 */}
-              {roomStatus === "ready" && (
-                <div className="text-center py-8 border border-border rounded-lg bg-card">
-                  <p className="text-center text-accent font-mono text-sm">
-                    <span className="bracket">[</span>
-                    MYSTERY PLAYER GENERATED
-                    <span className="bracket">]</span>
-                  </p>
-                </div>
-              )}
 
               {/* 玩家列表 */}
               <div className="space-y-3">
@@ -197,47 +183,44 @@ export default function OnlineRoomPage() {
               </div>
 
               {/* 开始游戏按钮（仅房主） */}
-              {currentRoomStatus !== "inProgress" &&
-                currentRoomStatus !== "ended" && (
-                  <div className="flex justify-center mt-6">
-                    {isHost ? (
-                      // 房主
-                      <Button
-                        onClick={async () => {
-                          try {
-                            await sendAction("/room/start", {});
-                            toast.success("Game starting...");
-                          } catch (error) {
-                            console.error("Failed to start game:", error);
-                            toast.error("Failed to start game");
-                          }
-                        }}
-                        disabled={!canStartGame}
-                        className="bg-accent text-accent-foreground hover:bg-accent/90 neon-border w-full"
-                        size="lg"
-                      >
-                        开始游戏
-                      </Button>
-                    ) : (
-                      // 准备按钮，非房主
-                      <Button
-                        onClick={async () => {
-                          sendAction("/room/ready", {
-                            ready: !isReady,
-                          });
-                        }}
-                        className={
-                          isReady
-                            ? "bg-red-700 text-muted-foreground hover:bg-muted/90 w-full"
-                            : "bg-accent text-accent-foreground hover:bg-accent/90 neon-border w-full"
-                        }
-                        size={"lg"}
-                      >
-                        {isReady ? "取消准备" : "准备"}
-                      </Button>
-                    )}
-                  </div>
+              <div className="flex justify-center mt-6">
+                {isHost ? (
+                  // 房主
+                  <Button
+                    onClick={async () => {
+                      try {
+                        await sendAction("/room/start", {});
+                        toast.success("Game starting...");
+                      } catch (error) {
+                        console.error("Failed to start game:", error);
+                        toast.error("Failed to start game");
+                      }
+                    }}
+                    disabled={!canStartGame}
+                    className="bg-accent text-accent-foreground hover:bg-accent/90 neon-border w-full"
+                    size="lg"
+                  >
+                    开始游戏
+                  </Button>
+                ) : (
+                  // 准备按钮，非房主
+                  <Button
+                    onClick={async () => {
+                      sendAction("/room/ready", {
+                        ready: !isReady,
+                      });
+                    }}
+                    className={
+                      isReady
+                        ? "bg-red-700 text-muted-foreground hover:bg-muted/90 w-full"
+                        : "bg-accent text-accent-foreground hover:bg-accent/90 neon-border w-full"
+                    }
+                    size={"lg"}
+                  >
+                    {isReady ? "取消准备" : "准备"}
+                  </Button>
                 )}
+              </div>
 
               {/* 离开房间按钮 */}
               <Button
@@ -256,6 +239,7 @@ export default function OnlineRoomPage() {
           <div className="space-y-6">
             {/* 搜索框 */}
             <PlayerSearchInput
+              difficulty={difficulty}
               value={searchQuery}
               onChange={setSearchQuery}
               onSelectPlayer={handleSubmitGuess}

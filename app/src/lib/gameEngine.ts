@@ -1,9 +1,6 @@
 import { usePlayerStore } from "@/store/usePlayerStore";
 import { useSettingsStore } from "@/store/useSettingsStore";
-import {} from "@/types";
-import { Guess, Mask, Player } from "@shared/gameEngine";
-
-export type Difficulty = "all" | "normal" | "ylg";
+import { Difficulty, Guess, Mask, Player } from "@shared/gameEngine";
 
 /**
  * 获取当前难度设置
@@ -13,9 +10,9 @@ function getCurrentDifficulty(): Difficulty {
 }
 
 /**
- * 获取所有选手（从全局状态）
+ * 获取当前难度下所有选手（从全局状态）
  */
-export function getAllPlayers(): Player[] {
+export function getCurrentDiffcultyPlayers(): Player[] {
   const store = usePlayerStore.getState();
   const difficulty = getCurrentDifficulty();
   return store.getPlayersByMode(difficulty);
@@ -24,10 +21,10 @@ export function getAllPlayers(): Player[] {
 /**
  * 搜索选手（快速搜索）
  */
-export function searchPlayers(query: string): Player[] {
+export function searchPlayers(playres: Player[], query: string): Player[] {
   if (!query.trim()) return [];
 
-  const players = getAllPlayers();
+  const players = playres;
   const lowerQuery = query.toLowerCase();
 
   // 搜索匹配项并按匹配度排序
@@ -57,24 +54,6 @@ export function searchPlayers(query: string): Player[] {
     .slice(0, 20); // 限制返回数量
 
   return matchedPlayers;
-}
-
-/**
- * 随机选择一个选手
- */
-export function getRandomPlayer(): Player {
-  const players = getAllPlayers();
-  return players[Math.floor(Math.random() * players.length)];
-}
-
-/**
- * 检查是否猜中
- */
-export function isCorrectGuess(
-  guessedPlayer: Player,
-  answerPlayer: Player
-): boolean {
-  return guessedPlayer.id === answerPlayer.id;
 }
 
 /**

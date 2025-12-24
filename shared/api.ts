@@ -8,12 +8,7 @@ import type { Player, Difficulty } from "./gameEngine";
 /**
  * Room status enum
  */
-export type RoomStatus =
-  | "pending"
-  | "waiting"
-  | "ready"
-  | "inProgress"
-  | "ended";
+export type RoomStatus = "pending" | "waiting" | "inProgress" | "ended";
 
 // Re-export Difficulty from gameEngine for convenience
 export type { Difficulty };
@@ -72,6 +67,7 @@ export interface CreateRoomResponse {
  */
 export interface JoinRoomResponse {
   sessionId: string;
+  difficulty: Difficulty;
 }
 
 /**

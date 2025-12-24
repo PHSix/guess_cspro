@@ -1,6 +1,6 @@
 import { cn } from "@/lib/utils";
 import { getCountryChinese, getCountryFlag } from "@shared/countryUtils";
-import { MatchType, Guess } from "@shared/index";
+import { MaskType, Guess } from "@shared/index";
 import { useMemo } from "react";
 
 interface GuessHistoryProps {
@@ -14,17 +14,17 @@ interface GuessHistoryProps {
   className?: string;
 }
 
-function getSymbolByMaskMatchType(match: MatchType): string {
+function getSymbolByMaskMatchType(match: MaskType): string {
   switch (match) {
-    case MatchType.Exact:
+    case MaskType.Exact:
       return "✓";
-    case MatchType.Near:
+    case MaskType.Near:
       return "≈";
-    case MatchType.Different:
+    case MaskType.Different:
       return "✗";
-    case MatchType.Greater:
+    case MaskType.Greater:
       return "↑";
-    case MatchType.Less:
+    case MaskType.Less:
       return "↓";
     default:
       return "?";
@@ -34,15 +34,15 @@ function getSymbolByMaskMatchType(match: MatchType): string {
 /**
  * 获取匹配结果的样式类名
  */
-export function getMatchClass(match: MatchType): string {
+export function getMatchClass(match: MaskType): string {
   switch (match) {
-    case MatchType.Exact:
+    case MaskType.Exact:
       return "text-green-400 font-bold bg-green-700";
-    case MatchType.Near:
-    case MatchType.Greater:
-    case MatchType.Less:
+    case MaskType.Near:
+    case MaskType.Greater:
+    case MaskType.Less:
       return "text-yellow-400 font-bold bg-yellow-700";
-    case MatchType.Different:
+    case MaskType.Different:
       return "text-red-400";
     default:
       return "";
@@ -66,6 +66,7 @@ export function GuessHistory({ guesses }: GuessHistoryProps) {
       return [
         {
           value: guess.guessId,
+          class: getMatchClass(guess.mask.guessId),
         },
         {
           value: guess.team,

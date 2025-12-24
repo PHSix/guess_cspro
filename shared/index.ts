@@ -17,10 +17,3 @@ export * from "./countryUtils";
 
 // ==================== 常量 ====================
 export * from "./const";
-
-// ==================== 核心错误 ====================
-export * from "./_core/errors";
-
-// ==================== 遗留类型定义 ====================
-// TODO: 考虑迁移到 api.ts 或 sse.ts
-export * from "./types";
