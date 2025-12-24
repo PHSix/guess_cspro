@@ -1,26 +1,28 @@
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { Loader2, Settings } from "lucide-react";
+import { Loader2, Settings, User, Wifi, WifiOff } from "lucide-react";
 import { useState } from "react";
 import { useLocation } from "wouter";
+import { useSettingsStore } from "@/store/useSettingsStore";
 
 export default function HomePage() {
-  const [, setLocation] = useLocation();
+  const [, navigate] = useLocation();
   const [isLoading, setIsLoading] = useState(false);
+  const { isOnlineModeAvailable } = useSettingsStore();
 
   const handleStartGame = () => {
     setIsLoading(true);
     // 直接导航到游戏页面
-    setLocation("/game");
+    navigate("/game");
   };
 
   const handleGoToSettings = () => {
-    setLocation("/settings");
+    navigate("/settings");
   };
 
   return (
     <div className="min-h-screen bg-background flex items-center justify-center px-4">
-      <Card className="p-8 max-w-md neon-border text-center space-y-6">
+      <Card className="p-8 max-w-md neon-border text-center space-y-0">
         <h1 className="text-4xl font-bold text-foreground">
           <span className="glitch-text" data-text="弗一把">
             弗一把
@@ -40,6 +42,26 @@ export default function HomePage() {
             </>
           ) : (
             "▶ START GAME"
+          )}
+        </Button>
+
+        <Button
+          variant="ghost"
+          onClick={() => navigate("/online")}
+          disabled={!isOnlineModeAvailable}
+          className="w-full text-muted-foreground hover:text-foreground disabled:opacity-50 disabled:cursor-not-allowed"
+          size="sm"
+        >
+          {isOnlineModeAvailable ? (
+            <>
+              <Wifi className="w-4 h-4 mr-2" />
+              ONLINE
+            </>
+          ) : (
+            <>
+              <WifiOff className="w-4 h-4 mr-2" />
+              ONLINE (离线)
+            </>
           )}
         </Button>
         <Button

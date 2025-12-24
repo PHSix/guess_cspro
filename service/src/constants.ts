@@ -1,0 +1,8 @@
+export const MAX_GAMERS_PER_ROOM = 3;
+export const MAX_TOTAL_SESSIONS = 100;
+export const GUESSES_PER_GAMER = 8;
+export const PENDING_TIMEOUT_MS = 60_000;
+export const HEARTBEAT_INTERVAL_MS = 30_000;
+export const SESSION_INACTIVE_TIMEOUT_MS = 5 * 60_000;
+export const BIRTH_YEAR_NEAR_THRESHOLD = 2;
+export const MAJORS_NEAR_THRESHOLD = 2;

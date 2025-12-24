@@ -1,6 +1,19 @@
-// Shared types and utilities for the guess_cspro project
+/**
+ * 共享模块统一导出入口
+ * 同时供前端 (app) 和后端 (service) 使用
+ */
 
-export * from './types';
-export * from './countryUtils';
-export * from './const';
-export * from './_core/errors';
+// ==================== 游戏引擎 ====================
+export * from "./gameEngine";
+
+// ==================== API 类型 ====================
+export * from "./api";
+
+// ==================== SSE 事件类型 ====================
+export * from "./sse";
+
+// ==================== 工具函数 ====================
+export * from "./countryUtils";
+
+// ==================== 常量 ====================
+export * from "./const";

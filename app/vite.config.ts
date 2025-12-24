@@ -18,7 +18,8 @@ export default defineConfig(({ command }) => ({
         "favicon.ico",
         "apple-touch-icon.png",
         "mask-icon.svg",
-        "players_data.json",
+        "all_players_data.json",
+        "mode_player_list.json",
       ],
       manifest: {
         name: "弗一把 - CS专业选手猜谜",
@@ -85,9 +86,12 @@ export default defineConfig(({ command }) => ({
   server: {
     host: true,
     allowedHosts: ["localhost", "127.0.0.1"],
-    fs: {
-      strict: true,
-      deny: ["**/.*"],
+    proxy: {
+      "/api": {
+        target: "http://localhost:3001",
+        changeOrigin: true,
+        rewrite: path => path.replace(/^\/api/, ""),
+      },
     },
   },
 }));

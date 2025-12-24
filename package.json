@@ -21,8 +21,11 @@
   },
   "scripts": {
     "dev": "pnpm --filter @guess-cspro/app dev",
+    "dev:service": "pnpm --filter @guess-cspro/service dev",
+    "dev:all": "pnpm run --parallel dev dev:service",
     "build": "pnpm -r build",
     "build:app": "pnpm --filter @guess-cspro/app build",
+    "build:service": "pnpm --filter @guess-cspro/service build",
     "build:scraper": "pnpm --filter @guess-cspro/hltv_data_scraper build",
     "preview": "pnpm --filter @guess-cspro/app preview",
     "check": "pnpm -r check",
@@ -30,10 +33,25 @@
     "clean": "pnpm -r clean || true",
     "type-check": "pnpm -r type-check"
   },
+  "dependencies": {
+    "ofetch": "^1.5.1",
+    "zod": "^3.0.0"
+  },
   "devDependencies": {
-    "prettier": "^3.6.2"
+    "prettier": "^3.6.2",
+    "tsx": "^4.0.0",
+    "typescript": "5.9.3"
   },
   "engines": {
     "node": ">=18.0.0"
+  },
+  "pnpm": {
+    "overrides": {
+      "tailwindcss>nanoid": "3.3.7"
+    },
+    "onlyBuiltDependencies": [
+      "@tailwindcss/oxide",
+      "esbuild"
+    ]
   }
 }

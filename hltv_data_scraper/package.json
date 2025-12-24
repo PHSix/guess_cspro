@@ -1,26 +1,22 @@
 {
-	"name": "@guess-cspro/hltv_data_scraper",
-	"version": "1.0.0",
-	"keywords": [],
-	"scripts": {
-		"fetch": "tsx src/index.ts",
-		"sync": "tsx src/sync.ts",
-		"patch": "tsx src/patch.ts",
-		"build": "echo 'No build required'",
-		"check": "tsc --noEmit",
-		"type-check": "tsc --noEmit",
-		"clean": "echo 'No clean required'"
-	},
-	"packageManager": "pnpm@10.13.1",
-	"devDependencies": {
-		"@types/node": "^25.0.3",
-		"prettier": "^3.7.4",
-		"ts-node": "^10.9.2",
-		"typescript": "^5.9.3"
-	},
-	"dependencies": {
-		"puppeteer": "^24.34.0",
-		"puppeteer-extra": "^3.3.6",
-		"puppeteer-extra-plugin-stealth": "^2.11.2"
-	}
+  "name": "@guess-cspro/hltv_data_scraper",
+  "version": "1.0.0",
+  "keywords": [],
+  "scripts": {
+    "fetch": "tsx src/index.ts",
+    "sync": "tsx src/sync.ts",
+    "patch": "tsx src/patch.ts",
+    "build": "echo 'No build required'",
+    "check": "tsc --noEmit",
+    "clean": "echo 'No clean required'"
+  },
+  "packageManager": "pnpm@10.13.1",
+  "devDependencies": {
+    "@types/node": "^25.0.3"
+  },
+  "dependencies": {
+    "puppeteer": "^24.34.0",
+    "puppeteer-extra": "^3.3.6",
+    "puppeteer-extra-plugin-stealth": "^2.11.2"
+  }
 }

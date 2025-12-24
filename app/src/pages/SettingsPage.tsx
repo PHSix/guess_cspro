@@ -17,20 +17,58 @@ import { cn } from "@/lib/utils";
 import { useSettingsStore } from "@/store/useSettingsStore";
 import { toast } from "sonner";
 
-type Difficulty = "all" | "normal" | "ylg";
+// Generate random username (copied from settings store)
+function generateRandomUsername(): string {
+  const adjectives = [
+    "Happy",
+    "Cool",
+    "Swift",
+    "Brave",
+    "Clever",
+    "Epic",
+    "Lucky",
+    "Mighty",
+  ];
+  const nouns = [
+    "Tiger",
+    "Dragon",
+    "Phoenix",
+    "Wolf",
+    "Bear",
+    "Eagle",
+    "Lion",
+    "Panther",
+  ];
+  const adj = adjectives[Math.floor(Math.random() * adjectives.length)];
+  const noun = nouns[Math.floor(Math.random() * nouns.length)];
+  const num = Math.floor(Math.random() * 1000);
+  return `${adj}${noun}${num}`;
+}
 
-const DIFFICULTY_CONFIG = {
+type DifficultyLevel = "all" | "normal" | "ylg";
+
+interface Difficulty {
+  label: string;
+  description: string;
+  difficulty: string;
+  disabled: boolean;
+  wip: boolean;
+}
+
+const DIFFICULTY_CONFIG: Record<DifficultyLevel, Difficulty> = {
   all: {
     label: "ALL 模式",
     description: "困难模式 - 包含所有选手",
     difficulty: "困难",
     disabled: false,
+    wip: false,
   },
   normal: {
     label: "Normal 模式",
     description: "中等模式 - 精选选手",
     difficulty: "中等",
     disabled: false,
+    wip: false,
   },
   ylg: {
     label: "YLG 模式",
@@ -46,9 +84,11 @@ export default function SettingsPage() {
     difficulty,
     totalGuesses,
     fribergAutoGuess,
+    username,
     setDifficulty,
     setTotalGuesses,
     setFribergAutoGuess,
+    setUsername,
     reset,
   } = useSettingsStore();
   const [showFribergDialog, setShowFribergDialog] = useState(false);
@@ -72,6 +112,10 @@ export default function SettingsPage() {
     if (value >= 1 && value <= 20) {
       setTotalGuesses(value);
     }
+  };
+
+  const handleUsernameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setUsername(e.target.value);
   };
 
   const handleFribergToggle = (checked: boolean) => {
@@ -122,8 +166,8 @@ export default function SettingsPage() {
             <div className="space-y-3">
               {(
                 Object.entries(DIFFICULTY_CONFIG) as [
-                  Difficulty,
-                  (typeof DIFFICULTY_CONFIG)[Difficulty],
+                  DifficultyLevel,
+                  (typeof DIFFICULTY_CONFIG)[DifficultyLevel],
                 ][]
               ).map(([key, config]) => (
                 <button
@@ -171,6 +215,41 @@ export default function SettingsPage() {
                   </div>
                 </button>
               ))}
+            </div>
+          </div>
+
+          {/* 用户名设置 */}
+          <div className="space-y-4 pt-4 border-t border-border">
+            <div className="text-xs font-mono text-muted-foreground">
+              <span className="bracket">[</span>USERNAME
+              <span className="bracket">]</span>
+            </div>
+
+            <div className="space-y-3">
+              <div>
+                <label className="text-sm text-foreground mb-2 block">
+                  用户名
+                </label>
+                <Input
+                  type="text"
+                  maxLength={20}
+                  value={username}
+                  onChange={handleUsernameChange}
+                  className="w-full max-w-[300px]"
+                  placeholder="输入用户名"
+                />
+                <p className="text-xs text-muted-foreground mt-1">
+                  用于多人模式的用户名（最多20个字符）
+                </p>
+              </div>
+
+              <Button
+                variant="outline"
+                size="sm"
+                onClick={() => setUsername(generateRandomUsername())}
+              >
+                随机生成
+              </Button>
             </div>
           </div>
 
