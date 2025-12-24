@@ -1,84 +1,41 @@
-import { Guess, Mask } from "@shared/gameEngine";
+/**
+ * Type definitions for the app
+ * Most types are now imported from @shared for consistency
+ */
 
-export interface MysteryPlayer {
-  id: string;
-  playerName: string;
-  team: string;
-  country: string;
-  birthYear: number;
-  majorsPlayed: number;
-  role: "AWPer" | "Rifler" | "Unknown";
-}
+// Re-export all shared API types
+export type {
+  CreateRoomRequest,
+  JoinRoomRequest,
+  ReadyRequest,
+  GuessRequest,
+  EmptyRequest,
+  CreateRoomResponse,
+  JoinRoomResponse,
+  SuccessResponse,
+  ErrorResponse,
+  ApiResponse,
+  RoomStatus,
+  Difficulty,
+  MysteryPlayer,
+  ServerGamerInfo,
+  GamerInfo,
+} from "@shared/api";
 
-export interface CreateRoomRequest {
-  gamerId: string;
-  gamerName: string;
-  difficulty?: "all" | "normal" | "ylg";
-}
-
-export interface JoinRoomRequest {
-  gamerId: string;
-  gamerName: string;
-  roomId: string;
-}
-
-export interface GamerInfo {
-  gamerId: string;
-  gamerName: string;
-  ready: boolean;
-  joinedAt: Date;
-  guessesLeft: number;
-  guesses: Guess[];
-}
-
-export type RoomStatus =
-  | "pending"
-  | "waiting"
-  | "ready"
-  | "inProgress"
-  | "ended";
-
-export interface SSEEventData {
-  connected: { gamerId: string; gamerName: string };
-  gamerJoined: { gamerId: string; gamerName: string };
-  gamerLeft: { gamerId: string };
-  readyUpdate: { gamerId: string; ready: boolean };
-  allReady: {};
-  gameStarted: { status: "inProgress" };
-  guessResult: {
-    gamerId: string;
-    guessId: string;
-    mask: Mask;
-    guessesLeft: number;
-  };
-  gameEnded: {
-    status: "ended";
-    winner?: string;
-    mysteryPlayer: MysteryPlayer;
-  };
-  roomEnded: {};
-}
-
-export interface CreateRoomResponse {
-  roomId: string;
-  sessionId: string;
-}
-
-export interface JoinRoomResponse {
-  sessionId: string;
-}
-
-export interface ErrorResponse {
-  success: false;
-  message: string;
-}
-
-export interface SuccessResponse {
-  success: true;
-}
-
-export type ApiResponse =
-  | CreateRoomResponse
-  | JoinRoomResponse
-  | ErrorResponse
-  | SuccessResponse;
+// Re-export all SSE event types
+export type {
+  ConnectedEventData,
+  RoomStateEventData,
+  HeartbeatEventData,
+  GamerJoinedEventData,
+  GamerLeftEventData,
+  ReadyUpdateEventData,
+  AllReadyEventData,
+  GameStartedEventData,
+  GuessResultEventData,
+  GameEndedEventData,
+  RoomEndedEventData,
+  SSEEventDataSet,
+  SSEEventName,
+  SSEEvent,
+} from "@shared/sse";

@@ -1,10 +1,19 @@
 import { useEffect, useRef, useEffectEvent } from "react";
 import { useOnlineStore } from "@/store/useOnlineStore";
-import type { GamerInfo, MysteryPlayer, RoomStatus } from "@/types";
+import type { GamerInfo, RoomStatus } from "@/types";
 import { EsCustomEvent, EsCustomEventList } from "@shared/const";
-import { Guess, Mask } from "@shared/gameEngine";
+import type {
+  SSEEventDataSet,
+} from "@shared/sse";
+import type { ServerGamerInfo } from "@shared/api";
+import {
+  SSEEventSchemas,
+  type SSEEventName,
+} from "@shared/sse";
+import { Guess } from "@shared/gameEngine";
 import { createGuessRecord } from "@/lib/gameEngine";
 import { usePlayerStore } from "@/store/usePlayerStore";
+import { toast } from "sonner";
 
 class CustomEventSource extends EventSource {
   override addEventListener(
@@ -15,16 +24,30 @@ class CustomEventSource extends EventSource {
     type: "message",
     listener: (ev: MessageEvent<any>) => void
   ): void;
-  override addEventListener(
-    type: EsCustomEvent,
-    listener: (ev: SSEEventData) => void
+  override addEventListener<T extends keyof SSEEventDataSet>(
+    type: T,
+    listener: (data: SSEEventDataSet[T]) => void
   ): void;
   override addEventListener(type: string, handler: any) {
     if (EsCustomEventList.includes(type)) {
       super.addEventListener(type, ev => {
-        const data = JSON.parse(ev.data);
-        console.log("recv", type, data);
-        return handler(data);
+        const rawData = JSON.parse((ev as MessageEvent).data);
+        console.log("recv", type, rawData);
+
+        // Validate using Zod schema
+        const schema = SSEEventSchemas[type as SSEEventName];
+        const result = schema.safeParse(rawData);
+
+        if (!result.success) {
+          console.error(
+            `SSE event validation failed for "${type}":`,
+            result.error.format()
+          );
+          toast.error(`Invalid event data: ${type}`);
+          return; // Skip processing invalid events
+        }
+
+        return handler(result.data);
       });
     } else {
       super.addEventListener(type, handler);
@@ -36,37 +59,6 @@ class CustomEventSource extends EventSource {
  * SSE (Server-Sent Events) 连接 Hook
  * 用于建立和管理与游戏服务器的实时连接
  */
-
-// ==================== 类型定义 ====================
-
-/** 玩家信息（从服务端接收） */
-interface ServerGamerInfo {
-  gamerId: string;
-  gamerName: string;
-  ready: boolean;
-  joinedAt: string; // ISO string
-}
-
-/** 房间状态信息 */
-// interface RoomStateInfo {
-//   gamers: ServerGamerInfo[];
-//   roomStatus: string;
-// }
-
-/** SSE 事件数据类型 */
-interface SSEEventData {
-  gamerId?: string;
-  gamerName?: string;
-  ready?: boolean;
-  guessId?: string;
-  mask?: Mask;
-  winner?: string | null;
-  mysteryPlayer?: MysteryPlayer;
-  roomId?: string;
-  timestamp?: string; // for heartbeat
-  gamers?: ServerGamerInfo[]; // for roomState
-  roomStatus?: string; // for roomState
-}
 
 /**
  * SSE 连接管理 Hook
@@ -126,7 +118,7 @@ export function useSSEConnection() {
       });
 
       // 处理连接成功事件
-      es.addEventListener(EsCustomEvent.CONNECTED, (data: SSEEventData) => {
+      es.addEventListener(EsCustomEvent.CONNECTED, (data) => {
         // Set room info from connected event
         if (data.roomId) {
           setRoomId(data.roomId);
@@ -135,9 +127,7 @@ export function useSSEConnection() {
       });
 
       // 处理房间状态更新事件
-      es.addEventListener(EsCustomEvent.ROOM_STATE, (data: SSEEventData) => {
-        if (!data.gamers) return;
-
+      es.addEventListener(EsCustomEvent.ROOM_STATE, (data) => {
         const gamers: GamerInfo[] = data.gamers.map(g => ({
           gamerId: g.gamerId,
           gamerName: g.gamerName,
@@ -170,11 +160,9 @@ export function useSSEConnection() {
       });
 
       // 处理玩家加入房间事件
-      es.addEventListener(EsCustomEvent.GAMER_JOINED, (data: SSEEventData) => {
+      es.addEventListener(EsCustomEvent.GAMER_JOINED, (data) => {
         console.log("gamerJoined");
         const state = useOnlineStore.getState();
-
-        if (!data.gamerId || !data.gamerName) return;
 
         // Check if gamer already exists
         if (state.gamers.some(g => g.gamerId === data.gamerId)) {
@@ -194,10 +182,8 @@ export function useSSEConnection() {
       });
 
       // 处理玩家离开房间事件
-      es.addEventListener(EsCustomEvent.GAMER_LEFT, (data: SSEEventData) => {
+      es.addEventListener(EsCustomEvent.GAMER_LEFT, (data) => {
         const state = useOnlineStore.getState();
-
-        if (!data.gamerId) return;
 
         const updatedGamers = state.gamers.filter(
           (g: GamerInfo) => g.gamerId !== data.gamerId
@@ -207,15 +193,11 @@ export function useSSEConnection() {
       });
 
       // 处理玩家准备状态更新事件
-      es.addEventListener(EsCustomEvent.READY_UPDATE, (data: SSEEventData) => {
+      es.addEventListener(EsCustomEvent.READY_UPDATE, (data) => {
         const state = useOnlineStore.getState();
 
-        if (!data.gamerId || data.ready === undefined) return;
-
-        const readyValue: boolean = data.ready;
-
         const updatedGamers = state.gamers.map((g: GamerInfo) =>
-          g.gamerId === data.gamerId ? { ...g, ready: readyValue } : g
+          g.gamerId === data.gamerId ? { ...g, ready: data.ready } : g
         );
 
         updateGamerList(updatedGamers);
@@ -232,12 +214,11 @@ export function useSSEConnection() {
       });
 
       // 处理玩家猜测结果事件
-      es.addEventListener(EsCustomEvent.GUESS_RESULT, (data: SSEEventData) => {
-        if (!data.gamerId || !data.guessId || !data.mask) return;
-        const pro = allPlayers.find(p => p.proId === data.gamerId);
+      es.addEventListener(EsCustomEvent.GUESS_RESULT, (data) => {
+        const pro = allPlayers.find(p => p.proId === data.guessId);
 
         if (!pro) {
-          console.error("Unknown player, No data for", data.gamerId);
+          console.error("Unknown player, No data for", data.guessId);
           return;
         }
 
@@ -247,7 +228,7 @@ export function useSSEConnection() {
       });
 
       // 处理游戏结束事件
-      es.addEventListener(EsCustomEvent.GAME_ENDED, (data: SSEEventData) => {
+      es.addEventListener(EsCustomEvent.GAME_ENDED, (data) => {
         setWinner(data.winner || null);
 
         if (data.mysteryPlayer) {

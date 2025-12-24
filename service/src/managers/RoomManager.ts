@@ -9,6 +9,7 @@ import type { SessionManager } from "./SessionManager";
 import { v4 as uuidv4 } from "uuid";
 import type { Difficulty } from "@guess-cspro/shared";
 import { compareGuess } from "@guess-cspro/shared";
+import type { SSEEventDataSet, SSEEventName } from "@guess-cspro/shared";
 import { getRandomPlayer, findPlayerByName } from "../models/playerDataLoader";
 import {
   GUESSES_PER_GAMER,
@@ -551,10 +552,14 @@ export class RoomManager {
    * 向房间内所有玩家广播消息
    *
    * @param roomId - 房间ID
-   * @param event - 事件名称
-   * @param data - 事件数据
+   * @param event - 事件名称 (SSEEventName)
+   * @param data - 事件数据 (根据事件类型强类型)
    */
-  broadcastToRoom(roomId: string, event: string, data: unknown): void {
+  broadcastToRoom<T extends SSEEventName>(
+    roomId: string,
+    event: T,
+    data: SSEEventDataSet[T]
+  ): void {
     const room = this.rooms.get(roomId);
     if (!room) {
       logger.warn({
