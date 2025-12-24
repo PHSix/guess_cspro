@@ -465,10 +465,7 @@ app.post("/room/action", async c => {
         });
         roomManager.broadcastToRoom(session.roomId, "gameEnded", {
           winner: result.isCorrect ? session.gamerId : undefined,
-          mysteryPlayer: {
-            ...room.mysteryPlayer,
-            playerName: room.mysteryPlayer.proId,
-          },
+          mysteryPlayer: room.mysteryPlayer,
         });
       }
     }

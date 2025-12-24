@@ -97,20 +97,6 @@ export type ApiResponse =
 // ==================== Common Types ====================
 
 /**
- * Mystery player (answer)
- * Extends Player with additional fields
- */
-export interface MysteryPlayer extends Player {
-  id: string | number;
-  playerName: string;
-  team: string;
-  country: string;
-  birthYear: number;
-  majorsPlayed: number;
-  role: "AWPer" | "Rifler" | "Unknown";
-}
-
-/**
  * Gamer information (from server perspective)
  */
 export interface ServerGamerInfo {

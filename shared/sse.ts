@@ -5,8 +5,8 @@
  */
 
 import { z } from "zod";
-import type { Mask } from "./gameEngine";
-import type { MysteryPlayer, ServerGamerInfo, RoomStatus } from "./api";
+import type { Mask, Player } from "./gameEngine";
+import type { ServerGamerInfo, RoomStatus } from "./api";
 
 // ==================== SSE Event Data Interfaces ====================
 
@@ -91,7 +91,7 @@ export interface GuessResultEventData {
  */
 export interface GameEndedEventData {
   winner?: string; // undefined if no winner (all guesses exhausted)
-  mysteryPlayer: MysteryPlayer;
+  mysteryPlayer: Player;
 }
 
 /**
@@ -154,7 +154,6 @@ export const MaskSchema = z.object({
 export const MysteryPlayerSchema = z.object({
   id: z.union([z.string(), z.number()]),
   proId: z.string(),
-  playerName: z.string(),
   team: z.string(),
   country: z.string(),
   birthYear: z.number(),
@@ -162,7 +161,7 @@ export const MysteryPlayerSchema = z.object({
   role: z.enum(["AWPer", "Rifler", "Unknown"]),
   lowerProId: z.string(),
   filterProId: z.string(),
-}) satisfies z.ZodType<MysteryPlayer>;
+}) satisfies z.ZodType<Player>;
 
 /**
  * Zod schema for ServerGamerInfo

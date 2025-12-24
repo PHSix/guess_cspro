@@ -24,6 +24,7 @@ export default function OnlineRoomPage() {
     gamers,
     guesses,
     roomStatus,
+    updateRoomStatus,
     mysteryPlayer,
     winner,
     isSSEConnected,
@@ -65,7 +66,7 @@ export default function OnlineRoomPage() {
       setSearchQuery("");
     } catch (error) {
       console.error("Failed to submit guess:", error);
-      toast.error("Failed to submit guess");
+      toast.error("提交猜测失败");
     }
   };
 
@@ -76,7 +77,7 @@ export default function OnlineRoomPage() {
       toast.success("Left room");
     } catch (error) {
       console.error("Failed to leave room:", error);
-      toast.error("Failed to leave room");
+      toast.error("离开房间失败");
     }
   };
 
@@ -85,9 +86,7 @@ export default function OnlineRoomPage() {
       <div className="min-h-screen bg-background flex items-center justify-center px-4">
         <div className="text-center">
           <div className="w-12 h-12 animate-spin mx-auto text-accent mb-4" />
-          <h2 className="text-xl font-bold text-foreground">
-            Connecting to room...
-          </h2>
+          <h2 className="text-xl font-bold text-foreground">连接到房间...</h2>
         </div>
       </div>
     );
@@ -109,12 +108,12 @@ export default function OnlineRoomPage() {
           </h1>
           {roomStatus === "waiting" && (
             <p className="text-sm text-muted-foreground/50 flex gap-2 justify-center">
-              Room ID: {roomId || "Connecting..."}
+              房间ID: {roomId || "连接中..."}
               <Copy
                 className="w-4 h-4 hover:text-foreground cursor-pointer"
                 onClick={() => {
                   navigator.clipboard.writeText(roomId || "");
-                  toast.success("Copied to clipboard");
+                  toast.success("已复制到剪贴板");
                 }}
               />
             </p>
@@ -160,7 +159,7 @@ export default function OnlineRoomPage() {
                               : "bg-muted text-muted-foreground border-border/50"
                           }
                         >
-                          {isReady ? "Ready" : "Waiting"}
+                          {isReady ? "准备" : "等待"}
                         </Badge>
 
                         {isHost && gamer.gamerId !== myGamerId && (
@@ -190,10 +189,10 @@ export default function OnlineRoomPage() {
                     onClick={async () => {
                       try {
                         await sendAction("/room/start", {});
-                        toast.success("Game starting...");
+                        toast.success("游戏开始");
                       } catch (error) {
                         console.error("Failed to start game:", error);
-                        toast.error("Failed to start game");
+                        toast.error("开始游戏失败");
                       }
                     }}
                     disabled={!canStartGame}
@@ -256,29 +255,28 @@ export default function OnlineRoomPage() {
             <Card className="p-8 neon-border">
               {winner ? (
                 <>
-                  <div className="text-6xl font-bold text-foreground mb-4">
-                    <span className="glitch-text" data-text="You Won">
-                      You Won!
-                    </span>
-                  </div>
                   <p className="text-2xl text-foreground mb-4">
-                    🎉 Congratulations!
+                    🎉 恭喜！
+                    <span className="glitch-text text-2xl" data-text="You Won">
+                      你赢了
+                    </span>
                   </p>
                   <p className="text-lg text-muted-foreground mb-4">
                     {winner === myGamerId
-                      ? "You correctly guessed the mystery player!"
-                      : `${winner} won the game!`}
+                      ? "你正确猜中了神秘玩家！"
+                      : // TODO: winner name
+                        `${winner} 赢了游戏！`}
                   </p>
                 </>
               ) : (
                 <>
                   <div className="text-6xl font-bold text-foreground mb-4">
                     <span className="glitch-text" data-text="Game Over">
-                      Game Over
+                      游戏结束
                     </span>
                   </div>
                   <p className="text-lg text-muted-foreground mb-4">
-                    The mystery player was:
+                    神秘玩家是：
                   </p>
                   <div className="p-4 border border-border rounded-lg bg-card">
                     <div className="space-y-2">
@@ -319,11 +317,18 @@ export default function OnlineRoomPage() {
 
                   <div className="mt-8 space-y-4">
                     <Button
-                      onClick={() => navigate("/online")}
+                      onClick={() => updateRoomStatus("inProgress")}
                       className="bg-accent text-accent-foreground hover:bg-accent/90 neon-border w-full"
                       size="lg"
                     >
-                      Play Again
+                      继续
+                    </Button>
+
+                    <Button
+                      onClick={() => navigate("/online")}
+                      className="bg-muted text-muted-foreground hover:bg-accent/30 w-full"
+                    >
+                      退出房间
                     </Button>
                   </div>
                 </>
