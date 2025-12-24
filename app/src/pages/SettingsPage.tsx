@@ -72,10 +72,9 @@ const DIFFICULTY_CONFIG: Record<DifficultyLevel, Difficulty> = {
   },
   ylg: {
     label: "YLG 模式",
-    description: "简单模式 - 即将推出",
+    description: "简单模式",
     difficulty: "简单",
-    disabled: true,
-    wip: true,
+    disabled: false,
   },
 };
 
