@@ -21,17 +21,16 @@ export default function OnlineRoomPage() {
     isHost,
     roomId,
     initializeGamerId,
-  } = useOnlineStore(state => state);
-
-  const {
     gamers,
     guesses,
     roomStatus,
     mysteryPlayer,
     winner,
     isSSEConnected,
-    sendAction,
-  } = useSSEConnection();
+    reset,
+  } = useOnlineStore();
+
+  const { sendAction } = useSSEConnection();
 
   const [searchQuery, setSearchQuery] = useState("");
   const isReady = useMemo(
@@ -46,6 +45,11 @@ export default function OnlineRoomPage() {
       toast.error("未找到房间，返回大厅");
       navigate("/online");
     }
+
+    return () => {
+      // reset store state
+      reset();
+    };
   }, [roomId]);
 
   useEffect(() => {
@@ -106,22 +110,22 @@ export default function OnlineRoomPage() {
               Room
             </span>
           </h1>
-          <p className="text-sm text-muted-foreground/50 flex gap-2 justify-center">
-            Room ID: {roomId || "Connecting..."}
-            <Copy
-              className="w-4 h-4 hover:text-foreground cursor-pointer"
-              onClick={() => {
-                navigator.clipboard.writeText(roomId || "");
-                toast.success("Copied to clipboard");
-              }}
-            />
-          </p>
+          {currentRoomStatus === "waiting" && (
+            <p className="text-sm text-muted-foreground/50 flex gap-2 justify-center">
+              Room ID: {roomId || "Connecting..."}
+              <Copy
+                className="w-4 h-4 hover:text-foreground cursor-pointer"
+                onClick={() => {
+                  navigator.clipboard.writeText(roomId || "");
+                  toast.success("Copied to clipboard");
+                }}
+              />
+            </p>
+          )}
         </div>
 
         {/* 房间等待状态 */}
-        {(roomStatus === "waiting" ||
-          roomStatus === "ready" ||
-          roomStatus === "inProgress") && (
+        {roomStatus === "waiting" && (
           <Card className="p-6 neon-border">
             <div className="mb-6">
               <div className="flex items-center justify-between">

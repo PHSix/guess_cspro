@@ -2,14 +2,9 @@ import { useEffect, useRef, useEffectEvent } from "react";
 import { useOnlineStore } from "@/store/useOnlineStore";
 import type { GamerInfo, RoomStatus } from "@/types";
 import { EsCustomEvent, EsCustomEventList } from "@shared/const";
-import type {
-  SSEEventDataSet,
-} from "@shared/sse";
+import type { SSEEventDataSet } from "@shared/sse";
 import type { ServerGamerInfo } from "@shared/api";
-import {
-  SSEEventSchemas,
-  type SSEEventName,
-} from "@shared/sse";
+import { SSEEventSchemas, type SSEEventName } from "@shared/sse";
 import { Guess } from "@shared/gameEngine";
 import { createGuessRecord } from "@/lib/gameEngine";
 import { usePlayerStore } from "@/store/usePlayerStore";
@@ -118,7 +113,7 @@ export function useSSEConnection() {
       });
 
       // 处理连接成功事件
-      es.addEventListener(EsCustomEvent.CONNECTED, (data) => {
+      es.addEventListener(EsCustomEvent.CONNECTED, data => {
         // Set room info from connected event
         if (data.roomId) {
           setRoomId(data.roomId);
@@ -127,7 +122,7 @@ export function useSSEConnection() {
       });
 
       // 处理房间状态更新事件
-      es.addEventListener(EsCustomEvent.ROOM_STATE, (data) => {
+      es.addEventListener(EsCustomEvent.ROOM_STATE, data => {
         const gamers: GamerInfo[] = data.gamers.map(g => ({
           gamerId: g.gamerId,
           gamerName: g.gamerName,
@@ -160,7 +155,7 @@ export function useSSEConnection() {
       });
 
       // 处理玩家加入房间事件
-      es.addEventListener(EsCustomEvent.GAMER_JOINED, (data) => {
+      es.addEventListener(EsCustomEvent.GAMER_JOINED, data => {
         console.log("gamerJoined");
         const state = useOnlineStore.getState();
 
@@ -182,7 +177,7 @@ export function useSSEConnection() {
       });
 
       // 处理玩家离开房间事件
-      es.addEventListener(EsCustomEvent.GAMER_LEFT, (data) => {
+      es.addEventListener(EsCustomEvent.GAMER_LEFT, data => {
         const state = useOnlineStore.getState();
 
         const updatedGamers = state.gamers.filter(
@@ -193,7 +188,7 @@ export function useSSEConnection() {
       });
 
       // 处理玩家准备状态更新事件
-      es.addEventListener(EsCustomEvent.READY_UPDATE, (data) => {
+      es.addEventListener(EsCustomEvent.READY_UPDATE, data => {
         const state = useOnlineStore.getState();
 
         const updatedGamers = state.gamers.map((g: GamerInfo) =>
@@ -214,7 +209,7 @@ export function useSSEConnection() {
       });
 
       // 处理玩家猜测结果事件
-      es.addEventListener(EsCustomEvent.GUESS_RESULT, (data) => {
+      es.addEventListener(EsCustomEvent.GUESS_RESULT, data => {
         const pro = allPlayers.find(p => p.proId === data.guessId);
 
         if (!pro) {
@@ -228,7 +223,7 @@ export function useSSEConnection() {
       });
 
       // 处理游戏结束事件
-      es.addEventListener(EsCustomEvent.GAME_ENDED, (data) => {
+      es.addEventListener(EsCustomEvent.GAME_ENDED, data => {
         setWinner(data.winner || null);
 
         if (data.mysteryPlayer) {
@@ -287,13 +282,6 @@ export function useSSEConnection() {
 
   // 返回游戏状态和操作方法
   return {
-    gamers: useOnlineStore(state => state.gamers),
-    guesses: useOnlineStore(state => state.guesses),
-    roomStatus: useOnlineStore(state => state.roomStatus),
-    mysteryPlayer: useOnlineStore(state => state.mysteryPlayer),
-    winner: useOnlineStore(state => state.winner),
-    myGamerId: useOnlineStore(state => state.gamerId),
-    isSSEConnected: useOnlineStore(state => state.isSSEConnected),
     sendAction,
   };
 }
