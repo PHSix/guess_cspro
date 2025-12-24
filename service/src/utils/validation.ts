@@ -9,7 +9,9 @@ import type { Difficulty } from "@guess-cspro/shared";
 export const createRoomSchema = z.object({
   gamerId: z.string().uuid(),
   gamerName: z.string().min(1).max(50),
-  difficulty: z.enum(["all", "normal", "ylg"]).default("all") as z.ZodType<Difficulty>,
+  difficulty: z
+    .enum(["all", "normal", "ylg"])
+    .default("all") as z.ZodType<Difficulty>,
 });
 
 export const joinRoomSchema = z.object({

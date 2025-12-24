@@ -7,6 +7,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 This is a CS:GO/CS2 professional player guessing game built with React and TypeScript. The game randomly selects a player and players must guess the player by comparing attributes (team, country, age, major tournament participation, and role) with feedback indicators showing how close their guesses are.
 
 **Features:**
+
 - Single-player mode with multiple difficulty levels (all, normal, ylg)
 - **Online multiplayer mode** (up to 3 players per room, real-time via SSE)
 - Offline PWA support for single-player mode
@@ -107,6 +108,7 @@ This project is organized as a pnpm monorepo with the following workspaces:
    - Game ended: Display winner and mystery player
 
 **Multiplayer Technical Details:**
+
 - Communication via SSE (Server-Sent Events) for real-time updates
 - POST requests with X-Session-Id header for actions
 - Server uses in-memory state (no database)

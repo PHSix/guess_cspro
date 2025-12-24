@@ -65,10 +65,10 @@ Key changes and clarifications:
 - **Server (Node.js + Hono)**: Manages RoomManager and SessionManager; processes requests, pushes SSE events. Uses sessionId for auth/connection.
 - **Shared Code**: @guess-cspro/shared package contains game logic (compareGuess), types (Player, Mask, MatchType), and constants.
 - **Communication**:
-  - Upstream: HTTP POST JSON with X-Session-Id header to /api/room/* endpoints.
+  - Upstream: HTTP POST JSON with X-Session-Id header to /api/room/\* endpoints.
   - Downstream: SSE event stream from /api/sse/:sessionId.
 - **Security**: Server-generated sessionId (UUID via uuid v4) for tamper prevention. 60-second timeout to prevent memory abuse. Zod for input validation.
-- **Development**: Vite proxy forwards /api/* requests to backend server (port 3001) during development.
+- **Development**: Vite proxy forwards /api/\* requests to backend server (port 3001) during development.
 
 ### 1.4 Recommended Tech Stack and Frameworks (Implemented)
 
@@ -258,6 +258,7 @@ Client implemented in React 19 with TypeScript. Uses Zustand for state managemen
 - **Custom EventSource**: Extends native EventSource to handle custom SSE events (EsCustomEvent).
 
 **Key Implementation Details**:
+
 ```typescript
 // SSE connection in useSSEConnection.ts
 const es = new CustomEventSource(`/api/sse/${sessionId}`);
@@ -279,6 +280,7 @@ const response = await fetch(`/api${endpoint}`, {
 ```
 
 **Create/Join Flow**:
+
 1. User creates/joins room via OnlineHomePage.
 2. POST request to /api/room/create or /api/room/join returns sessionId.
 3. useSSEConnection hook automatically establishes SSE connection.
@@ -307,6 +309,7 @@ const response = await fetch(`/api${endpoint}`, {
 ### 4.1 Development Commands
 
 **Server (service/):**
+
 ```bash
 pnpm --filter @guess-cspro/service dev   # Start dev server (port 3001)
 pnpm --filter @guess-cspro/service build  # Build for production
@@ -314,12 +317,14 @@ pnpm --filter @guess-cspro/service start  # Start production server
 ```
 
 **Client (app/):**
+
 ```bash
 pnpm --filter @guess-cspro/app dev        # Start Vite dev server (proxies /api to :3001)
 pnpm --filter @guess-cspro/app build      # Build for production
 ```
 
 **Monorepo:**
+
 ```bash
 pnpm install                              # Install all dependencies
 pnpm -r build                             # Build all workspaces
@@ -328,7 +333,7 @@ pnpm -r build                             # Build all workspaces
 ### 4.2 Configuration
 
 - **Server Port**: 3001 (configurable via PORT env var)
-- **API Proxy**: Vite proxy forwards /api/* to backend during development
+- **API Proxy**: Vite proxy forwards /api/\* to backend during development
 - **Player Data**: Loaded from service/src/data/all_players_data.json
 - **Difficulty Filtering**: Uses shared/data/mode_player_list.json
 
