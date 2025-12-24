@@ -18,7 +18,6 @@ import {
   Player,
 } from "@shared/gameEngine";
 import { GuessHistory } from "@/components/GuessHistory";
-import { usePlayerStore } from "@/store/usePlayerStore";
 
 export default function GamePage() {
   const [, navigate] = useLocation();
@@ -27,7 +26,7 @@ export default function GamePage() {
   const [guesses, setGuesses] = useState<Guess[]>([]);
   const [searchQuery, setSearchQuery] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-  const currentPlayers = usePlayerStore(s => s.getPlayersByMode(difficulty));
+  const currentPlayers = getCurrentDiffcultyPlayers();
   const inputRef = useRef<HTMLInputElement>(null);
 
   const [guessesRemaining, setGuessesRemaining] = useState(totalGuesses);

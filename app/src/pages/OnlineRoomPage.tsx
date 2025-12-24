@@ -282,7 +282,7 @@ export default function OnlineRoomPage() {
                     <div className="space-y-2">
                       <div className="flex items-center gap-2">
                         <span className="text-foreground font-semibold">
-                          {mysteryPlayer?.playerName}
+                          {mysteryPlayer?.proId}
                         </span>
                         <span className="text-muted-foreground mx-2">
                           - {mysteryPlayer?.team}

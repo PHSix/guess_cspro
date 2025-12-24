@@ -52,7 +52,7 @@ interface Difficulty {
   description: string;
   difficulty: string;
   disabled: boolean;
-  wip: boolean;
+  wip?: boolean;
 }
 
 const DIFFICULTY_CONFIG: Record<DifficultyLevel, Difficulty> = {
@@ -235,7 +235,7 @@ export default function SettingsPage() {
                   maxLength={20}
                   value={username}
                   onChange={handleUsernameChange}
-                  className="w-full max-w-[300px]"
+                  className="w-full max-w-75"
                   placeholder="输入用户名"
                 />
                 <p className="text-xs text-muted-foreground mt-1">
@@ -271,7 +271,7 @@ export default function SettingsPage() {
                   max={20}
                   value={totalGuesses}
                   onChange={handleTotalGuessesChange}
-                  className="w-full max-w-[200px]"
+                  className="w-full max-w-50"
                   placeholder="8"
                 />
                 <p className="text-xs text-muted-foreground mt-1">

@@ -17,7 +17,6 @@ export type {
   ApiResponse,
   RoomStatus,
   Difficulty,
-  MysteryPlayer,
   ServerGamerInfo,
   GamerInfo,
 } from "@shared/api";

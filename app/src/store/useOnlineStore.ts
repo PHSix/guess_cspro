@@ -1,6 +1,6 @@
-import type { Difficulty, GamerInfo, MysteryPlayer, RoomStatus } from "@/types";
+import type { Difficulty, GamerInfo, RoomStatus } from "@/types";
 import { customCreate } from "./util";
-import { Guess } from "@shared/gameEngine";
+import { Guess, Player } from "@shared/gameEngine";
 
 interface OnlineState {
   gamerId: string | null;
@@ -12,7 +12,7 @@ interface OnlineState {
   gamers: GamerInfo[];
   roomStatus: RoomStatus;
 
-  mysteryPlayer: MysteryPlayer | null;
+  mysteryPlayer: Player | null;
 
   guesses: Map<string, Guess[]>;
   winner: string | null;
@@ -32,7 +32,7 @@ interface OnlineState {
   setRoomId: (roomId: string) => void;
   updateGamerList: (gamers: GamerInfo[]) => void;
   updateRoomStatus: (status: RoomStatus) => void;
-  setMysteryPlayer: (player: MysteryPlayer) => void;
+  setMysteryPlayer: (player: Player) => void;
   addGuess: (gamerId: string, guess: Guess) => void;
   setWinner: (winner: string | null) => void;
   setSSEConnected: (connected: boolean) => void;
@@ -86,7 +86,7 @@ export const useOnlineStore = customCreate<OnlineState>(set => ({
     set({ roomStatus: status });
   },
 
-  setMysteryPlayer: (player: MysteryPlayer) => {
+  setMysteryPlayer: (player: Player) => {
     set({ mysteryPlayer: player });
   },
 
