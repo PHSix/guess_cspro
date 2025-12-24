@@ -36,7 +36,7 @@ export type PlayerRole = "AWPer" | "Rifler" | "Unknown";
  */
 export interface Player {
   id: string | number;
-  playerName: string;
+  proId: string;
   team: string;
   country: string;
   birthYear: number;
@@ -45,9 +45,9 @@ export interface Player {
   role: PlayerRole;
 
   /** 小写玩家名（用于搜索） */
-  lowerPlayerName: string;
+  lowerProId: string;
   /** 搜索用的规范化名字 */
-  filterPlayerName: string;
+  filterProId: string;
 }
 
 /**
@@ -67,24 +67,12 @@ export interface Mask {
  */
 export interface Guess {
   guessId: string;
-  playerName: string;
   team: string;
   country: string;
   age: number;
   majorMaps: number;
   role: string;
   mask: Mask;
-}
-
-/**
- * 比较结果（用于单机模式）
- */
-export interface ComparisonResult {
-  teamMatch: MatchType;
-  countryMatch: MatchType;
-  ageMatch: MatchType;
-  majorMapsMatch: MatchType;
-  roleMatch: MatchType;
 }
 
 /**
@@ -302,76 +290,48 @@ export function compareGuess(
 ): Mask {
   const guessedAge = calculateAge(guessedPlayer.birthYear);
   const answerAge = calculateAge(answerPlayer.birthYear);
-  const ageDiff = guessedAge - answerAge;
-  const majorsDiff = guessedPlayer.majorsPlayed - answerPlayer.majorsPlayed;
 
   return {
     playerName:
-      guessedPlayer.playerName === answerPlayer.playerName ? "M" : "D",
-    team: guessedPlayer.team === answerPlayer.team ? "M" : "D",
+      guessedPlayer.proId === answerPlayer.proId
+        ? MatchType.Exact
+        : MatchType.Different,
+    team:
+      guessedPlayer.team === answerPlayer.team
+        ? MatchType.Exact
+        : MatchType.Different,
+    // 赛区分组：同赛区显示 nearly，不同赛区显示 different
     country:
       guessedPlayer.country === answerPlayer.country
-        ? "M"
+        ? MatchType.Exact
         : getCountryRegion(guessedPlayer.country) ===
             getCountryRegion(answerPlayer.country)
-          ? "N"
-          : "D",
-    birthYear:
-      guessedPlayer.birthYear === answerPlayer.birthYear
-        ? "M"
-        : Math.abs(ageDiff) <= BIRTH_YEAR_NEAR_THRESHOLD
-          ? "N"
-          : "D",
+          ? MatchType.Near
+          : MatchType.Different,
+    age:
+      guessedAge === answerAge
+        ? MatchType.Exact
+        : inRange(guessedAge - answerAge, 0, 2)
+          ? MatchType.Less
+          : inRange(guessedAge - answerAge, -2, 0)
+            ? MatchType.Greater
+            : MatchType.Different,
     majorsPlayed:
       guessedPlayer.majorsPlayed === answerPlayer.majorsPlayed
-        ? "M"
-        : Math.abs(majorsDiff) <= MAJORS_NEAR_THRESHOLD
-          ? "N"
-          : "D",
-    role: guessedPlayer.role === answerPlayer.role ? "M" : "D",
-  };
-}
-
-/**
- * 比较玩家属性（用于单机模式的详细结果）
- *
- * @param guessedPlayer - 猜测的玩家
- * @param answerPlayer - 答案玩家
- * @returns 比较结果
- */
-export function comparePlayerAttributes(
-  guessedPlayer: Player,
-  answerPlayer: Player
-): ComparisonResult {
-  const guessedAge = calculateAge(guessedPlayer.birthYear);
-  const answerAge = calculateAge(answerPlayer.birthYear);
-
-  return {
-    teamMatch: guessedPlayer.team === answerPlayer.team ? "M" : "D",
-    countryMatch:
-      guessedPlayer.country === answerPlayer.country
-        ? "M"
-        : getCountryRegion(guessedPlayer.country) ===
-            getCountryRegion(answerPlayer.country)
-          ? "N"
-          : "D",
-    ageMatch:
-      guessedAge === answerAge
-        ? "M"
-        : inRange(guessedAge - answerAge, 0, 2)
-          ? "N"
-          : "D",
-    majorMapsMatch:
-      guessedPlayer.majorsPlayed === answerPlayer.majorsPlayed
-        ? "M"
-        : inRange(
-              guessedPlayer.majorsPlayed - answerPlayer.majorsPlayed,
-              0,
-              MAJORS_NEAR_THRESHOLD
-            )
-          ? "N"
-          : "D",
-    roleMatch: guessedPlayer.role === answerPlayer.role ? "M" : "D",
+        ? MatchType.Exact
+        : inRange(guessedPlayer.majorsPlayed - answerPlayer.majorsPlayed, 0, 3)
+          ? MatchType.Less
+          : inRange(
+                guessedPlayer.majorsPlayed - answerPlayer.majorsPlayed,
+                -3,
+                0
+              )
+            ? MatchType.Greater
+            : MatchType.Different,
+    role:
+      guessedPlayer.role === answerPlayer.role
+        ? MatchType.Exact
+        : MatchType.Different,
   };
 }
 
@@ -400,7 +360,7 @@ export function findPlayerByName(
   players: Player[],
   name: string
 ): Player | undefined {
-  return players.find(p => p.playerName.toLowerCase() === name.toLowerCase());
+  return players.find(p => p.proId.toLowerCase() === name.toLowerCase());
 }
 
 /**
@@ -433,19 +393,17 @@ export function searchPlayers(
   // 搜索匹配项并按匹配度排序
   const matchedPlayers = players
     .filter(p => {
-      const playerNameLower = p.playerName.toLowerCase();
+      const playerNameLower = p.proId.toLowerCase();
       return playerNameLower.includes(lowerQuery);
     })
     .map(p => {
       // 计算匹配分数：开头匹配分数更高
-      if (p.filterPlayerName.startsWith(lowerQuery)) {
-        const index = p.filterPlayerName.indexOf(lowerQuery);
+      if (p.filterProId.startsWith(lowerQuery)) {
+        const index = p.filterProId.indexOf(lowerQuery);
         return { player: p, score: 2, index };
       } else {
-        const startsWithScore = p.lowerPlayerName.startsWith(lowerQuery)
-          ? 2
-          : 1;
-        const index = p.lowerPlayerName.indexOf(lowerQuery);
+        const startsWithScore = p.lowerProId.startsWith(lowerQuery) ? 2 : 1;
+        const index = p.lowerProId.indexOf(lowerQuery);
         return { player: p, score: startsWithScore, index };
       }
     })

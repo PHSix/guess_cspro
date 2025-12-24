@@ -1,3 +1,5 @@
+import { Guess, Mask } from "@shared/gameEngine";
+
 export interface MysteryPlayer {
   id: string;
   playerName: string;
@@ -18,28 +20,6 @@ export interface JoinRoomRequest {
   gamerId: string;
   gamerName: string;
   roomId: string;
-}
-
-export type MatchType = "M" | "N" | "D" | "ND" | "NU";
-
-export interface Mask {
-  playerName: MatchType;
-  team: MatchType;
-  country: MatchType;
-  birthYear: MatchType;
-  majorsPlayed: MatchType;
-  role: MatchType;
-}
-
-export interface Guess {
-  guessId: string;
-  playerName: string;
-  team: string;
-  country: string;
-  age: number;
-  majorMaps: number;
-  role: string;
-  mask: Mask;
 }
 
 export interface GamerInfo {

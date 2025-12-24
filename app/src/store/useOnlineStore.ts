@@ -1,5 +1,6 @@
-import type { GamerInfo, Guess, MysteryPlayer, RoomStatus } from "@/types";
+import type { GamerInfo, MysteryPlayer, RoomStatus } from "@/types";
 import { customCreate } from "./util";
+import { Guess } from "@shared/gameEngine";
 
 interface OnlineState {
   gamerId: string | null;

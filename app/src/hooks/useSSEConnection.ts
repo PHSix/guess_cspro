@@ -1,7 +1,10 @@
 import { useEffect, useRef, useEffectEvent } from "react";
 import { useOnlineStore } from "@/store/useOnlineStore";
-import type { GamerInfo, Mask, MysteryPlayer, RoomStatus } from "@/types";
+import type { GamerInfo, MysteryPlayer, RoomStatus } from "@/types";
 import { EsCustomEvent, EsCustomEventList } from "@shared/const";
+import { Guess, Mask } from "@shared/gameEngine";
+import { createGuessRecord } from "@/lib/gameEngine";
+import { usePlayerStore } from "@/store/usePlayerStore";
 
 class CustomEventSource extends EventSource {
   override addEventListener(
@@ -45,10 +48,10 @@ interface ServerGamerInfo {
 }
 
 /** 房间状态信息 */
-interface RoomStateInfo {
-  gamers: ServerGamerInfo[];
-  roomStatus: string;
-}
+// interface RoomStateInfo {
+//   gamers: ServerGamerInfo[];
+//   roomStatus: string;
+// }
 
 /** SSE 事件数据类型 */
 interface SSEEventData {
@@ -76,6 +79,7 @@ interface SSEEventData {
 export function useSSEConnection() {
   const eventSourceRef = useRef<EventSource | null>(null);
   const sessionId = useOnlineStore(state => state.sessionId);
+  const allPlayers = usePlayerStore(s => s.allPlayers);
   const {
     setSSEConnected,
     setSSEError,
@@ -230,17 +234,16 @@ export function useSSEConnection() {
       // 处理玩家猜测结果事件
       es.addEventListener(EsCustomEvent.GUESS_RESULT, (data: SSEEventData) => {
         if (!data.gamerId || !data.guessId || !data.mask) return;
+        const pro = allPlayers.find(p => p.proId === data.gamerId);
 
-        addGuess(data.gamerId, {
-          guessId: data.guessId,
-          playerName: data.guessId,
-          team: "",
-          country: "",
-          age: 0,
-          majorMaps: 0,
-          role: "",
-          mask: data.mask,
-        });
+        if (!pro) {
+          console.error("Unknown player, No data for", data.gamerId);
+          return;
+        }
+
+        const guess: Guess = createGuessRecord(pro, data.mask);
+
+        addGuess(data.gamerId, guess);
       });
 
       // 处理游戏结束事件

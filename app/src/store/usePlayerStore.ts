@@ -1,4 +1,4 @@
-import { Player } from "@/lib/gameEngine";
+import { Player } from "@shared/gameEngine";
 import { customCreate } from "./util";
 
 interface ModePlayerList {
@@ -62,15 +62,15 @@ export const usePlayerStore = customCreate<PlayerStore>((set, get) => ({
       const allPlayers: Player[] = Object.entries(playersData).map(
         ([key, data]: [string, any], index) => ({
           id: index + 1,
-          playerName: key,
+          proId: key,
           team: data.team || "Unknown",
           country: data.country || "Unknown",
           birthYear: data.birth_year || 2000,
           majorsPlayed: data.majorsPlayed || 0,
           role: data.role || "Unknown",
           avatar: data.avatar || "",
-          lowerPlayerName: key.toLowerCase(),
-          filterPlayerName: key
+          lowerProId: key.toLowerCase(),
+          filterProId: key
             .toLowerCase()
             .replace("1", "i")
             .replace("0", "o")
@@ -102,10 +102,8 @@ export const usePlayerStore = customCreate<PlayerStore>((set, get) => ({
       return allPlayers;
     }
 
-    const allowedPlayerNames = modePlayerList[mode] || [];
-    return allPlayers.filter(player =>
-      allowedPlayerNames.includes(player.playerName)
-    );
+    const allowedProIds = modePlayerList[mode] || [];
+    return allPlayers.filter(player => allowedProIds.includes(player.proId));
   },
 
   // 清除错误

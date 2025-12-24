@@ -408,7 +408,7 @@ export class RoomManager {
       msg: "Game started",
       roomId,
       difficulty,
-      mysteryPlayer: mysteryPlayer.playerName,
+      mysteryPlayer: mysteryPlayer.proId,
       playerCount: room.gamers.size,
     });
 
@@ -473,7 +473,7 @@ export class RoomManager {
 
     gamer.guessesLeft--;
     gamer.guesses.push({
-      guessId: guessedPlayer.playerName,
+      guessId: guessedPlayer.proId,
       mask,
     });
 

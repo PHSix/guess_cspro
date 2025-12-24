@@ -1,10 +1,10 @@
 import { useEffect, useRef, useState } from "react";
 import { Input } from "@/components/ui/input";
-import type { Player } from "@/lib/gameEngine";
 import { searchPlayers } from "@/lib/gameEngine";
 import { cn } from "@/lib/utils";
 import { useIsMobile } from "@/hooks/useMobile";
 import { getCountryFlag } from "@shared/countryUtils";
+import { Player } from "@shared/gameEngine";
 
 interface PlayerSearchInputProps {
   /** 当前搜索值 */
@@ -150,7 +150,7 @@ export function PlayerSearchInput({
             >
               <div className="flex justify-between items-center">
                 <div className="font-semibold text-foreground text-sm">
-                  {player.playerName}
+                  {player.proId}
                 </div>
                 <div className="text-xs text-muted-foreground text-right">
                   {player.team} • {getCountryFlag(player.country)}{" "}

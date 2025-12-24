@@ -5,13 +5,13 @@ import { Button } from "@/components/ui/button";
 import { toast } from "sonner";
 import { useLocation } from "wouter";
 import type { RoomStatus, GamerInfo } from "@/types";
-import type { Player } from "@/lib/gameEngine";
 import { PlayerSearchInput } from "@/components/PlayerSearchInput";
-import { OnlineGuessHistory } from "@/components/OnlineGuessHistory";
+import { GuessHistory } from "@/components/GuessHistory";
 import { useSSEConnection } from "@/hooks/useSSEConnection";
 import { useOnlineStore } from "@/store/useOnlineStore";
 import { getCountryChinese } from "@shared/countryUtils";
 import { Copy } from "lucide-react";
+import { Player } from "@shared/gameEngine";
 
 export default function OnlineRoomPage() {
   const [, navigate] = useLocation();
@@ -56,7 +56,7 @@ export default function OnlineRoomPage() {
     if (roomStatus !== "inProgress" || !myGamerId) return;
 
     try {
-      await sendAction("/room/action", { guess: player.playerName });
+      await sendAction("/room/action", { guess: player.proId });
       setSearchQuery("");
     } catch (error) {
       console.error("Failed to submit guess:", error);
@@ -258,7 +258,7 @@ export default function OnlineRoomPage() {
             />
 
             {/* 我的猜测历史 */}
-            <OnlineGuessHistory guesses={myGuesses} maxGuesses={8} />
+            <GuessHistory guesses={myGuesses} />
           </div>
         )}
 

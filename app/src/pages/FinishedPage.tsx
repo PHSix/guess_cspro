@@ -3,12 +3,12 @@ import { Card } from "@/components/ui/card";
 import { useLocation } from "wouter";
 import { useEffect, useMemo, useEffectEvent } from "react";
 import { getCountryFlag } from "@shared/countryUtils";
-import type { Player, GameEngineGuess } from "@/lib/gameEngine";
 import Confetti from "@/components/Confetti";
+import { Guess, Player } from "@shared/gameEngine";
 
 interface FinishData {
   isWon: boolean;
-  guesses: GameEngineGuess[];
+  guesses: Guess[];
   answer: Player;
 }
 
@@ -91,7 +91,7 @@ export default function FinishedPage() {
                   <div>
                     <span className="text-muted-foreground">名字:</span>
                     <div className="font-semibold text-accent">
-                      {answer.playerName}
+                      {answer.proId}
                     </div>
                   </div>
                   <div>

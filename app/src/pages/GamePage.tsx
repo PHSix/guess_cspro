@@ -5,109 +5,21 @@ import { Loader2, Settings } from "lucide-react";
 import {
   searchPlayers,
   getRandomPlayer,
-  comparePlayerAttributes,
   isCorrectGuess,
   createGuessRecord,
-  type Player,
-  type GameEngineGuess,
-  MatchType,
 } from "@/lib/gameEngine";
-import { getCountryFlag, getCountryChinese } from "@shared/countryUtils";
 import { useLocation } from "wouter";
 import { cn } from "@/lib/utils";
 import { useSettingsStore } from "@/store/useSettingsStore";
 import { PlayerSearchInput } from "@/components/PlayerSearchInput";
-
-function getMatchSymbol(match: MatchType): string {
-  switch (match) {
-    case MatchType.Exact:
-      return "✓";
-    case MatchType.Near:
-      return "≈";
-    case MatchType.Different:
-      return "✗";
-    case MatchType.Greater:
-      return "↑";
-    case MatchType.Less:
-      return "↓";
-    default:
-      return "?";
-  }
-}
-
-function getMatchClass(match: MatchType): string {
-  switch (match) {
-    case MatchType.Exact:
-      return "text-green-400 font-bold bg-green-700";
-    case MatchType.Near:
-    case MatchType.Greater:
-    case MatchType.Less:
-      return "text-yellow-400 font-bold bg-yellow-700";
-    case MatchType.Different:
-      return "text-red-400";
-    default:
-      return "";
-  }
-}
-
-interface CompareResult {
-  value: string | number;
-  valueClass?: string;
-  class?: string;
-  prefix?: string;
-  symbol?: string;
-}
-
-function getCompareResults(record: GameEngineGuess): CompareResult[] {
-  function wrapGetMatchClass(type: MatchType) {
-    return `${getMatchClass(type)}`;
-  }
-
-  return [
-    {
-      value: record.playerName,
-    },
-    {
-      value: record.team,
-      class: wrapGetMatchClass(record.result.teamMatch),
-      symbol: getMatchSymbol(record.result.teamMatch),
-    },
-    {
-      // 国家图标
-      prefix: getCountryFlag(record.country),
-      // 国家名称
-      value: getCountryChinese(record.country),
-      valueClass: "hidden md:block",
-      class: wrapGetMatchClass(record.result.countryMatch),
-      symbol: getMatchSymbol(record.result.countryMatch),
-    },
-    {
-      value: record.age,
-      class: wrapGetMatchClass(record.result.ageMatch),
-      symbol: getMatchSymbol(record.result.ageMatch),
-    },
-    {
-      value: record.majorMaps,
-      class: wrapGetMatchClass(record.result.majorMapsMatch),
-      symbol: getMatchSymbol(record.result.majorMapsMatch),
-    },
-    {
-      value: record.role,
-      class: wrapGetMatchClass(record.result.roleMatch),
-      symbol: getMatchSymbol(record.result.roleMatch),
-    },
-  ];
-}
-
-interface GuessWithCompareResult extends GameEngineGuess {
-  compareResults: CompareResult[];
-}
+import { compareGuess, Guess, Player } from "@shared/gameEngine";
+import { GuessHistory } from "@/components/GuessHistory";
 
 export default function GamePage() {
   const [, navigate] = useLocation();
   const { totalGuesses, fribergAutoGuess } = useSettingsStore();
   const [answerPlayer, setAnswerPlayer] = useState<Player | null>(null);
-  const [guesses, setGuesses] = useState<GuessWithCompareResult[]>([]);
+  const [guesses, setGuesses] = useState<Guess[]>([]);
   const [searchQuery, setSearchQuery] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
@@ -137,15 +49,12 @@ export default function GamePage() {
       const players = searchPlayers("friberg");
       if (players.length > 0) {
         const friberg = players.find(p =>
-          p.playerName.toLowerCase().includes("friberg")
+          p.proId.toLowerCase().includes("friberg")
         );
         if (friberg) {
-          const result = comparePlayerAttributes(friberg, player);
+          const result = compareGuess(friberg, player);
           const guessRecord = createGuessRecord(friberg, result);
-          const newGuesses = [
-            ...[],
-            { ...guessRecord, compareResults: getCompareResults(guessRecord) },
-          ];
+          const newGuesses = [guessRecord];
           setGuesses(newGuesses);
 
           // 检查是否直接猜中
@@ -177,13 +86,10 @@ export default function GamePage() {
   const handleGuess = (player: Player) => {
     if (!answerPlayer) return;
 
-    const result = comparePlayerAttributes(player, answerPlayer);
+    const result = compareGuess(player, answerPlayer);
     const guessRecord = createGuessRecord(player, result);
 
-    const newGuesses = [
-      ...guesses,
-      { ...guessRecord, compareResults: getCompareResults(guessRecord) },
-    ];
+    const newGuesses = [...guesses, guessRecord];
     setGuesses(newGuesses);
 
     if (isCorrectGuess(player, answerPlayer)) {
@@ -268,54 +174,7 @@ export default function GamePage() {
             />
           </div>
 
-          {/* 猜测历史表格 */}
-          <div className="space-y-2">
-            <div className="text-xs font-mono text-muted-foreground">
-              <span className="bracket">[</span>HISTORY
-              <span className="bracket">]</span>
-            </div>
-
-            {/* 统一横向表格 */}
-            <div className="overflow-x-auto custom-scrollbar">
-              <table className="history-table">
-                <thead>
-                  <tr>
-                    <th>选手</th>
-                    <th>队伍</th>
-                    <th>国家</th>
-                    <th>年龄</th>
-                    <th>Major</th>
-                    <th>角色</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {/* map 猜测历史表格 */}
-                  {guesses.map((guess, idx) => (
-                    <tr key={idx} className="body-row">
-                      {/* 所有属性数据的对比结果 */}
-                      {guess.compareResults.map((result, idx) => (
-                        <td key={idx}>
-                          <div className={`cell ${result.class}`}>
-                            <span className="prefix">{result.prefix}</span>
-                            <span
-                              className={cn(
-                                "font-semibold text-foreground max-w-15 md:max-w-none truncate",
-                                result.valueClass
-                              )}
-                              title={`${result.value}`}
-                            >
-                              {result.value}
-                            </span>
-                            <span className="symbol">{result.symbol}</span>
-                          </div>
-                        </td>
-                      ))}
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-          </div>
+          <GuessHistory guesses={guesses} />
         </Card>
       </div>
     </div>

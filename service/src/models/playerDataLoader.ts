@@ -53,16 +53,16 @@ export function loadAllPlayers(): Player[] {
     const rawData = fs.readFileSync(dataPath, "utf-8");
     const playersData = JSON.parse(rawData) as ServerPlayerData;
 
-    cachedPlayers = Object.entries(playersData).map(([key, data], index) => ({
+    cachedPlayers = Object.entries(playersData).map(([key, data]) => ({
       id: key,
-      playerName: key,
+      proId: key,
       team: data.team || "Unknown",
       country: data.country || "Unknown",
       birthYear: data.birth_year || 2000,
       majorsPlayed: data.majorsPlayed || 0,
       role: (data.role || "Unknown") as "AWPer" | "Rifler" | "Unknown",
-      lowerPlayerName: key.toLowerCase(),
-      filterPlayerName: key
+      lowerProId: key.toLowerCase(),
+      filterProId: key
         .toLowerCase()
         .replace("1", "i")
         .replace("0", "o")
@@ -114,9 +114,7 @@ export function getPlayersByDifficulty(difficulty: Difficulty): Player[] {
   const modeList = loadModePlayerList();
   const allowedPlayerNames = modeList[difficulty] || [];
 
-  return allPlayers.filter(player =>
-    allowedPlayerNames.includes(player.playerName)
-  );
+  return allPlayers.filter(player => allowedPlayerNames.includes(player.proId));
 }
 
 /**
@@ -143,7 +141,7 @@ export function findPlayerByName(
     ? getPlayersByDifficulty(difficulty)
     : getMysteryPlayers();
 
-  return players.find(p => p.playerName.toLowerCase() === name.toLowerCase());
+  return players.find(p => p.proId.toLowerCase() === name.toLowerCase());
 }
 
 /**
